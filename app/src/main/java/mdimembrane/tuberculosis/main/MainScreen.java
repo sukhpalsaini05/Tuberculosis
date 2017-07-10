@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import mdimembrane.tuberculosis.main_fragments.HomeFragment;
+import mdimembrane.tuberculosis.main_fragments.MedicineMainFragment;
 import mdimembrane.tuberculosis.main_fragments.PatientMainFragment;
 import mdimembrane.tuberculosis.main_fragments.ReportMainFragment;
 import mdimembrane.tuberculosis.main_fragments.SampleMainFragment;
@@ -90,6 +91,9 @@ public class MainScreen extends AppCompatActivity
             fragment = new PatientMainFragment();
         } else if (id == R.id.nav_samples) {
             fragment = new SampleMainFragment();
+
+        } else if (id == R.id.nav_medicine) {
+            fragment = new MedicineMainFragment();
 
         } else if (id == R.id.nav_reports) {
              fragment = new ReportMainFragment();
