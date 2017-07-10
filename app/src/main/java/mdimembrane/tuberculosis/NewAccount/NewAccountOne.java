@@ -18,6 +18,8 @@ public class NewAccountOne extends AppCompatActivity {
 
         Toast.makeText(getApplicationContext(),"hello",Toast.LENGTH_LONG).show();
 
+        Toast.makeText(getApplicationContext(), "hello", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),"hello",Toast.LENGTH_LONG).show();
     }
 
 }
