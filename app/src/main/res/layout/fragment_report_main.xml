@@ -1,0 +1,110 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="mdimembrane.tuberculosis.main_fragments.SampleMainFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="134dp"
+            android:background="#ede430"
+            android:layout_margin="7sp">
+
+            <android.support.v4.view.ViewPager
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+        </LinearLayout>
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|bottom">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/addNewReport"
+                    android:drawableTop="@drawable/add_icon"
+                    android:layout_column="0"
+                    android:layout_weight="1"
+                    android:background="#3aa2de"
+                    android:textColor="#ffffff"
+                    android:textStyle="bold"
+                    android:layout_margin="4sp"
+                    android:padding="5sp"
+                    android:text="Add New Report" />
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Manage Reports"
+                    android:drawableTop="@drawable/manage_report"
+                    android:id="@+id/button2"
+                    android:layout_column="1"
+                    android:layout_weight="1"
+                    android:background="#2ec936"
+                    android:textColor="#ffffff"
+                    android:textStyle="bold"
+                    android:layout_margin="4sp"
+                    android:padding="5sp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Edit Report"
+                    android:drawableTop="@drawable/edit_sample"
+                    android:id="@+id/button3"
+                    android:layout_column="0"
+                    android:layout_weight="1"
+                    android:background="#be6ae8"
+                    android:textColor="#ffffff"
+                    android:textStyle="bold"
+                    android:layout_margin="4sp"
+                    android:padding="5sp" />
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Delete Report"
+                    android:drawableTop="@drawable/delete_icon"
+                    android:id="@+id/button4"
+                    android:layout_column="1"
+                    android:layout_weight="1"
+                    android:background="#e5625b"
+                    android:textColor="#ffffff"
+                    android:textStyle="bold"
+                    android:layout_margin="4sp"
+                    android:padding="5sp" />
+            </TableRow>
+        </TableLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

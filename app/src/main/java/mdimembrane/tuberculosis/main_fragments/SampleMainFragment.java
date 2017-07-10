@@ -13,10 +13,7 @@ import android.widget.Toast;
 
 import mdimembrane.tuberculosis.main.R;
 
-/**
- * A simple {@link Fragment} subclass.
 
- */
 public class SampleMainFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
      @Override
@@ -32,6 +29,6 @@ public class SampleMainFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         //you can set the title for your toolbar here for different fragments different titles
-        getActivity().setTitle("Home");
+        getActivity().setTitle("Samples");
     }
 }
