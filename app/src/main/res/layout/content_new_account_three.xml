@@ -10,17 +10,28 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="mdimembrane.tuberculosis.ManagePatients.AddPatientOne"
-    tools:showIn="@layout/activity_new_account_two">
+    tools:showIn="@layout/activity_new_account_three">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/scrollView" >
 
+
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/Hospital_Type"
+                android:id="@+id/textView"
+                android:layout_column="0"
+                android:textColor="@color/colorPrimary"
+                android:textSize="25sp" />
 
             <Spinner
                 android:layout_width="match_parent"
@@ -31,28 +42,20 @@
                 android:background="@drawable/spinner_style"
                 android:layout_marginBottom="5sp" />
 
-            <Spinner
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/spinner2"
-                android:textSize="25sp"
-                android:entries="@array/guardian_arrays"
-                android:background="@drawable/spinner_style"
-                android:layout_marginBottom="5sp" />
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/Hospital_Name"
+                android:id="@+id/textView1"
+                android:layout_column="0"
+                android:textColor="@color/colorPrimary"
+                android:textSize="25sp" />
 
             <Spinner
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/spinner3"
-                android:textSize="25sp"
-                android:entries="@array/guardian_arrays"
-                android:background="@drawable/spinner_style"
-                android:layout_marginBottom="5sp" />
-
-            <Spinner
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/spinner4"
+                android:id="@+id/spinner1"
                 android:textSize="25sp"
                 android:entries="@array/guardian_arrays"
                 android:background="@drawable/spinner_style"
@@ -62,8 +65,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="@string/address"
-                android:id="@+id/textView"
+                android:text="@string/Phone_no"
+                android:id="@+id/textView2"
                 android:layout_column="0"
                 android:textColor="@color/colorPrimary"
                 android:textSize="25sp" />
@@ -71,20 +74,19 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"
                 android:ems="10"
                 android:id="@+id/editText"
                 android:layout_column="1"
+                android:inputType="number"
                 android:background="@drawable/edit_text"
                 android:textSize="25sp"
-                android:layout_marginBottom="10sp"
-                android:hint="@string/address_hint" />
+                android:layout_marginBottom="10sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="@string/pin_code"
+                android:text="@string/Adhar_no"
                 android:id="@+id/textView3"
                 android:layout_column="0"
                 android:textColor="@color/colorPrimary"
@@ -95,45 +97,50 @@
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:ems="10"
-                android:id="@+id/editText3"
+                android:id="@+id/editText2"
                 android:layout_column="1"
                 android:background="@drawable/edit_text"
                 android:textSize="25sp"
-                android:layout_marginBottom="5sp" />
+                android:layout_marginBottom="10sp" />
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="bottom"
-                android:layout_marginTop="20sp">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="bottom"
+            android:layout_marginTop="20sp">
 
-                <Button
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="Back"
-                    android:id="@+id/button"
-                    android:layout_weight="1"
-                    android:background="#f55555"
-                    android:textColor="#ffffff"
-                    android:textStyle="bold"
-                    android:textSize="25sp"
-                    android:layout_margin="5sp" />
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Back"
+                android:id="@+id/button"
+                android:layout_weight="1"
+                android:background="#f55555"
+                android:textColor="#ffffff"
+                android:textStyle="bold"
+                android:textSize="25sp"
+                android:layout_margin="5sp"
+                android:onClick="backButton" />
 
-                <Button
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="Next"
-                    android:id="@+id/button5"
-                    android:layout_weight="1"
-                    android:background="#0b9c1f"
-                    android:textColor="#ffffff"
-                    android:textStyle="bold"
-                    android:textSize="25sp"
-                    android:layout_margin="5sp"
-                    android:onClick="nextButton" />
-            </LinearLayout>
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Save"
+                android:id="@+id/button1"
+                android:layout_weight="1"
+                android:background="#0b9c1f"
+                android:textColor="#ffffff"
+                android:textStyle="bold"
+                android:textSize="25sp"
+                android:layout_margin="5sp"
+                android:onClick="nextButton" />
         </LinearLayout>
+
+        </LinearLayout>
+
+
+
     </ScrollView>
 
-</RelativeLayout>
+    </RelativeLayout>

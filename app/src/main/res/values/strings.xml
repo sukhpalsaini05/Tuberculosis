@@ -49,7 +49,12 @@
     <string name="employee_code">Employee Code</string>
     <string name="gender">Gender</string>
     <string name="title_activity_new_account_two">New Account (2/3)</string>
+    <string name="title_activity_new_account_three">New Account (3/3)</string>
     <string name="pin_code">Pin Code</string>
     <string name="address">Address</string>
     <string name="address_hint">e.g. House No. , Street</string>
+    <string name="Phone_no">Phone Number</string>
+    <string name="Adhar_no">Adhar Card Number</string>
+    <string name="Hospital_Type">Hospital Type</string>
+    <string name="Hospital_Name">Hospital Name</string>
 </resources>

@@ -23,6 +23,9 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import mdimembrane.tuberculosis.NewAccount.NewAccountOne;
+import mdimembrane.tuberculosis.NewAccount.NewAccountTwo;
+
 /**
  * A login screen that offers login via email/password.
  */
@@ -51,10 +54,25 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     private ProgressDialog mProgress;
 
+    Button RequestAccount;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        RequestAccount=(Button)findViewById(R.id.button6);
+
+        RequestAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getApplicationContext(),NewAccountOne.class);
+                startActivity(intent);
+
+            }
+        });
+
+
         // Set up the login form.
         mEmailView = (EditText) findViewById(R.id.userNameET);
         mProgress =new ProgressDialog(this);

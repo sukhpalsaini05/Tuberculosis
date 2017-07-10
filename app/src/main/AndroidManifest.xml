@@ -56,7 +56,12 @@
         <activity
             android:name="mdimembrane.tuberculosis.NewAccount.NewAccountTwo"
             android:label="@string/title_activity_new_account_two"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="mdimembrane.tuberculosis.NewAccount.NewAccountThree"
+            android:label="@string/title_activity_new_account_three"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name="mdimembrane.tuberculosis.main_fragments.SampleMainFragment"></activity>
     </application>
 
 </manifest>

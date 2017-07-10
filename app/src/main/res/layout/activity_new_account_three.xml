@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="mdimembrane.tuberculosis.NewAccount.NewAccountTwo">
+    tools:context="mdimembrane.tuberculosis.NewAccount.NewAccountThree">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -21,7 +21,6 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_new_account_two" />
-
+    <include layout="@layout/content_new_account_three" />
 
 </android.support.design.widget.CoordinatorLayout>
