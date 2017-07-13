@@ -36,7 +36,7 @@
             <Spinner
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/spinner"
+                android:id="@+id/spinnerHospType"
                 android:textSize="25sp"
                 android:entries="@array/guardian_arrays"
                 android:background="@drawable/spinner_style"
@@ -55,11 +55,24 @@
             <Spinner
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/spinner1"
+                android:id="@+id/spinnerHospName"
                 android:textSize="25sp"
                 android:entries="@array/guardian_arrays"
                 android:background="@drawable/spinner_style"
                 android:layout_marginBottom="5sp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:id="@+id/HospNameET"
+                android:layout_column="1"
+                android:inputType="textPersonName"
+                android:visibility="gone"
+                android:background="@drawable/edit_text"
+                android:hint="Any Other Hospital"
+                android:textSize="25sp"
+                android:layout_marginBottom="10sp" />
 
             <TextView
                 android:layout_width="wrap_content"

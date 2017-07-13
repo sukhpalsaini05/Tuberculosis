@@ -79,6 +79,21 @@
     <string name="SelectVillages">Select Village</string>
     <string name="DiaglogBox">"Please Wait..."</string>
     <string name="other_village">Other Village</string>
+    <string name="TostState">Please Select State</string>
+    <string name="TostDistt">Please Select District</string>
+    <string name="TostTehsil">Please Select Tehsil</string>
+    <string name="TostVillage">Please Select Village</string>
+
+
+    <!-- Strings related to NewAccountThree.java -->
+    <string name="other_Hospital">Other Hospital</string>
+    <string name="TostHospitalType">Please Select Hospital Type</string>
+    <string name="TostHospitalName">Please Select Hospital Name</string>
+
+
+    <!-- Strings related to NewAccountOne.java -->
+
+    <string name="TostAccountType">Please Select Account Type</string>
 
 
 

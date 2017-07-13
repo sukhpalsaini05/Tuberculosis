@@ -1,19 +1,48 @@
 package mdimembrane.tuberculosis.NewAccount;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import mdimembrane.tuberculosis.ServerConfiguration.HttpConnection;
+import mdimembrane.tuberculosis.ServerConfiguration.ServerConstants;
+import mdimembrane.tuberculosis.main.PreferencesConstants;
 import mdimembrane.tuberculosis.main.R;
 
 public class NewAccountThree extends AppCompatActivity {
 
     Button SaveDetails,BackButton;
+    Spinner HospitalTypeSP,HospitalNameSP;
+    EditText otherHospitalET;
 
+    SharedPreferences sharedpreferences;
+    List<String> HospitalTypeList = new ArrayList<String>();
+    List<String> HospitalNameList = new ArrayList<String>();
+
+    String HosTypeSTR="null",HosNameSTR="";
+
+    JSONObject jsonObject;
+    String MSG = "";
+    boolean RESPONSE_CODE;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +51,11 @@ public class NewAccountThree extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 
+        sharedpreferences = getSharedPreferences(PreferencesConstants.APP_MAIN_PREF, Context.MODE_PRIVATE);
+
+        HospitalTypeSP=(Spinner)findViewById(R.id.spinnerHospType);
+        HospitalNameSP=(Spinner)findViewById(R.id.spinnerHospName);
+        otherHospitalET=(EditText)findViewById(R.id.HospNameET) ;
 
         SaveDetails = (Button)findViewById(R.id.button1);
         BackButton=(Button)findViewById(R.id.button);
@@ -30,6 +64,21 @@ public class NewAccountThree extends AppCompatActivity {
         SaveDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                if(HosTypeSTR.equals(""))
+                {
+                    Toast.makeText(getApplicationContext(),getResources().getString(R.string.TostHospitalType),Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if(otherHospitalET.getText().toString().equals(""))
+                {
+                    Toast.makeText(getApplicationContext(),getResources().getString(R.string.TostHospitalName),Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+
+
                 Toast.makeText(getApplicationContext(), "Details submited" , Toast.LENGTH_LONG).show();
 
             }
@@ -42,5 +91,154 @@ public class NewAccountThree extends AppCompatActivity {
 
             }
         });
+
+        jsonObject = new JSONObject();
+        try {
+            jsonObject.accumulate("action", "getHealthCentreType");
+            jsonObject.accumulate("Type", "null");
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+        new SendRequest().execute(ServerConstants.GET_LOCATION);
     }
+
+
+    private void allHospType() {
+        // TODO Auto-generated method stub
+        HospitalTypeList.add(0,getResources().getString(R.string.Hospital_Type));
+        HospitalTypeSP = (Spinner) findViewById(R.id.spinnerHospType);
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, HospitalTypeList);
+        dataAdapter.setDropDownViewResource(R.layout.drpdown_item);
+        HospitalTypeSP.setAdapter(dataAdapter);
+        HospitalTypeSP.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                HosTypeSTR="";
+                if(position>0)
+                {
+                    jsonObject = new JSONObject();
+                    try {
+                        HosTypeSTR=HospitalTypeList.get(position);
+                        jsonObject.accumulate("action", "getHealthCentreName");
+                        jsonObject.accumulate("state", sharedpreferences.getString(PreferencesConstants.AddNewAccount.USER_STATE,"Null"));
+                        jsonObject.accumulate("distt", sharedpreferences.getString(PreferencesConstants.AddNewAccount.USER_DISTT,"Null"));
+                        jsonObject.accumulate("type", HosTypeSTR);
+                    } catch (Exception e) {
+                        // TODO: handle exception
+                    }
+                    new SendRequest().execute(ServerConstants.GET_LOCATION);
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+    private void allHospName() {
+        // TODO Auto-generated method stub
+        HospitalNameList.add(0,getResources().getString(R.string.Hospital_Name));
+        HospitalNameSP = (Spinner) findViewById(R.id.spinnerHospName);
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, HospitalNameList);
+        dataAdapter.setDropDownViewResource(R.layout.drpdown_item);
+        HospitalNameSP.setAdapter(dataAdapter);
+        HospitalNameSP.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                otherHospitalET.setText("");
+                if(position>0)
+                {
+
+                    if(position==HospitalNameList.size()-1)
+                    {
+                        otherHospitalET.setVisibility(View.VISIBLE);
+                        otherHospitalET.requestFocus();
+                    }else {
+                        otherHospitalET.setVisibility(View.GONE);
+                        otherHospitalET.setText(HospitalNameList.get(position));
+                    }
+                }
+
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+    }
+
+    private class SendRequest extends AsyncTask<String, String, JSONObject> {
+        private ProgressDialog pDialog;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pDialog = new ProgressDialog(NewAccountThree.this);
+            pDialog.setMessage(getResources().getString(R.string.DiaglogBox));
+            pDialog.setIndeterminate(false);
+            pDialog.setCancelable(false);
+            pDialog.show();
+
+        }
+
+        @Override
+        protected JSONObject doInBackground(String... args) {
+            HttpConnection jParser = new HttpConnection();
+            // Getting JSON from URL
+            JSONObject json = jParser.getJSONFromUrl(args[0], jsonObject);
+            return json;
+        }
+
+        @Override
+        protected void onPostExecute(JSONObject json) {
+            pDialog.dismiss();
+            try {
+                RESPONSE_CODE = json.getBoolean("response");
+                MSG = json.getString("message");
+                // Log.i("dfdfdf", ""+MSG+"   "+RESPONSE_CODE);
+                if (RESPONSE_CODE) {
+                    try {
+                        if (MSG.equals("type")) {
+                            HospitalTypeList.clear();
+                            HospitalNameList.clear();
+                            allHospName();
+
+                        } else if (MSG.equals("name")) {
+                            HospitalNameList.clear();
+                        }
+                        JSONArray jsonMainNode = json.optJSONArray("data");
+                        int lengthJsonArr = jsonMainNode.length();
+                        for (int i = 0; i < lengthJsonArr; i++) {
+                            JSONObject jsonChildNode = jsonMainNode
+                                    .getJSONObject(i);
+                            String data = jsonChildNode.optString("data")
+                                    .toString();
+                            if (MSG.equals("type")) {
+                                HospitalTypeList.add(data);
+                            } else if (MSG.equals("name")) {
+                                HospitalNameList.add(data);
+                            }
+                        }
+                        if (MSG.equals("type")) {
+                            allHospType();
+                        }  else if (MSG.equals("name")) {
+                            HospitalNameList.add(getResources().getString(R.string.other_Hospital));
+                            allHospName();
+                        }
+                    } catch (JSONException e) {
+
+                        e.printStackTrace();
+                    }
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 }

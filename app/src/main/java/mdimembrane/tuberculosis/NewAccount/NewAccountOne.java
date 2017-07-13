@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -18,6 +19,7 @@ public class NewAccountOne extends AppCompatActivity {
     Button NextButton, CancleButton;
     Spinner AccountTypeSP;
     EditText NameET,EmployeeCodeET;
+    RadioButton MaleRB,FemaleRB,OtherRB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,9 +45,27 @@ public class NewAccountOne extends AppCompatActivity {
         NextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
+                if(AccountTypeSP.getSelectedItemPosition()==0)
+                {
+                    Toast.makeText(getApplicationContext(),getResources().getString(R.string.TostAccountType),Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(NameET.getText().toString().equals("")){
+
+                    NameET.setError("Please Enter Name");
+                    NameET.requestFocus();
+                    return;
+                }
+                if(EmployeeCodeET.getText().toString().equals("")){
+
+                    EmployeeCodeET.setError("Please Enter Employee Code");
+                    EmployeeCodeET.requestFocus();
+                    return;
+                }
                 Intent intent=new Intent(getApplicationContext(),NewAccountTwo.class);
                 startActivity(intent);
-
             }
         });
 

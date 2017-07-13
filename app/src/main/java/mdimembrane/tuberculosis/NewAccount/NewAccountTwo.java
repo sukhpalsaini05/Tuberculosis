@@ -1,7 +1,10 @@
 package mdimembrane.tuberculosis.NewAccount;
 
 import android.app.ProgressDialog;
+import android.app.SharedElementCallback;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -22,6 +26,7 @@ import java.util.List;
 
 import mdimembrane.tuberculosis.ServerConfiguration.HttpConnection;
 import mdimembrane.tuberculosis.ServerConfiguration.ServerConstants;
+import mdimembrane.tuberculosis.main.PreferencesConstants;
 import mdimembrane.tuberculosis.main.R;
 
 public class NewAccountTwo extends AppCompatActivity {
@@ -33,12 +38,14 @@ public class NewAccountTwo extends AppCompatActivity {
     List<String> townVillageList = new ArrayList<String>();
 
     String stateSTR="null",disttSTR="",tehsilSTR="",townSTR="",specs_id="";
-    EditText OtherVillageET;
+    EditText OtherVillageET,AddressET,PincodeET;
     Spinner stateSP, disttSP, tehsilSP, townSP;
 
     JSONObject jsonObject;
     String MSG = "";
     boolean RESPONSE_CODE;
+
+    SharedPreferences sharedpreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,16 +53,66 @@ public class NewAccountTwo extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        sharedpreferences = getSharedPreferences(PreferencesConstants.APP_MAIN_PREF, Context.MODE_PRIVATE);
+
         allStates();
 
         NextButton=(Button)findViewById(R.id.button5);
         BackButton=(Button)findViewById(R.id.button);
         OtherVillageET=(EditText) findViewById(R.id.EditOtherVillage);
+        AddressET=(EditText)findViewById(R.id.AddressET);
+        PincodeET=(EditText)findViewById(R.id.PincodeET);
+
 
 
         NextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                if(stateSTR.equals(""))
+                {
+                    Toast.makeText(getApplicationContext(),getResources().getString(R.string.TostState),Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if(disttSTR.equals(""))
+                {
+                    Toast.makeText(getApplicationContext(),getResources().getString(R.string.TostDistt),Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if(tehsilSTR.equals(""))
+                {
+                    Toast.makeText(getApplicationContext(),getResources().getString(R.string.SelectTehsils),Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if(OtherVillageET.getText().toString().equals(""))
+                {
+                    Toast.makeText(getApplicationContext(),getResources().getString(R.string.SelectVillages),Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(AddressET.getText().toString().equals("")){
+
+                    AddressET.setError("Please Enter Name");
+                    AddressET.requestFocus();
+                    return;
+                }
+                if(PincodeET.getText().toString().equals("")){
+
+                    PincodeET.setError("Please Enter Employee Code");
+                    PincodeET.requestFocus();
+                    return;
+                }
+
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+                editor.putString(PreferencesConstants.AddNewAccount.USER_STATE, stateSTR);
+                editor.putString(PreferencesConstants.AddNewAccount.USER_DISTT, disttSTR);
+                editor.putString(PreferencesConstants.AddNewAccount.USER_TEHSIL, tehsilSTR);
+                editor.putString(PreferencesConstants.AddNewAccount.USER_VILLAGE, OtherVillageET.getText().toString());
+                editor.commit();
+
+
                 Intent intent=new Intent(getApplicationContext(),NewAccountThree.class);
                 startActivity(intent);
 
