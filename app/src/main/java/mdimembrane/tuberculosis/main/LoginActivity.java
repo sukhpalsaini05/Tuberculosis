@@ -72,8 +72,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             }
         });
 
-
-        // Set up the login form.
+        /* Set up the login form. */
         mEmailView = (EditText) findViewById(R.id.userNameET);
         mProgress =new ProgressDialog(this);
         String titleId="Signing in...";
@@ -101,9 +100,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 
     }
-
-
-
 
     /**
      * Attempts to sign in or register the account specified by the login form.
