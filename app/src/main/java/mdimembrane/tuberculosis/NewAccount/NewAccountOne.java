@@ -46,8 +46,6 @@ public class NewAccountOne extends AppCompatActivity {
                 Intent intent=new Intent(getApplicationContext(),NewAccountTwo.class);
                 startActivity(intent);
 
-                T
-
             }
         });
 
