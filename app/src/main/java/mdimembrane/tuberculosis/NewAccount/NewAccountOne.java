@@ -48,5 +48,4 @@ public class NewAccountOne extends AppCompatActivity {
             }
         });
     }
-
 }

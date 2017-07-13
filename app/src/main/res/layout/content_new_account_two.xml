@@ -25,36 +25,32 @@
             <Spinner
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/spinner"
+                android:id="@+id/statesSP"
                 android:textSize="25sp"
-                android:entries="@array/guardian_arrays"
                 android:background="@drawable/spinner_style"
                 android:layout_marginBottom="5sp" />
 
             <Spinner
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/spinner2"
+                android:id="@+id/disttSP"
                 android:textSize="25sp"
-                android:entries="@array/guardian_arrays"
                 android:background="@drawable/spinner_style"
                 android:layout_marginBottom="5sp" />
 
             <Spinner
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/spinner3"
+                android:id="@+id/tehsilSP"
                 android:textSize="25sp"
-                android:entries="@array/guardian_arrays"
                 android:background="@drawable/spinner_style"
                 android:layout_marginBottom="5sp" />
 
             <Spinner
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/spinner4"
+                android:id="@+id/townSP"
                 android:textSize="25sp"
-                android:entries="@array/guardian_arrays"
                 android:background="@drawable/spinner_style"
                 android:layout_marginBottom="5sp" />
 

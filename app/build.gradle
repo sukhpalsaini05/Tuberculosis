@@ -4,6 +4,7 @@ android {
     compileSdkVersion 23
     buildToolsVersion '25.0.0'
 
+    useLibrary 'org.apache.http.legacy'
     defaultConfig {
         applicationId "mdimembrane.tuberculosis.main"
         minSdkVersion 15
@@ -18,12 +19,6 @@ android {
         }
     }
 }
-
-
-
-
-
-
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])

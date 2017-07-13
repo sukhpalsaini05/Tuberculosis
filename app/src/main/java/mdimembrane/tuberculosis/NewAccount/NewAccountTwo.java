@@ -1,36 +1,43 @@
 package mdimembrane.tuberculosis.NewAccount;
 
-import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
-import mdimembrane.tuberculosis.main.LoginActivity;
+import mdimembrane.tuberculosis.ServerConfiguration.HttpConnection;
+import mdimembrane.tuberculosis.ServerConfiguration.ServerConstants;
 import mdimembrane.tuberculosis.main.R;
 
 public class NewAccountTwo extends AppCompatActivity {
 
     Button NextButton,BackButton;
-    Spinner State,District,Thesil,Village;
-    EditText address,pincode;
+    List<String> stateList = new ArrayList<String>();
+    List<String> disttList = new ArrayList<String>();
+    List<String> tehsilList = new ArrayList<String>();
+    List<String> townVillageList = new ArrayList<String>();
 
+    String stateSTR="null",disttSTR="",tehsilSTR="",townSTR="",specs_id="";
+
+    Spinner stateSP, disttSP, tehsilSP, townSP;
+
+    JSONObject jsonObject;
+    String MSG = "";
+    boolean RESPONSE_CODE;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,11 +45,7 @@ public class NewAccountTwo extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
-        State=(Spinner)findViewById(R.id.spinner);
-        District=(Spinner)findViewById(R.id.spinner1);
-        Thesil=(Spinner)findViewById(R.id.spinner2);
-        Village=(Spinner)findViewById(R.id.spinner3);
+        allStates();
 
         NextButton=(Button)findViewById(R.id.button5);
         BackButton=(Button)findViewById(R.id.button);
@@ -66,141 +69,236 @@ public class NewAccountTwo extends AppCompatActivity {
         });
 
 
-
-      /*  if(isConnected()){
-            tvIsConnected.setBackgroundColor(0xFF00CC00);
-            tvIsConnected.setText("You are conncted");
-        }
-        else{
-            tvIsConnected.setText("You are NOT conncted");
-        }
-
-        // add click listener to Button "POST"
-        btnPost.setOnClickListener(this);
-
-    }
-
-    public static String POST(String url, Person person){
-        InputStream inputStream = null;
-        String result = "";
+        jsonObject = new JSONObject();
         try {
-
-            // 1. create HttpClient
-            HttpClient httpclient = new DefaultHttpClient();
-
-            // 2. make POST request to the given URL
-            HttpPost httpPost = new HttpPost(url);
-
-            String json = "";
-
-            // 3. build jsonObject
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.accumulate("name", person.getName());
-            jsonObject.accumulate("country", person.getCountry());
-            jsonObject.accumulate("twitter", person.getTwitter());
-
-            // 4. convert JSONObject to JSON to String
-            json = jsonObject.toString();
-
-            // ** Alternative way to convert Person object to JSON string usin Jackson Lib
-            // ObjectMapper mapper = new ObjectMapper();
-            // json = mapper.writeValueAsString(person);
-
-            // 5. set json to StringEntity
-            StringEntity se = new StringEntity(json);
-
-            // 6. set httpPost Entity
-            httpPost.setEntity(se);
-
-            // 7. Set some headers to inform server about the type of the content
-            httpPost.setHeader("Accept", "application/json");
-            httpPost.setHeader("Content-type", "application/json");
-
-            // 8. Execute POST request to the given URL
-            HttpResponse httpResponse = httpclient.execute(httpPost);
-
-            // 9. receive response as inputStream
-            inputStream = httpResponse.getEntity().getContent();
-
-            // 10. convert inputstream to string
-            if(inputStream != null)
-                result = convertInputStreamToString(inputStream);
-            else
-                result = "Did not work!";
-
+            jsonObject.accumulate("action", "getStates");
+            jsonObject.accumulate("state", "null");
         } catch (Exception e) {
-            Log.d("InputStream", e.getLocalizedMessage());
+            // TODO: handle exception
         }
-
-        // 11. return result
-        return result;
+        new SendRequest().execute(ServerConstants.GET_LOCATION);
     }
 
-    public boolean isConnected(){
-        ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Activity.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-        if (networkInfo != null && networkInfo.isConnected())
-            return true;
-        else
-            return false;
-    }
-    @Override
-    public void onClick(View view) {
 
-        switch(view.getId()){
-            case R.id.btnPost:
-                if(!validate())
-                    Toast.makeText(getBaseContext(), "Enter some data!", Toast.LENGTH_LONG).show();
-                // call AsynTask to perform network operation on separate thread
-                new HttpAsyncTask().execute("http://hmkcode.appspot.com/jsonservlet");
-                break;
-        }
+    private void allStates() {
+        // TODO Auto-generated method stub
+        stateList.add(0,"Select State");
+        stateSP = (Spinner) findViewById(R.id.statesSP);
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+                R.layout.spinner_item, stateList);
+        dataAdapter.setDropDownViewResource(R.layout.drpdown_item);
+        stateSP.setAdapter(dataAdapter);
+        stateSP.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(position>0)
+                {
+                    jsonObject = new JSONObject();
+                    try {
+                        stateSTR=stateList.get(position);
+                        jsonObject.accumulate("action", "getDistts");
+                        jsonObject.accumulate("state", stateSTR);
+                    } catch (Exception e) {
+                        // TODO: handle exception
+                    }
+                    new SendRequest().execute(ServerConstants.GET_LOCATION);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
 
     }
-    private class HttpAsyncTask extends AsyncTask<String, Void, String> {
+    private void allDistts() {
+        // TODO Auto-generated method stub
+        disttList.add(0,"Select District");
+        disttSP = (Spinner) findViewById(R.id.disttSP);
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+                R.layout.spinner_item, disttList);
+        dataAdapter.setDropDownViewResource(R.layout.drpdown_item);
+        disttSP.setAdapter(dataAdapter);
+        disttSP.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(position>0)
+                {
+                    jsonObject = new JSONObject();
+                    try {
+                        disttSTR=disttList.get(position);
+                        jsonObject.accumulate("action", "getTehsils");
+                        jsonObject.accumulate("state", stateSTR);
+                        jsonObject.accumulate("distt", disttSTR);
+                    } catch (Exception e) {
+                        // TODO: handle exception
+                    }
+                    new SendRequest().execute(ServerConstants.GET_LOCATION);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+    }
+    private void allTehsil() {
+        // TODO Auto-generated method stub
+        tehsilList.add(0,"Select Tehsil");
+        tehsilSP = (Spinner) findViewById(R.id.tehsilSP);
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+                R.layout.spinner_item, tehsilList);
+        dataAdapter.setDropDownViewResource(R.layout.drpdown_item);
+        tehsilSP.setAdapter(dataAdapter);
+        tehsilSP.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(position>0)
+                {
+                    jsonObject = new JSONObject();
+                    try {
+                        tehsilSTR=tehsilList.get(position);
+                        jsonObject.accumulate("action", "getTownVillage");
+                        jsonObject.accumulate("state", stateSTR);
+                        jsonObject.accumulate("distt", disttSTR);
+                        jsonObject.accumulate("tehsil", tehsilSTR);
+                    } catch (Exception e) {
+                        // TODO: handle exception
+                    }
+                    new SendRequest().execute(ServerConstants.GET_LOCATION);
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+    }
+    private void allTownVillage() {
+        // TODO Auto-generated method stub
+        townVillageList.add(0,"Select Village");
+        townSP = (Spinner) findViewById(R.id.townSP);
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+                R.layout.spinner_item, townVillageList);
+        dataAdapter.setDropDownViewResource(R.layout.drpdown_item);
+        townSP.setAdapter(dataAdapter);
+        townSP.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(position>0)
+                {
+//                    jsonObject = new JSONObject();
+//                    try {
+//                        townSTR=townVillageList.get(position);
+//                        jsonObject.accumulate("action", "getTownVillage");
+//                        jsonObject.accumulate("state", stateSTR);
+//                        jsonObject.accumulate("distt", disttSTR);
+//                        jsonObject.accumulate("tehsil", tehsilSTR);
+//                    } catch (Exception e) {
+//                        // TODO: handle exception
+//                    }
+//                    new SendRequest().execute(ServerConstants.GET_LOCATION);
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+    }
+    private class SendRequest extends AsyncTask<String, String, JSONObject> {
+        private ProgressDialog pDialog;
+
         @Override
-        protected String doInBackground(String... urls) {
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pDialog = new ProgressDialog(NewAccountTwo.this);
+            pDialog.setMessage("Please Wait...");
+            pDialog.setIndeterminate(false);
+            pDialog.setCancelable(false);
+            pDialog.show();
 
-            person = new Person();
-            person.setName(etName.getText().toString());
-            person.setCountry(etCountry.getText().toString());
-            person.setTwitter(etTwitter.getText().toString());
-
-            return POST(urls[0],person);
         }
-        // onPostExecute displays the results of the AsyncTask.
+
         @Override
-        protected void onPostExecute(String result) {
-            Toast.makeText(getBaseContext(), "Data Sent!", Toast.LENGTH_LONG).show();
+        protected JSONObject doInBackground(String... args) {
+            HttpConnection jParser = new HttpConnection();
+            // Getting JSON from URL
+            JSONObject json = jParser.getJSONFromUrl(args[0], jsonObject);
+            return json;
+        }
+
+        @Override
+        protected void onPostExecute(JSONObject json) {
+            pDialog.dismiss();
+            try {
+                RESPONSE_CODE = json.getBoolean("response");
+                MSG = json.getString("message");
+               // Log.i("dfdfdf", ""+MSG+"   "+RESPONSE_CODE);
+                if (RESPONSE_CODE) {
+                    try {
+                        if (MSG.equals("states")) {
+                            stateList.clear();
+                            disttList.clear();
+                            tehsilList.clear();
+                            townVillageList.clear();
+
+                        } else if (MSG.equals("distts")) {
+                            disttList.clear();
+                            tehsilList.clear();
+                            townVillageList.clear();
+
+                        } else if (MSG.equals("tehsils")) {
+                            tehsilList.clear();
+                            townVillageList.clear();
+                        } else if (MSG.equals("town_village")) {
+                            townVillageList.clear();
+                        }
+                        JSONArray jsonMainNode = json.optJSONArray("data");
+                        int lengthJsonArr = jsonMainNode.length();
+                        for (int i = 0; i < lengthJsonArr; i++) {
+                            JSONObject jsonChildNode = jsonMainNode
+                                    .getJSONObject(i);
+                            String data = jsonChildNode.optString("data")
+                                    .toString();
+                            if (MSG.equals("states")) {
+                                stateList.add(data);
+                            } else if (MSG.equals("distts")) {
+                                disttList.add(data);
+                            } else if (MSG.equals("tehsils")) {
+                                tehsilList.add(data);
+                            } else if (MSG.equals("town_village")) {
+                                townVillageList.add(data);
+                            }
+                        }
+                        if (MSG.equals("states")) {
+                            allStates();
+                        } else if (MSG.equals("distts")) {
+                            allDistts();
+                        } else if (MSG.equals("tehsils")) {
+                            allTehsil();
+                        } else if (MSG.equals("town_village")) {
+                            allTownVillage();
+                        }
+                    } catch (JSONException e) {
+
+                        e.printStackTrace();
+                    }
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
     }
 
-    private boolean validate(){
-        if(etName.getText().toString().trim().equals(""))
-            return false;
-        else if(etCountry.getText().toString().trim().equals(""))
-            return false;
-        else if(etTwitter.getText().toString().trim().equals(""))
-            return false;
-        else
-            return true;
-    }
-    private static String convertInputStreamToString(InputStream inputStream) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(inputStream));
-        String line = "";
-        String result = "";
-        while((line = bufferedReader.readLine()) != null)
-            result += line;
-
-        inputStream.close();
-        return result;
-
-    }*/
-
-
-
-
-
-}
 
 }
