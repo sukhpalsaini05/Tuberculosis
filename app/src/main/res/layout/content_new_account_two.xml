@@ -54,6 +54,20 @@
                 android:background="@drawable/spinner_style"
                 android:layout_marginBottom="5sp" />
 
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/EditOtherVillage"
+                android:visibility="gone"
+                android:layout_column="1"
+                android:background="@drawable/edit_text"
+                android:textSize="25sp"
+                android:layout_marginBottom="10sp"
+                android:hint="@string/village_hint" />
+
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -107,7 +121,7 @@
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Back"
+                    android:text="@string/Back_Button"
                     android:id="@+id/button"
                     android:layout_weight="1"
                     android:background="#f55555"
@@ -119,7 +133,7 @@
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Next"
+                    android:text="@string/Next_Button"
                     android:id="@+id/button5"
                     android:layout_weight="1"
                     android:background="#0b9c1f"

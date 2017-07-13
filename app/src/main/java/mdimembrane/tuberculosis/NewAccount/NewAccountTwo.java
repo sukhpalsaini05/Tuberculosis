@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import org.json.JSONArray;
@@ -32,7 +33,7 @@ public class NewAccountTwo extends AppCompatActivity {
     List<String> townVillageList = new ArrayList<String>();
 
     String stateSTR="null",disttSTR="",tehsilSTR="",townSTR="",specs_id="";
-
+    EditText OtherVillageET;
     Spinner stateSP, disttSP, tehsilSP, townSP;
 
     JSONObject jsonObject;
@@ -49,6 +50,7 @@ public class NewAccountTwo extends AppCompatActivity {
 
         NextButton=(Button)findViewById(R.id.button5);
         BackButton=(Button)findViewById(R.id.button);
+        OtherVillageET=(EditText) findViewById(R.id.EditOtherVillage);
 
 
         NextButton.setOnClickListener(new View.OnClickListener() {
@@ -82,15 +84,16 @@ public class NewAccountTwo extends AppCompatActivity {
 
     private void allStates() {
         // TODO Auto-generated method stub
-        stateList.add(0,"Select State");
+        stateList.add(0,getResources().getString(R.string.SelectStates));
         stateSP = (Spinner) findViewById(R.id.statesSP);
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
-                R.layout.spinner_item, stateList);
+                android.R.layout.simple_spinner_item, stateList);
         dataAdapter.setDropDownViewResource(R.layout.drpdown_item);
         stateSP.setAdapter(dataAdapter);
         stateSP.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                stateSTR="";
                 if(position>0)
                 {
                     jsonObject = new JSONObject();
@@ -104,26 +107,24 @@ public class NewAccountTwo extends AppCompatActivity {
                     new SendRequest().execute(ServerConstants.GET_LOCATION);
                 }
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
         });
-
-
     }
     private void allDistts() {
         // TODO Auto-generated method stub
-        disttList.add(0,"Select District");
+        disttList.add(0,getResources().getString(R.string.SelectDistts));
         disttSP = (Spinner) findViewById(R.id.disttSP);
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
-                R.layout.spinner_item, disttList);
+                android.R.layout.simple_spinner_item, disttList);
         dataAdapter.setDropDownViewResource(R.layout.drpdown_item);
         disttSP.setAdapter(dataAdapter);
         disttSP.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                disttSTR="";
                 if(position>0)
                 {
                     jsonObject = new JSONObject();
@@ -138,7 +139,6 @@ public class NewAccountTwo extends AppCompatActivity {
                     new SendRequest().execute(ServerConstants.GET_LOCATION);
                 }
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
@@ -149,15 +149,16 @@ public class NewAccountTwo extends AppCompatActivity {
     }
     private void allTehsil() {
         // TODO Auto-generated method stub
-        tehsilList.add(0,"Select Tehsil");
+        tehsilList.add(0,getResources().getString(R.string.SelectTehsils));
         tehsilSP = (Spinner) findViewById(R.id.tehsilSP);
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
-                R.layout.spinner_item, tehsilList);
+                android.R.layout.simple_spinner_item, tehsilList);
         dataAdapter.setDropDownViewResource(R.layout.drpdown_item);
         tehsilSP.setAdapter(dataAdapter);
         tehsilSP.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                tehsilSTR="";
                 if(position>0)
                 {
                     jsonObject = new JSONObject();
@@ -178,33 +179,30 @@ public class NewAccountTwo extends AppCompatActivity {
 
             }
         });
-
-
     }
     private void allTownVillage() {
         // TODO Auto-generated method stub
-        townVillageList.add(0,"Select Village");
+        townVillageList.add(0,getResources().getString(R.string.SelectVillages));
         townSP = (Spinner) findViewById(R.id.townSP);
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
-                R.layout.spinner_item, townVillageList);
+                android.R.layout.simple_spinner_item, townVillageList);
         dataAdapter.setDropDownViewResource(R.layout.drpdown_item);
         townSP.setAdapter(dataAdapter);
         townSP.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                OtherVillageET.setText("");
                 if(position>0)
                 {
-//                    jsonObject = new JSONObject();
-//                    try {
-//                        townSTR=townVillageList.get(position);
-//                        jsonObject.accumulate("action", "getTownVillage");
-//                        jsonObject.accumulate("state", stateSTR);
-//                        jsonObject.accumulate("distt", disttSTR);
-//                        jsonObject.accumulate("tehsil", tehsilSTR);
-//                    } catch (Exception e) {
-//                        // TODO: handle exception
-//                    }
-//                    new SendRequest().execute(ServerConstants.GET_LOCATION);
+
+                    if(position==townVillageList.size()-1)
+                    {
+                        OtherVillageET.setVisibility(View.VISIBLE);
+                        OtherVillageET.requestFocus();
+                    }else {
+                        OtherVillageET.setVisibility(View.GONE);
+                        OtherVillageET.setText(townVillageList.get(position));
+                    }
                 }
             }
             @Override
@@ -212,8 +210,6 @@ public class NewAccountTwo extends AppCompatActivity {
 
             }
         });
-
-
     }
     private class SendRequest extends AsyncTask<String, String, JSONObject> {
         private ProgressDialog pDialog;
@@ -222,7 +218,7 @@ public class NewAccountTwo extends AppCompatActivity {
         protected void onPreExecute() {
             super.onPreExecute();
             pDialog = new ProgressDialog(NewAccountTwo.this);
-            pDialog.setMessage("Please Wait...");
+            pDialog.setMessage(getResources().getString(R.string.DiaglogBox));
             pDialog.setIndeterminate(false);
             pDialog.setCancelable(false);
             pDialog.show();
@@ -251,15 +247,21 @@ public class NewAccountTwo extends AppCompatActivity {
                             disttList.clear();
                             tehsilList.clear();
                             townVillageList.clear();
+                            allDistts();
+                            allTehsil();
+                            allTownVillage();
 
                         } else if (MSG.equals("distts")) {
                             disttList.clear();
                             tehsilList.clear();
                             townVillageList.clear();
+                            allTehsil();
+                            allTownVillage();
 
                         } else if (MSG.equals("tehsils")) {
                             tehsilList.clear();
                             townVillageList.clear();
+                            allTownVillage();
                         } else if (MSG.equals("town_village")) {
                             townVillageList.clear();
                         }
@@ -287,6 +289,7 @@ public class NewAccountTwo extends AppCompatActivity {
                         } else if (MSG.equals("tehsils")) {
                             allTehsil();
                         } else if (MSG.equals("town_village")) {
+                            townVillageList.add(getResources().getString(R.string.other_village));
                             allTownVillage();
                         }
                     } catch (JSONException e) {

@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import mdimembrane.tuberculosis.main.LoginActivity;
@@ -14,6 +16,8 @@ import mdimembrane.tuberculosis.main.R;
 public class NewAccountOne extends AppCompatActivity {
 
     Button NextButton, CancleButton;
+    Spinner AccountTypeSP;
+    EditText NameET,EmployeeCodeET;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,10 +27,14 @@ public class NewAccountOne extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
      //   Toast.makeText(getApplicationContext(),"Account Request",Toast.LENGTH_LONG).show();
-
      //   Toast.makeText(getApplicationContext(), "hello", Toast.LENGTH_LONG).show();
     //    Toast.makeText(getApplicationContext(),"hello",Toast.LENGTH_LONG).show();
 
+
+        AccountTypeSP=(Spinner)findViewById(R.id.AccountTypeSP);
+
+        NameET=(EditText)findViewById(R.id.nameEditText);
+        EmployeeCodeET=(EditText)findViewById(R.id.employeeEditText);
 
         NextButton=(Button)findViewById(R.id.button5);
         CancleButton=(Button)findViewById(R.id.button);

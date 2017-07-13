@@ -35,9 +35,9 @@
             <Spinner
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/spinner"
+                android:id="@+id/AccountTypeSP"
                 android:textSize="25sp"
-                android:entries="@array/guardian_arrays"
+                android:entries="@array/select_account_type"
                 android:background="@drawable/spinner_style"
                 android:layout_marginBottom="5sp" />
 
@@ -68,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
                 android:ems="10"
-                android:id="@+id/editText"
+                android:id="@+id/nameEditText"
                 android:layout_column="1"
                 android:background="@drawable/edit_text"
                 android:textSize="25sp"
@@ -89,7 +89,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:ems="10"
-                android:id="@+id/editText3"
+                android:id="@+id/employeeEditText"
                 android:layout_column="1"
                 android:background="@drawable/edit_text"
                 android:textSize="25sp"

@@ -4,6 +4,6 @@
     android:layout_height="30dp"
     android:ellipsize="marquee"
     android:singleLine="true"
-    android:textSize="20sp" 
+    android:textSize="23sp"
    android:paddingLeft="10dip">
 </CheckedTextView>

@@ -10,6 +10,14 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_add_patient_one">Add Patient (1/3)</string>
 
+
+    <string-array name="select_account_type">
+        <item>Select Account type</item>
+        <item>Aasha Worker</item>
+        <item>Lab Assistant</item>
+        <item>Supervisor</item>
+    </string-array>
+
     <string-array name="guardian_arrays">
         <item>S/O</item>
         <item>D/O</item>
@@ -43,6 +51,8 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+
+    <!-- Strings related to New Account XML Files -->
     <string name="title_activity_new_account_one">New Account (1/3)</string>
     <string name="account_type">Account Type</string>
     <string name="account_name">Name</string>
@@ -51,10 +61,26 @@
     <string name="title_activity_new_account_two">New Account (2/3)</string>
     <string name="title_activity_new_account_three">New Account (3/3)</string>
     <string name="pin_code">Pin Code</string>
+    <string name="village_hint">Any other village</string>
     <string name="address">Address</string>
     <string name="address_hint">e.g. House No. , Street</string>
     <string name="Phone_no">Phone Number</string>
     <string name="Adhar_no">Adhar Card Number</string>
     <string name="Hospital_Type">Hospital Type</string>
     <string name="Hospital_Name">Hospital Name</string>
+    <string name="Back_Button">Back</string>
+    <string name="Next_Button">Next</string>
+
+    <!-- Strings related to NewAccountTwo.java -->
+
+    <string name="SelectStates">Select State</string>
+    <string name="SelectDistts">Select District</string>
+    <string name="SelectTehsils">Select Tehsil</string>
+    <string name="SelectVillages">Select Village</string>
+    <string name="DiaglogBox">"Please Wait..."</string>
+    <string name="other_village">Other Village</string>
+
+
+
+
 </resources>
