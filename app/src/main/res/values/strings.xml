@@ -73,7 +73,7 @@
 
     <!-- Strings related to NewAccountTwo.java -->
 
-    <string name="SelectStates">Select State</string>
+    <string name="SelectState">Select State</string>
     <string name="SelectDistts">Select District</string>
     <string name="SelectTehsils">Select Tehsil</string>
     <string name="SelectVillages">Select Village</string>

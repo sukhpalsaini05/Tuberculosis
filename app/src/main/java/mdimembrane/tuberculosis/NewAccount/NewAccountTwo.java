@@ -115,7 +115,7 @@ public class NewAccountTwo extends AppCompatActivity {
     }
     private void allDistts() {
         // TODO Auto-generated method stub
-        disttList.add(0,getResources().getString(R.string.SelectDistt));
+        disttList.add(0,getResources().getString(R.string.SelectDistts));
         disttSP = (Spinner) findViewById(R.id.disttSP);
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, disttList);
