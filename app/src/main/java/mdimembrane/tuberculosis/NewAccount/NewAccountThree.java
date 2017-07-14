@@ -290,7 +290,6 @@ public class NewAccountThree extends AppCompatActivity {
             HttpConnection jParser = new HttpConnection();
             // Getting JSON from URL
             File imagesFolder = new File(Environment.getExternalStorageDirectory(), "MyImages");
-            imagesFolder.mkdirs(); // <----
             MultipartEntity reqEntity = new MultipartEntity();
             reqEntity.addPart("uploaded_file", new File(imagesFolder, "user_pic.jpg"));
             reqEntity.addPart("account_type", sharedpreferences.getString(PreferencesConstants.AddNewAccount.ACCOUNT_TYPE, "Null"));
