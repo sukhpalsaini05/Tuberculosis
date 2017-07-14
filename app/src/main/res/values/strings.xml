@@ -55,6 +55,7 @@
     <!-- Strings related to New Account XML Files -->
     <string name="title_activity_new_account_one">New Account (1/3)</string>
     <string name="account_type">Account Type</string>
+    <string name="take_image">Take Picture</string>
     <string name="account_name">Name</string>
     <string name="employee_code">Employee Code</string>
     <string name="gender">Gender</string>
@@ -65,7 +66,7 @@
     <string name="address">Address</string>
     <string name="address_hint">e.g. House No. , Street</string>
     <string name="Phone_no">Phone Number</string>
-    <string name="Adhar_no">Adhar Card Number</string>
+    <string name="Aadhar_no">Aadhar Card Number</string>
     <string name="Hospital_Type">Hospital Type</string>
     <string name="Hospital_Name">Hospital Name</string>
     <string name="Back_Button">Back</string>
@@ -77,23 +78,32 @@
     <string name="SelectDistts">Select District</string>
     <string name="SelectTehsils">Select Tehsil</string>
     <string name="SelectVillages">Select Village</string>
-    <string name="DiaglogBox">"Please Wait..."</string>
+    <string name="DiaglogBox">Please Wait...</string>
     <string name="other_village">Other Village</string>
     <string name="TostState">Please Select State</string>
     <string name="TostDistt">Please Select District</string>
     <string name="TostTehsil">Please Select Tehsil</string>
     <string name="TostVillage">Please Select Village</string>
+    <string name="address_validation">Please Enter House No and Street</string>
+    <string name="pin_code_validation">Please Enter Valid Pin Code</string>
+
+
 
 
     <!-- Strings related to NewAccountThree.java -->
     <string name="other_Hospital">Other Hospital</string>
     <string name="TostHospitalType">Please Select Hospital Type</string>
     <string name="TostHospitalName">Please Select Hospital Name</string>
+    <string name="phone_no_validation">Please Enter Valid Phone Number</string>
+    <string name="aadhar_no_validation">Please Enter Valid Aadhar Card Number</string>
 
 
     <!-- Strings related to NewAccountOne.java -->
 
     <string name="TostAccountType">Please Select Account Type</string>
+    <string name="name_validation">Please Enter Name</string>
+    <string name="employee_code_validation">Please Enter Employee Code</string>
+
 
 
 

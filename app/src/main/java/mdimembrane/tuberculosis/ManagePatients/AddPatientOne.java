@@ -28,6 +28,11 @@ public class AddPatientOne extends AppCompatActivity {
     final int CAMERA_REQUEST_CODE=1;
     ImageButton patientImageIMB;
     File image;
+    private static final int REQUEST_EXTERNAL_STORAGE = 2;
+    private static String[] PERMISSIONS_STORAGE = {
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +65,23 @@ public class AddPatientOne extends AppCompatActivity {
 
     public void TakePicture(View view)
     {
+        // Check if we have write permission
+        int permission = ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            // We don't have permission so prompt the user
+            ActivityCompat.requestPermissions(
+                    this,
+                    PERMISSIONS_STORAGE,
+                    REQUEST_EXTERNAL_STORAGE
+            );
+        }else
+        {
+            CameraPermission();
+        }
+    }
+
+    public void CameraPermission()
+    {
         int permission = ContextCompat.checkSelfPermission(this,
                 Manifest.permission.CAMERA);
 
@@ -69,11 +91,10 @@ public class AddPatientOne extends AppCompatActivity {
                     CAMERA_REQUEST_CODE);
         }else
         {
-            TakePatientPicture();
+            TakeUserPicture();
         }
-
-
     }
+
     public void backButton(View view)
     {
         finish();
@@ -83,7 +104,8 @@ public class AddPatientOne extends AppCompatActivity {
         Intent intent=new Intent(getApplicationContext(),AddPatientTwo.class);
         startActivity(intent);
     }
-    public void TakePatientPicture()
+
+    public void TakeUserPicture()
     {
         File imagesFolder = new File(Environment.getExternalStorageDirectory(), "MyImages");
         imagesFolder.mkdirs(); // <----
@@ -104,10 +126,21 @@ public class AddPatientOne extends AppCompatActivity {
                         || grantResults[0] !=
                         PackageManager.PERMISSION_GRANTED) {
                 } else {
-                    TakePatientPicture();
+                    TakeUserPicture();
                 }
                 return;
             }
+            case REQUEST_EXTERNAL_STORAGE: {
+
+                if (grantResults.length == 0
+                        || grantResults[0] !=
+                        PackageManager.PERMISSION_GRANTED) {
+                } else {
+                    CameraPermission();
+                }
+                return;
+            }
+
         }
     }
 
@@ -117,8 +150,9 @@ public class AddPatientOne extends AppCompatActivity {
         if (requestCode == TAKE_PICTURE && resultCode == RESULT_OK) {
 
             try {
-                Bitmap photo = MediaStore.Images.Media.getBitmap(this.getContentResolver(), Uri.parse(image.toString()));
+                Bitmap photo = MediaStore.Images.Media.getBitmap(this.getContentResolver(),Uri.fromFile(image));
                 patientImageIMB.setImageBitmap(photo);
+                patientImageIMB.setRotation(90);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -126,3 +160,6 @@ public class AddPatientOne extends AppCompatActivity {
         }
     }
 }
+
+
+

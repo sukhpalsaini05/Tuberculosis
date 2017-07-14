@@ -94,13 +94,13 @@ public class NewAccountTwo extends AppCompatActivity {
                 }
                 if(AddressET.getText().toString().equals("")){
 
-                    AddressET.setError("Please Enter Name");
+                    AddressET.setError(getResources().getString(R.string.address_validation));
                     AddressET.requestFocus();
                     return;
                 }
-                if(PincodeET.getText().toString().equals("")){
+                if(PincodeET.getText().toString().length()<6){
 
-                    PincodeET.setError("Please Enter Employee Code");
+                    PincodeET.setError(getResources().getString(R.string.pin_code_validation));
                     PincodeET.requestFocus();
                     return;
                 }
@@ -110,6 +110,8 @@ public class NewAccountTwo extends AppCompatActivity {
                 editor.putString(PreferencesConstants.AddNewAccount.USER_DISTT, disttSTR);
                 editor.putString(PreferencesConstants.AddNewAccount.USER_TEHSIL, tehsilSTR);
                 editor.putString(PreferencesConstants.AddNewAccount.USER_VILLAGE, OtherVillageET.getText().toString());
+                editor.putString(PreferencesConstants.AddNewAccount.USER_ADDRESS, AddressET.getText().toString());
+                editor.putString(PreferencesConstants.AddNewAccount.USER_PINCODE, PincodeET.getText().toString());
                 editor.commit();
 
 

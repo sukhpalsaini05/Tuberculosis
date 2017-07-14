@@ -32,7 +32,7 @@ public class NewAccountThree extends AppCompatActivity {
 
     Button SaveDetails,BackButton;
     Spinner HospitalTypeSP,HospitalNameSP;
-    EditText otherHospitalET;
+    EditText otherHospitalET,aadharET,phoneET;
 
     SharedPreferences sharedpreferences;
     List<String> HospitalTypeList = new ArrayList<String>();
@@ -55,7 +55,10 @@ public class NewAccountThree extends AppCompatActivity {
 
         HospitalTypeSP=(Spinner)findViewById(R.id.spinnerHospType);
         HospitalNameSP=(Spinner)findViewById(R.id.spinnerHospName);
+
         otherHospitalET=(EditText)findViewById(R.id.HospNameET) ;
+        aadharET=(EditText)findViewById(R.id.aadharET);
+        phoneET=(EditText)findViewById(R.id.phoneET);
 
         SaveDetails = (Button)findViewById(R.id.button1);
         BackButton=(Button)findViewById(R.id.button);
@@ -77,11 +80,33 @@ public class NewAccountThree extends AppCompatActivity {
                     return;
                 }
 
+                if(phoneET.getText().toString().length()<10){
+
+                    phoneET.setError(getResources().getString(R.string.phone_no_validation));
+                    phoneET.requestFocus();
+                    return;
+                }
+                if(aadharET.getText().toString().length()<12){
+
+                    aadharET.setError(getResources().getString(R.string.aadhar_no_validation));
+                    aadharET.requestFocus();
+                    return;
+                }
+
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+                editor.putString(PreferencesConstants.AddNewAccount.HOSPITAL_TYPE, HosTypeSTR);
+                editor.putString(PreferencesConstants.AddNewAccount.HOSPITAL_NAME, HosNameSTR);
+                editor.putString(PreferencesConstants.AddNewAccount.USER_PHONE, phoneET.getText().toString());
+                editor.putString(PreferencesConstants.AddNewAccount.USER_AADHAR_NO, aadharET.getText().toString());
+                editor.commit();
+
 
 
                 Toast.makeText(getApplicationContext(), "Details submited" , Toast.LENGTH_LONG).show();
 
             }
+
+
         });
 
         BackButton.setOnClickListener(new View.OnClickListener() {
