@@ -52,7 +52,7 @@ public class NewAccountOne extends AppCompatActivity {
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE
     };
-
+    boolean takePicFlag=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -105,6 +105,11 @@ public class NewAccountOne extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),getResources().getString(R.string.TostAccountType),Toast.LENGTH_SHORT).show();
                     return;
                 }
+                if(!takePicFlag)
+                {
+                    Toast.makeText(getApplicationContext(),getResources().getString(R.string.toast_take_image),Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 if(NameET.getText().toString().equals("")){
 
                     NameET.setError(getResources().getString(R.string.name_validation));
@@ -124,7 +129,6 @@ public class NewAccountOne extends AppCompatActivity {
                 editor.putString(PreferencesConstants.AddNewAccount.EMPLOYEE_CODE, EmployeeCodeET.getText().toString());
                 editor.putString(PreferencesConstants.AddNewAccount.GENDER, genderSTR);
                 editor.commit();
-
 
 
                 Intent intent=new Intent(getApplicationContext(),NewAccountTwo.class);
@@ -235,6 +239,7 @@ public class NewAccountOne extends AppCompatActivity {
                 Bitmap photo = MediaStore.Images.Media.getBitmap(this.getContentResolver(),Uri.fromFile(image));
                 UserImageIMB.setImageBitmap(photo);
                 UserImageIMB.setRotation(90);
+                takePicFlag=true;
             } catch (IOException e) {
                 e.printStackTrace();
             }

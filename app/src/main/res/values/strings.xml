@@ -101,6 +101,7 @@
     <!-- Strings related to NewAccountOne.java -->
 
     <string name="TostAccountType">Please Select Account Type</string>
+    <string name="toast_take_image">Please take Picture First</string>
     <string name="name_validation">Please Enter Name</string>
     <string name="employee_code_validation">Please Enter Employee Code</string>
 
