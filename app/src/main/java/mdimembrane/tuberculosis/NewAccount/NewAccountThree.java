@@ -292,7 +292,7 @@ public class NewAccountThree extends AppCompatActivity {
             File imagesFolder = new File(Environment.getExternalStorageDirectory(), "MyImages");
             MultipartEntity reqEntity = new MultipartEntity();
             reqEntity.addPart("uploaded_file", new File(imagesFolder, "user_pic.jpg"));
-            reqEntity.addPart("action", "insert_account");
+            reqEntity.addPart("action", "insert_account1");
             reqEntity.addPart("account_type", sharedpreferences.getString(PreferencesConstants.AddNewAccount.ACCOUNT_TYPE, "Null"));
             reqEntity.addPart("account_name", sharedpreferences.getString(PreferencesConstants.AddNewAccount.USER_NAME, "Null"));
             reqEntity.addPart("account_gender", sharedpreferences.getString(PreferencesConstants.AddNewAccount.GENDER, "Null"));
