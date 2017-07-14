@@ -16,7 +16,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
@@ -24,6 +29,14 @@ import java.io.IOException;
 import mdimembrane.tuberculosis.main.R;
 
 public class AddPatientOne extends AppCompatActivity {
+
+    EditText nameET,guardianNameET,ageET;
+    Spinner guardianTypeSP;
+    RadioButton MaleRB,FemaleRB,OtherRB;
+    private RadioGroup genderRadioGroup;
+    String genderSTR="Male";
+
+
     final int TAKE_PICTURE = 1;
     final int CAMERA_REQUEST_CODE=1;
     ImageButton patientImageIMB;
@@ -33,6 +46,7 @@ public class AddPatientOne extends AppCompatActivity {
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE
     };
+    boolean takePicFlag=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +60,28 @@ public class AddPatientOne extends AppCompatActivity {
         }
 
         patientImageIMB=(ImageButton)findViewById(R.id.patientImageIMB);
+        nameET=(EditText)findViewById(R.id.nameEditText);
+        guardianNameET=(EditText)findViewById(R.id.guardianNameEditText);
+        ageET=(EditText)findViewById(R.id.ageEditText);
+        guardianTypeSP=(Spinner)findViewById(R.id.guardianTypeSpinner);
+        genderRadioGroup=(RadioGroup)findViewById(R.id.genderRadioGroup);
+
+
+        genderRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                // find which radio button is selected
+                if(checkedId == R.id.radioButton) {
+                    genderSTR="Male";
+                } else if(checkedId == R.id.radioButton2) {
+                    genderSTR="Female";
+                } else {
+                    genderSTR="Other";
+                }
+            }
+
+        });
 
     }
     @Override
@@ -95,15 +131,7 @@ public class AddPatientOne extends AppCompatActivity {
         }
     }
 
-    public void backButton(View view)
-    {
-        finish();
-    }
-    public void nextButton(View view)
-    {
-        Intent intent=new Intent(getApplicationContext(),AddPatientTwo.class);
-        startActivity(intent);
-    }
+
 
     public void TakeUserPicture()
     {
@@ -153,12 +181,59 @@ public class AddPatientOne extends AppCompatActivity {
                 Bitmap photo = MediaStore.Images.Media.getBitmap(this.getContentResolver(),Uri.fromFile(image));
                 patientImageIMB.setImageBitmap(photo);
                 patientImageIMB.setRotation(90);
+                takePicFlag=true;
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
         }
     }
+
+    public void backButton(View view)
+    {
+        finish();
+    }
+
+
+    public void nextButton(View view)
+    {
+
+        if(!takePicFlag)
+        {
+            Toast.makeText(getApplicationContext(),getResources().getString(R.string.toast_take_image),Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if(nameET.getText().toString().equals("")){
+
+            nameET.setError(getResources().getString(R.string.patient_name_validation));
+            nameET.requestFocus();
+            return;
+        }
+        if(guardianTypeSP.getSelectedItemPosition()==0)
+        {
+            Toast.makeText(getApplicationContext(),getResources().getString(R.string.toast_select_guardian_type),Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+
+        if(guardianNameET.getText().toString().equals("")){
+
+            guardianNameET.setError(getResources().getString(R.string.guardian_name_validation));
+            guardianNameET.requestFocus();
+            return;
+        }
+        if(ageET.getText().toString().equals("")){
+
+            ageET.setError(getResources().getString(R.string.patient_age_validation));
+            ageET.requestFocus();
+            return;
+        }
+
+
+        Intent intent=new Intent(getApplicationContext(),AddPatientTwo.class);
+        startActivity(intent);
+    }
+
 }
 
 
