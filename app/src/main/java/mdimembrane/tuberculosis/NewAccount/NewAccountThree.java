@@ -11,6 +11,7 @@ import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.format.Formatter;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -107,6 +108,7 @@ public class NewAccountThree extends AppCompatActivity {
                 editor.putString(PreferencesConstants.AddNewAccount.USER_AADHAR_NO, aadharET.getText().toString());
                 editor.commit();
 
+                new SendAllData().execute(ServerConstants.NEW_ACCOUNT);
                 Toast.makeText(getApplicationContext(), "Details submited", Toast.LENGTH_LONG).show();
 
             }
@@ -319,40 +321,9 @@ public class NewAccountThree extends AppCompatActivity {
             try {
                 RESPONSE_CODE = json.getBoolean("response");
                 MSG = json.getString("message");
-                // Log.i("dfdfdf", ""+MSG+"   "+RESPONSE_CODE);
+                 Log.i("dfdfdf", ""+MSG+"   "+RESPONSE_CODE);
                 if (RESPONSE_CODE) {
-                    try {
-                        if (MSG.equals("type")) {
-                            HospitalTypeList.clear();
-                            HospitalNameList.clear();
-                            allHospName();
 
-                        } else if (MSG.equals("name")) {
-                            HospitalNameList.clear();
-                        }
-                        JSONArray jsonMainNode = json.optJSONArray("data");
-                        int lengthJsonArr = jsonMainNode.length();
-                        for (int i = 0; i < lengthJsonArr; i++) {
-                            JSONObject jsonChildNode = jsonMainNode
-                                    .getJSONObject(i);
-                            String data = jsonChildNode.optString("data")
-                                    .toString();
-                            if (MSG.equals("type")) {
-                                HospitalTypeList.add(data);
-                            } else if (MSG.equals("name")) {
-                                HospitalNameList.add(data);
-                            }
-                        }
-                        if (MSG.equals("type")) {
-                            allHospType();
-                        } else if (MSG.equals("name")) {
-                            HospitalNameList.add(getResources().getString(R.string.other_Hospital));
-                            allHospName();
-                        }
-                    } catch (JSONException e) {
-
-                        e.printStackTrace();
-                    }
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

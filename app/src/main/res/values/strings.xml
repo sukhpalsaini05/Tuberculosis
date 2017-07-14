@@ -25,6 +25,7 @@
     </string-array>
 
     <string-array name="blood_group_arrays">
+        <item>Select Blood Group</item>
         <item>A+</item>
         <item>A-</item>
         <item>B+</item>
@@ -112,6 +113,16 @@
     <string name="patient_name_validation">Please Enter Name Of Patient</string>
     <string name="guardian_name_validation">Please Enter Guardian Name</string>
     <string name="patient_age_validation">Please Enter Age Of Patient</string>
+
+
+    <!-- Strings related to AddPatientTwo.java -->
+    <string name="address1_validation">Please Enter House No And Street</string>
+    <string name="address2_validation">Please Enter Town Or Village</string>
+
+    <!-- Strings related to AddPatientThree.java -->
+    <string name="toast_select_blood_group">Please Select Blood Group</string>
+    <string name="weight_validation">Please Enter Weight Of Patient</string>
+    <string name="height_validation">Please Enter Height Of Patient</string>
 
 
 
