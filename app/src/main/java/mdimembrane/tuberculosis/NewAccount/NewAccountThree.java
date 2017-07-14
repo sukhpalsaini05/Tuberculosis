@@ -103,7 +103,7 @@ public class NewAccountThree extends AppCompatActivity {
 
                 SharedPreferences.Editor editor = sharedpreferences.edit();
                 editor.putString(PreferencesConstants.AddNewAccount.HOSPITAL_TYPE, HosTypeSTR);
-                editor.putString(PreferencesConstants.AddNewAccount.HOSPITAL_NAME, HosNameSTR);
+                editor.putString(PreferencesConstants.AddNewAccount.HOSPITAL_NAME, otherHospitalET.getText().toString());
                 editor.putString(PreferencesConstants.AddNewAccount.USER_PHONE, phoneET.getText().toString());
                 editor.putString(PreferencesConstants.AddNewAccount.USER_AADHAR_NO, aadharET.getText().toString());
                 editor.commit();
@@ -301,7 +301,7 @@ public class NewAccountThree extends AppCompatActivity {
                 multipart.addFormField("account_name", sharedpreferences.getString(PreferencesConstants.AddNewAccount.USER_NAME, "Null"));
                 multipart.addFormField("account_gender", sharedpreferences.getString(PreferencesConstants.AddNewAccount.GENDER, "Null"));
                 multipart.addFormField("account_empid", sharedpreferences.getString(PreferencesConstants.AddNewAccount.EMPLOYEE_CODE, "Null"));
-                multipart.addFormField("account_state", sharedpreferences.getString(PreferencesConstants.AddNewAccount.USER_STATE, "Null"));
+                multipart.addFormField("account_state", "Haryana");
                 multipart.addFormField("account_district", sharedpreferences.getString(PreferencesConstants.AddNewAccount.USER_DISTT, "Null"));
                 multipart.addFormField("account_tehsil", sharedpreferences.getString(PreferencesConstants.AddNewAccount.USER_TEHSIL, "Null"));
                 multipart.addFormField("account_village", sharedpreferences.getString(PreferencesConstants.AddNewAccount.USER_VILLAGE, "Null"));
@@ -333,16 +333,16 @@ public class NewAccountThree extends AppCompatActivity {
         @Override
         protected void onPostExecute(JSONObject json) {
             pDialog.dismiss();
-            try {
-                RESPONSE_CODE = json.getBoolean("response");
-                MSG = json.getString("message");
-                 Log.i("dfdfdf", ""+MSG+"   "+RESPONSE_CODE);
-                if (RESPONSE_CODE) {
-
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+//            try {
+//                RESPONSE_CODE = json.getBoolean("response");
+//                MSG = json.getString("message");
+//                 Log.i("dfdfdf", ""+MSG+"   "+RESPONSE_CODE);
+//                if (RESPONSE_CODE) {
+//
+//                }
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
         }
     }
 }
