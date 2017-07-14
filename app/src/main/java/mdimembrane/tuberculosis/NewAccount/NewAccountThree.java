@@ -293,7 +293,7 @@ public class NewAccountThree extends AppCompatActivity {
 
                 String charset = "UTF-8";
                 File imagesFolder = new File(Environment.getExternalStorageDirectory(), "MyImages");
-                File uploadFile1 =new File(imagesFolder, "user_pic.jpg1");
+                File uploadFile1 =new File(imagesFolder, "user_pic.jpg");
 
                 MultipartUtility multipart = new MultipartUtility(args[0], charset);
                 multipart.addFormField("action", "insert_account");
