@@ -92,7 +92,6 @@ public class HttpConnection {
 
   String result=null;
     try {
-
       HttpClient client = new DefaultHttpClient();
       //use your server path of php file
       HttpPost post = new HttpPost(url);
@@ -113,14 +112,12 @@ public class HttpConnection {
       HttpEntity resEntity = response.getEntity();
       Log.d("Enter", "Get Response");
       try {
-
         final String response_str = EntityUtils.toString(resEntity);
         if (resEntity != null) {
           Log.i("RESPONSE", response_str);
           JSONObject jobj = new JSONObject(response_str);
           result = jobj.getString("ResponseCode");
           Log.e("Result", "...." + result);
-
         }
       } catch (Exception ex) {
         Log.e("Debug", "error: " + ex.getMessage(), ex);
