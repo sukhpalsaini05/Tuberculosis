@@ -2,11 +2,14 @@ package mdimembrane.tuberculosis.ServerConfiguration;
 
 import android.util.Log;
 
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -83,5 +86,45 @@ public class HttpConnection {
     }
     // return JSON String
     return jObj;
+  }
+
+  private void doFileUpload(String url,MultipartEntity reqEntity) {
+
+  String result=null;
+    try {
+      HttpClient client = new DefaultHttpClient();
+      //use your server path of php file
+      HttpPost post = new HttpPost(url);
+
+      Log.d("ServerPath", "Path" + url);
+
+//      FileBody bin1 = new FileBody(file_path);
+//      Log.d("Enter", "Filebody complete " + bin1);
+
+//      MultipartEntity reqEntity = new MultipartEntity();
+//      reqEntity.addPart("uploaded_file", bin1);
+//      reqEntity.addPart("email", new StringBody(useremail));
+
+      post.setEntity(reqEntity);
+      Log.d("Enter", "Image send complete");
+
+      HttpResponse response = client.execute(post);
+      HttpEntity resEntity = response.getEntity();
+      Log.d("Enter", "Get Response");
+      try {
+        final String response_str = EntityUtils.toString(resEntity);
+        if (resEntity != null) {
+          Log.i("RESPONSE", response_str);
+          JSONObject jobj = new JSONObject(response_str);
+          result = jobj.getString("ResponseCode");
+          Log.e("Result", "...." + result);
+        }
+      } catch (Exception ex) {
+        Log.e("Debug", "error: " + ex.getMessage(), ex);
+      }
+    } catch (Exception e) {
+      Log.e("Upload Exception", "");
+      e.printStackTrace();
+    }
   }
 }
