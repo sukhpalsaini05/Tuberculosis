@@ -29,7 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import mdimembrane.tuberculosis.ServerConfiguration.HttpConnection;
-import mdimembrane.tuberculosis.ServerConfiguration.MultipartEntity;
+import mdimembrane.tuberculosis.ServerConfiguration.MultipartUtility;
 import mdimembrane.tuberculosis.ServerConfiguration.ServerConstants;
 import mdimembrane.tuberculosis.main.PreferencesConstants;
 import mdimembrane.tuberculosis.main.R;
@@ -289,29 +289,44 @@ public class NewAccountThree extends AppCompatActivity {
 
         @Override
         protected JSONObject doInBackground(String... args) {
-            HttpConnection jParser = new HttpConnection();
-            // Getting JSON from URL
-            File imagesFolder = new File(Environment.getExternalStorageDirectory(), "MyImages");
-            MultipartEntity reqEntity = new MultipartEntity();
-            reqEntity.addPart("uploaded_file", new File(imagesFolder, "user_pic.jpg"));
-            reqEntity.addPart("action", "insert_account");
-            reqEntity.addPart("account_type", sharedpreferences.getString(PreferencesConstants.AddNewAccount.ACCOUNT_TYPE, "Null"));
-            reqEntity.addPart("account_name", sharedpreferences.getString(PreferencesConstants.AddNewAccount.USER_NAME, "Null"));
-            reqEntity.addPart("account_gender", sharedpreferences.getString(PreferencesConstants.AddNewAccount.GENDER, "Null"));
-            reqEntity.addPart("account_empid", sharedpreferences.getString(PreferencesConstants.AddNewAccount.EMPLOYEE_CODE, "Null"));
-            reqEntity.addPart("account_state", sharedpreferences.getString(PreferencesConstants.AddNewAccount.USER_STATE, "Null"));
-            reqEntity.addPart("account_district", sharedpreferences.getString(PreferencesConstants.AddNewAccount.USER_DISTT, "Null"));
-            reqEntity.addPart("account_tehsil", sharedpreferences.getString(PreferencesConstants.AddNewAccount.USER_TEHSIL, "Null"));
-            reqEntity.addPart("account_village", sharedpreferences.getString(PreferencesConstants.AddNewAccount.USER_VILLAGE, "Null"));
-            reqEntity.addPart("account_village", sharedpreferences.getString(PreferencesConstants.AddNewAccount.USER_ADDRESS, "Null"));
-            reqEntity.addPart("account_pincode", sharedpreferences.getString(PreferencesConstants.AddNewAccount.USER_PINCODE, "Null"));
-            reqEntity.addPart("account_hc_type", sharedpreferences.getString(PreferencesConstants.AddNewAccount.HOSPITAL_TYPE, "Null"));
-            reqEntity.addPart("account_hc_name", sharedpreferences.getString(PreferencesConstants.AddNewAccount.HOSPITAL_NAME, "Null"));
-            reqEntity.addPart("account_phone", sharedpreferences.getString(PreferencesConstants.AddNewAccount.USER_PHONE, "Null"));
-            reqEntity.addPart("account_aadhar", sharedpreferences.getString(PreferencesConstants.AddNewAccount.USER_AADHAR_NO, "Null"));
-            reqEntity.addPart("account_ipaddress", ipAddress);
+            try {
 
-            JSONObject json = jParser.doFileUpload(args[0], reqEntity);
+                String charset = "UTF-8";
+                File imagesFolder = new File(Environment.getExternalStorageDirectory(), "MyImages");
+                File uploadFile1 =new File(imagesFolder, "user_pic.jpg");
+
+                MultipartUtility multipart = new MultipartUtility(args[0], charset);
+                multipart.addFormField("action", "insert_account");
+                multipart.addFormField("account_type", sharedpreferences.getString(PreferencesConstants.AddNewAccount.ACCOUNT_TYPE, "Null"));
+                multipart.addFormField("account_name", sharedpreferences.getString(PreferencesConstants.AddNewAccount.USER_NAME, "Null"));
+                multipart.addFormField("account_gender", sharedpreferences.getString(PreferencesConstants.AddNewAccount.GENDER, "Null"));
+                multipart.addFormField("account_empid", sharedpreferences.getString(PreferencesConstants.AddNewAccount.EMPLOYEE_CODE, "Null"));
+                multipart.addFormField("account_state", sharedpreferences.getString(PreferencesConstants.AddNewAccount.USER_STATE, "Null"));
+                multipart.addFormField("account_district", sharedpreferences.getString(PreferencesConstants.AddNewAccount.USER_DISTT, "Null"));
+                multipart.addFormField("account_tehsil", sharedpreferences.getString(PreferencesConstants.AddNewAccount.USER_TEHSIL, "Null"));
+                multipart.addFormField("account_village", sharedpreferences.getString(PreferencesConstants.AddNewAccount.USER_VILLAGE, "Null"));
+                multipart.addFormField("account_village", sharedpreferences.getString(PreferencesConstants.AddNewAccount.USER_ADDRESS, "Null"));
+                multipart.addFormField("account_pincode", sharedpreferences.getString(PreferencesConstants.AddNewAccount.USER_PINCODE, "Null"));
+                multipart.addFormField("account_hc_type", sharedpreferences.getString(PreferencesConstants.AddNewAccount.HOSPITAL_TYPE, "Null"));
+                multipart.addFormField("account_hc_name", sharedpreferences.getString(PreferencesConstants.AddNewAccount.HOSPITAL_NAME, "Null"));
+                multipart.addFormField("account_phone", sharedpreferences.getString(PreferencesConstants.AddNewAccount.USER_PHONE, "Null"));
+                multipart.addFormField("account_aadhar", sharedpreferences.getString(PreferencesConstants.AddNewAccount.USER_AADHAR_NO, "Null"));
+                multipart.addFormField("account_ipaddress", ipAddress);
+
+                multipart.addFilePart("uploaded_file", uploadFile1);
+
+                List<String> response = multipart.finish();
+
+                Log.v("rht", "SERVER REPLIED:");
+
+                for (String line : response) {
+                    Log.v("rht", "Line : "+line);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            JSONObject json =null;
             return json;
         }
 
