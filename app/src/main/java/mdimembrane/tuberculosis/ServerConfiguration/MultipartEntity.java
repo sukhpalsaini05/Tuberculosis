@@ -143,7 +143,6 @@ public class MultipartEntity implements HttpEntity {
                     "Streaming entity does not implement #consumeContent()");
         }
     }
-
     public InputStream getContent() throws IOException,
             UnsupportedOperationException {
         return new ByteArrayInputStream(out.toByteArray());
