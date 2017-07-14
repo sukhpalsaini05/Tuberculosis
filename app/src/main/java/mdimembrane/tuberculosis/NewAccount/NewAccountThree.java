@@ -107,6 +107,7 @@ public class NewAccountThree extends AppCompatActivity {
                 editor.putString(PreferencesConstants.AddNewAccount.USER_AADHAR_NO, aadharET.getText().toString());
                 editor.commit();
 
+                new SendAllData().execute(ServerConstants.NEW_ACCOUNT);
                 Toast.makeText(getApplicationContext(), "Details submited", Toast.LENGTH_LONG).show();
 
             }
@@ -321,38 +322,7 @@ public class NewAccountThree extends AppCompatActivity {
                 MSG = json.getString("message");
                 // Log.i("dfdfdf", ""+MSG+"   "+RESPONSE_CODE);
                 if (RESPONSE_CODE) {
-                    try {
-                        if (MSG.equals("type")) {
-                            HospitalTypeList.clear();
-                            HospitalNameList.clear();
-                            allHospName();
 
-                        } else if (MSG.equals("name")) {
-                            HospitalNameList.clear();
-                        }
-                        JSONArray jsonMainNode = json.optJSONArray("data");
-                        int lengthJsonArr = jsonMainNode.length();
-                        for (int i = 0; i < lengthJsonArr; i++) {
-                            JSONObject jsonChildNode = jsonMainNode
-                                    .getJSONObject(i);
-                            String data = jsonChildNode.optString("data")
-                                    .toString();
-                            if (MSG.equals("type")) {
-                                HospitalTypeList.add(data);
-                            } else if (MSG.equals("name")) {
-                                HospitalNameList.add(data);
-                            }
-                        }
-                        if (MSG.equals("type")) {
-                            allHospType();
-                        } else if (MSG.equals("name")) {
-                            HospitalNameList.add(getResources().getString(R.string.other_Hospital));
-                            allHospName();
-                        }
-                    } catch (JSONException e) {
-
-                        e.printStackTrace();
-                    }
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
