@@ -11,6 +11,7 @@ import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.format.Formatter;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -320,7 +321,7 @@ public class NewAccountThree extends AppCompatActivity {
             try {
                 RESPONSE_CODE = json.getBoolean("response");
                 MSG = json.getString("message");
-                // Log.i("dfdfdf", ""+MSG+"   "+RESPONSE_CODE);
+                 Log.i("dfdfdf", ""+MSG+"   "+RESPONSE_CODE);
                 if (RESPONSE_CODE) {
 
                 }
