@@ -88,7 +88,7 @@ public class HttpConnection {
     return jObj;
   }
 
-  private void doFileUpload(String url,MultipartEntity reqEntity) {
+  public JSONObject doFileUpload(String url,MultipartEntity reqEntity) {
 
   String result=null;
     try {
@@ -100,8 +100,8 @@ public class HttpConnection {
 
 //      FileBody bin1 = new FileBody(file_path);
 //      Log.d("Enter", "Filebody complete " + bin1);
-
-//      MultipartEntity reqEntity = new MultipartEntity();
+//
+//      MultipartEntity reqEntity1 = new MultipartEntity();
 //      reqEntity.addPart("uploaded_file", bin1);
 //      reqEntity.addPart("email", new StringBody(useremail));
 
@@ -115,8 +115,7 @@ public class HttpConnection {
         final String response_str = EntityUtils.toString(resEntity);
         if (resEntity != null) {
           Log.i("RESPONSE", response_str);
-          JSONObject jobj = new JSONObject(response_str);
-          result = jobj.getString("ResponseCode");
+          jObj  = new JSONObject(response_str);
           Log.e("Result", "...." + result);
         }
       } catch (Exception ex) {
@@ -126,5 +125,7 @@ public class HttpConnection {
       Log.e("Upload Exception", "");
       e.printStackTrace();
     }
+    // return JSON String
+    return jObj;
   }
 }
