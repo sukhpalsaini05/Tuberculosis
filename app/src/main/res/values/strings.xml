@@ -68,8 +68,8 @@
     <string name="address_hint">e.g. House No. , Street</string>
     <string name="Phone_no">Phone Number</string>
     <string name="Aadhar_no">Aadhar Card Number</string>
-    <string name="Hospital_Type">Hospital Type</string>
-    <string name="Hospital_Name">Hospital Name</string>
+    <string name="Hospital_Type">Select Hospital Type</string>
+    <string name="Hospital_Name">Select Hospital Name</string>
     <string name="Back_Button">Back</string>
     <string name="Next_Button">Next</string>
 
