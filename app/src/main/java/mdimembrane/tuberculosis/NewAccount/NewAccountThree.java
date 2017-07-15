@@ -212,8 +212,8 @@ public class NewAccountThree extends AppCompatActivity {
     public void SaveAlert() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setCancelable(false);
-        alertDialogBuilder.setTitle("Registration Successful");
-        alertDialogBuilder.setMessage(getResources().getString(R.string.alert_request_submited_details));
+        alertDialogBuilder.setTitle(getResources().getString(R.string.alert_tittle_successful));
+        alertDialogBuilder.setMessage(getResources().getString(R.string.alert_account_request_details_submited));
         alertDialogBuilder.setPositiveButton("OK",
                 new DialogInterface.OnClickListener() {
                     @Override
@@ -378,7 +378,6 @@ public class NewAccountThree extends AppCompatActivity {
 //                    e.printStackTrace();
 //                }
             }
-
         }
     }
 }
