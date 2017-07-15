@@ -213,7 +213,7 @@ public class NewAccountThree extends AppCompatActivity {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setCancelable(false);
         alertDialogBuilder.setTitle("Registration Successful");
-        alertDialogBuilder.setMessage("Details submited Now Wait For User Name and Password And Login in Your Account");
+        alertDialogBuilder.setMessage(getResources().getString(R.string.alert_request_submited_details));
         alertDialogBuilder.setPositiveButton("OK",
                 new DialogInterface.OnClickListener() {
                     @Override
@@ -330,7 +330,7 @@ public class NewAccountThree extends AppCompatActivity {
                 multipart.addFormField("account_name", sharedpreferences.getString(PreferencesConstants.AddNewAccount.USER_NAME, "Null"));
                 multipart.addFormField("account_gender", sharedpreferences.getString(PreferencesConstants.AddNewAccount.GENDER, "Null"));
                 multipart.addFormField("account_empid", sharedpreferences.getString(PreferencesConstants.AddNewAccount.EMPLOYEE_CODE, "Null"));
-                multipart.addFormField("account_state", "Haryana");
+                multipart.addFormField("account_state", sharedpreferences.getString(PreferencesConstants.AddNewAccount.USER_STATE, "Null"));
                 multipart.addFormField("account_district", sharedpreferences.getString(PreferencesConstants.AddNewAccount.USER_DISTT, "Null"));
                 multipart.addFormField("account_tehsil", sharedpreferences.getString(PreferencesConstants.AddNewAccount.USER_TEHSIL, "Null"));
                 multipart.addFormField("account_village", sharedpreferences.getString(PreferencesConstants.AddNewAccount.USER_VILLAGE, "Null"));

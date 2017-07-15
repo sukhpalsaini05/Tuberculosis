@@ -63,8 +63,6 @@ public class NewAccountTwo extends AppCompatActivity {
         AddressET=(EditText)findViewById(R.id.AddressET);
         PincodeET=(EditText)findViewById(R.id.PincodeET);
 
-
-
         NextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -203,8 +201,6 @@ public class NewAccountTwo extends AppCompatActivity {
 
             }
         });
-
-
     }
     private void allTehsil() {
         // TODO Auto-generated method stub
