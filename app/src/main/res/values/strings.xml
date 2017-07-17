@@ -36,8 +36,9 @@
         <item>AB+</item>
         <item>AB-</item>
     </string-array>
-    <string name="title_activity_add_patient_two">Add Patient (2/3)</string>
-    <string name="title_activity_add_patient_three">Add Patient (3/3)</string>
+    <string name="title_activity_add_patient_two">Add Patient (2/4)</string>
+    <string name="title_activity_add_patient_three">Add Patient (3/4)</string>
+    <string name="title_activity_add_patient_four">Add Patient (4/4)</string>
     <string name="title_activity_login">Sign in</string>
 
     <!-- Strings related to login -->
@@ -89,8 +90,6 @@
     <string name="pin_code_validation">Please Enter Valid Pin Code</string>
 
 
-
-
     <!-- Strings related to NewAccountThree.java -->
     <string name="other_Hospital">Other Hospital</string>
     <string name="TostHospitalType">Please Select Hospital Type</string>
@@ -121,14 +120,12 @@
     <string name="address1_validation">Please Enter House No And Street</string>
     <string name="address2_validation">Please Enter Town Or Village</string>
 
-    <!-- Strings related to AddPatientThree.java -->
+    <!-- Strings related to AddPatientFour.java -->
     <string name="toast_select_blood_group">Please Select Blood Group</string>
     <string name="weight_validation">Please Enter Weight Of Patient</string>
     <string name="height_validation">Please Enter Height Of Patient</string>
     <string name="alert_patient_form_tittle_successful">Registration Successful</string>
     <string name="alert_patient_form_details_submited">Details Are Submited Now You Can Add New Patient</string>
-
-
 
 
 </resources>
