@@ -19,6 +19,7 @@
     </string-array>
 
     <string-array name="guardian_arrays">
+        <item>Select guardian Type</item>
         <item>S/O</item>
         <item>D/O</item>
         <item>W/O</item>
