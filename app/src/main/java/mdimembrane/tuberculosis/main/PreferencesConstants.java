@@ -26,5 +26,29 @@ public interface PreferencesConstants extends BaseColumns {
 		public static final String USER_AADHAR_NO = "user_aadhar_no";
 
 	}
+
+
+	public static class AddNewPatient
+	{
+		public static final String PATIENT_NAME = "patient_name";
+		public static final String GAURDIAN_TYPE = "gaurdian_type";
+		public static final String GAURDIAN_NAME = "gaurdian_name";
+		public static final String AGE = "age";
+		public static final String GENDER = "gender";
+		public static final String PATIENT_AADHAR_NO = "patient_aadhar_no";
+		public static final String PATIENT_PHONE = "patient_phone";
+		public static final String GAURDIAN_PHONE = "gaurdian_phone";
+		public static final String ADDRESS1 = "address1";
+		public static final String ADDRESS2 = "address2";
+		public static final String BLOOD_GROUP = "blood_group";
+		public static final String WEIGHT = "weight";
+		public static final String HEIGHT = "height";
+		public static final String ANY_OTHER_DISEASES = "any_other_disease";
+		public static final String COMMENTS = "comments";
+
+	}
+
+
+
 	
 }

@@ -1,7 +1,9 @@
 package mdimembrane.tuberculosis.ManagePatients;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -26,6 +28,7 @@ import android.widget.Toast;
 import java.io.File;
 import java.io.IOException;
 
+import mdimembrane.tuberculosis.main.PreferencesConstants;
 import mdimembrane.tuberculosis.main.R;
 
 public class AddPatientOne extends AppCompatActivity {
@@ -34,6 +37,7 @@ public class AddPatientOne extends AppCompatActivity {
     Spinner guardianTypeSP;
     RadioButton MaleRB,FemaleRB,OtherRB;
     private RadioGroup genderRadioGroup;
+    SharedPreferences sharedpreferences;
     String genderSTR="Male";
 
 
@@ -58,6 +62,8 @@ public class AddPatientOne extends AppCompatActivity {
         }catch(NullPointerException e){
             Log.e("SearchActivity Toolbar", "You have got a NULL POINTER EXCEPTION");
         }
+
+        sharedpreferences = getSharedPreferences(PreferencesConstants.APP_MAIN_PREF, Context.MODE_PRIVATE);
 
         patientImageIMB=(ImageButton)findViewById(R.id.patientImageIMB);
         nameET=(EditText)findViewById(R.id.nameEditText);
@@ -228,6 +234,15 @@ public class AddPatientOne extends AppCompatActivity {
             ageET.requestFocus();
             return;
         }
+
+
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        editor.putString(PreferencesConstants.AddNewPatient.PATIENT_NAME, nameET.getText().toString());
+        editor.putString(PreferencesConstants.AddNewPatient.GAURDIAN_TYPE, guardianTypeSP.getSelectedItem().toString());
+        editor.putString(PreferencesConstants.AddNewPatient.GAURDIAN_NAME, guardianNameET.getText().toString());
+        editor.putString(PreferencesConstants.AddNewPatient.AGE, ageET.getText().toString());
+        editor.putString(PreferencesConstants.AddNewPatient.GENDER, genderSTR);
+        editor.commit();
 
 
         Intent intent=new Intent(getApplicationContext(),AddPatientTwo.class);

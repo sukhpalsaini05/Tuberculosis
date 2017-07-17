@@ -125,7 +125,8 @@
     <string name="toast_select_blood_group">Please Select Blood Group</string>
     <string name="weight_validation">Please Enter Weight Of Patient</string>
     <string name="height_validation">Please Enter Height Of Patient</string>
-
+    <string name="alert_patient_form_tittle_successful">Registration Successful</string>
+    <string name="alert_patient_form_details_submited">Details Are Submited Now You Can Add New Patient</string>
 
 
 

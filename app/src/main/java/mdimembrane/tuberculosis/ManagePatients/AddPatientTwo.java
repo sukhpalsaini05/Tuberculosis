@@ -1,6 +1,8 @@
 package mdimembrane.tuberculosis.ManagePatients;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -10,11 +12,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
+import mdimembrane.tuberculosis.main.PreferencesConstants;
 import mdimembrane.tuberculosis.main.R;
 
 public class AddPatientTwo extends AppCompatActivity {
 
     EditText aadharNoET,phoneNoET,relativeMobileNoET,address1ET,address2ET;
+
+    SharedPreferences sharedpreferences;
 
 
 
@@ -29,6 +34,8 @@ public class AddPatientTwo extends AppCompatActivity {
         }catch(NullPointerException e){
             Log.e("SearchActivity Toolbar", "You have got a NULL POINTER EXCEPTION");
         }
+        sharedpreferences = getSharedPreferences(PreferencesConstants.APP_MAIN_PREF, Context.MODE_PRIVATE);
+
 
 
         aadharNoET=(EditText)findViewById(R.id.aadharEditText);
@@ -85,7 +92,13 @@ public class AddPatientTwo extends AppCompatActivity {
         }
 
 
-
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        editor.putString(PreferencesConstants.AddNewPatient.PATIENT_AADHAR_NO, aadharNoET.getText().toString());
+        editor.putString(PreferencesConstants.AddNewPatient.PATIENT_PHONE, phoneNoET.getText().toString());
+        editor.putString(PreferencesConstants.AddNewPatient.GAURDIAN_PHONE, relativeMobileNoET.getText().toString());
+        editor.putString(PreferencesConstants.AddNewPatient.ADDRESS1, address1ET.getText().toString());
+        editor.putString(PreferencesConstants.AddNewPatient.ADDRESS2, address2ET.getText().toString());
+        editor.commit();
 
 
         Intent intent=new Intent(getApplicationContext(),AddPatientThree.class);
