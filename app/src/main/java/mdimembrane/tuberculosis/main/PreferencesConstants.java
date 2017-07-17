@@ -40,6 +40,8 @@ public interface PreferencesConstants extends BaseColumns {
 		public static final String GAURDIAN_PHONE = "gaurdian_phone";
 		public static final String ADDRESS1 = "address1";
 		public static final String ADDRESS2 = "address2";
+		public static final String SYMPTOMS_LIST="symptoms_list";
+		public static final String OTHER_SYMPTOMS="other_symptoms";
 		public static final String BLOOD_GROUP = "blood_group";
 		public static final String WEIGHT = "weight";
 		public static final String HEIGHT = "height";

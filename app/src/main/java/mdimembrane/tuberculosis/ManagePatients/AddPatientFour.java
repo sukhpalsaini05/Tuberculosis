@@ -161,6 +161,8 @@ public class AddPatientFour extends AppCompatActivity {
                 multipart.addFormField("gaurdian_phone", sharedpreferences.getString(PreferencesConstants.AddNewPatient.GAURDIAN_PHONE, "Null"));
                 multipart.addFormField("address1", sharedpreferences.getString(PreferencesConstants.AddNewPatient.ADDRESS1, "Null"));
                 multipart.addFormField("address2", sharedpreferences.getString(PreferencesConstants.AddNewPatient.ADDRESS2, "Null"));
+                multipart.addFormField("symptoms_list", sharedpreferences.getString(PreferencesConstants.AddNewPatient.SYMPTOMS_LIST, "Null"));
+                multipart.addFormField("other_symptoms", sharedpreferences.getString(PreferencesConstants.AddNewPatient.OTHER_SYMPTOMS, "Null"));
                 multipart.addFormField("blood_group", sharedpreferences.getString(PreferencesConstants.AddNewPatient.BLOOD_GROUP, "Null"));
                 multipart.addFormField("weight", sharedpreferences.getString(PreferencesConstants.AddNewPatient.WEIGHT, "Null"));
                 multipart.addFormField("height", sharedpreferences.getString(PreferencesConstants.AddNewPatient.HEIGHT, "Null"));

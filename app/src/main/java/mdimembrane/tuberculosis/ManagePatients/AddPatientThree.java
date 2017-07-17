@@ -85,6 +85,10 @@ public class AddPatientThree extends AppCompatActivity {
             result.append("\nJoint Pain ");
         }
 
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        editor.putString(PreferencesConstants.AddNewPatient.OTHER_SYMPTOMS, othersymptomsET.getText().toString());
+        editor.putString(PreferencesConstants.AddNewPatient.SYMPTOMS_LIST, String.valueOf(result));
+        editor.commit();
 
         Toast.makeText(getApplicationContext(), result.toString(), Toast.LENGTH_LONG).show();
 
