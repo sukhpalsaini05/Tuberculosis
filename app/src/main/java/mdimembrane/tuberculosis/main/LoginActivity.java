@@ -1,19 +1,13 @@
 package mdimembrane.tuberculosis.main;
 
-import android.app.LoaderManager.LoaderCallbacks;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.Loader;
 import android.content.SharedPreferences;
-import android.database.Cursor;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -29,18 +23,18 @@ import android.widget.Toast;
 
 import com.google.firebase.messaging.FirebaseMessaging;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import mdimembrane.tuberculosis.NewAccount.NewAccountOne;
+import mdimembrane.tuberculosis.ServerConfiguration.HttpConnection;
+import mdimembrane.tuberculosis.ServerConfiguration.ServerConstants;
 import mdimembrane.tuberculosis.util.NotificationUtils;
 
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
-
-
+public class LoginActivity extends AppCompatActivity {
 
 
     /**
@@ -49,41 +43,42 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private UserLoginTask mAuthTask = null;
 
     // UI references.
-    private EditText mEmailView;
+    private EditText mUsernameView;
     private EditText mPasswordView;
 
     private ProgressDialog mProgress;
-
+    String username, password;
     Button RequestAccount;
     private static final String TAG = LoginActivity.class.getSimpleName();
     private BroadcastReceiver mRegistrationBroadcastReceiver;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        RequestAccount=(Button)findViewById(R.id.button6);
+        RequestAccount = (Button) findViewById(R.id.button6);
 
         RequestAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getApplicationContext(),NewAccountOne.class);
+                Intent intent = new Intent(getApplicationContext(), NewAccountOne.class);
                 startActivity(intent);
 
             }
         });
 
         /* Set up the login form. */
-        mEmailView = (EditText) findViewById(R.id.userNameET);
-        mProgress =new ProgressDialog(this);
-        String titleId="Signing in...";
+        mUsernameView = (EditText) findViewById(R.id.userNameET);
+        mProgress = new ProgressDialog(this);
+        String titleId = "Signing in...";
         mProgress.setTitle(titleId);
         mProgress.setMessage("Please Wait...");
         mPasswordView = (EditText) findViewById(R.id.passwordET);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-                if ( id == EditorInfo.IME_NULL) {
+                if (id == EditorInfo.IME_NULL) {
                     attemptLogin();
                     return true;
                 }
@@ -117,14 +112,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     String message = intent.getStringExtra("message");
 
                     Toast.makeText(getApplicationContext(), "Push notification: " + message, Toast.LENGTH_LONG).show();
-
-                    RequestAccount.setText(message);
                 }
             }
         };
 
         displayFirebaseRegId();
     }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -147,6 +141,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         LocalBroadcastManager.getInstance(this).unregisterReceiver(mRegistrationBroadcastReceiver);
         super.onPause();
     }
+
     // Fetches reg id from shared preferences
     // and displays on the screen
     private void displayFirebaseRegId() {
@@ -155,11 +150,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         Log.e(TAG, "Firebase reg id: " + regId);
 
-        if (!TextUtils.isEmpty(regId))
-            RequestAccount.setText("Firebase Reg Id: " + regId);
-        else
-            RequestAccount.setText("Firebase Reg Id is not received yet!");
+//        if (!TextUtils.isEmpty(regId))
+//            RequestAccount.setText("Firebase Reg Id: " + regId);
+//        else
+//            RequestAccount.setText("Firebase Reg Id is not received yet!");
     }
+
     /**
      * Attempts to sign in or register the account specified by the login form.
      * If there are form errors (invalid email, missing fields, etc.), the
@@ -171,12 +167,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
 
         // Reset errors.
-        mEmailView.setError(null);
+        mUsernameView.setError(null);
         mPasswordView.setError(null);
 
         // Store values at the time of the login attempt.
-        String email = mEmailView.getText().toString();
-        String password = mPasswordView.getText().toString();
+        username = mUsernameView.getText().toString();
+        password = mPasswordView.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
@@ -188,14 +184,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             cancel = true;
         }
 
-        // Check for a valid email address.
-        if (TextUtils.isEmpty(email)) {
-            mEmailView.setError(getString(R.string.error_field_required));
-            focusView = mEmailView;
-            cancel = true;
-        } else if (!isEmailValid(email)) {
-            mEmailView.setError(getString(R.string.error_invalid_email));
-            focusView = mEmailView;
+        // Check for a valid username address.
+        if (TextUtils.isEmpty(username)) {
+            mUsernameView.setError(getString(R.string.error_field_required));
+            focusView = mUsernameView;
             cancel = true;
         }
 
@@ -207,14 +199,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
 
-            mAuthTask = new UserLoginTask(email, password);
+            mAuthTask = new UserLoginTask(username, password);
             mAuthTask.execute((Void) null);
         }
     }
-    private boolean isEmailValid(String email) {
-        //TODO: Replace this with your own logic
-        return email.contains("@");
-    }
+
 
     private boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
@@ -222,56 +211,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
 
-    @Override
-    public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
-        return new CursorLoader(this,
-                // Retrieve data rows for the device user's 'profile' contact.
-                Uri.withAppendedPath(ContactsContract.Profile.CONTENT_URI,
-                        ContactsContract.Contacts.Data.CONTENT_DIRECTORY), ProfileQuery.PROJECTION,
-
-                // Select only email addresses.
-                ContactsContract.Contacts.Data.MIMETYPE +
-                        " = ?", new String[]{ContactsContract.CommonDataKinds.Email
-                                                                     .CONTENT_ITEM_TYPE},
-
-                // Show primary email addresses first. Note that there won't be
-                // a primary email address if the user hasn't specified one.
-                ContactsContract.Contacts.Data.IS_PRIMARY + " DESC");
-    }
-
-    @Override
-    public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
-        List<String> emails = new ArrayList<>();
-        cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
-            emails.add(cursor.getString(ProfileQuery.ADDRESS));
-            cursor.moveToNext();
-        }
-
-    }
-
-    @Override
-    public void onLoaderReset(Loader<Cursor> cursorLoader) {
-
-    }
-
-    private interface ProfileQuery {
-        String[] PROJECTION = {
-                ContactsContract.CommonDataKinds.Email.ADDRESS,
-                ContactsContract.CommonDataKinds.Email.IS_PRIMARY,
-        };
-
-        int ADDRESS = 0;
-        int IS_PRIMARY = 1;
-    }
-
-
-
     /**
      * Represents an asynchronous login/registration task used to authenticate
      * the user.
      */
-    public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
+    public class UserLoginTask extends AsyncTask<Void, Void, JSONObject> {
 
         private final String mEmail;
         private final String mPassword;
@@ -283,32 +227,47 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
 
         @Override
-        protected Boolean doInBackground(Void... params) {
+        protected JSONObject doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
-
+            HttpConnection jParser = new HttpConnection();
+            JSONObject jsonObject = new JSONObject();
             try {
-                // Simulate network access.
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                return false;
-            }
+                jsonObject.accumulate("action", "user_login");
+                jsonObject.accumulate("user_name", username);
+                jsonObject.accumulate("password", password);
 
+            } catch (Exception e) {
+                // TODO: handle exception
+            }
+            JSONObject json = jParser.getJSONFromUrl(ServerConstants.USER_LOGIN, jsonObject);
 
             // TODO: register the new account here.
-            return true;
+            return json;
         }
 
         @Override
-        protected void onPostExecute(final Boolean success) {
+        protected void onPostExecute(JSONObject json) {
             mAuthTask = null;
             mProgress.dismiss();
-            if (success) {
-                Intent intent=new Intent(getApplicationContext(),MainScreen.class);
-                startActivity(intent);
-                finish();
-            } else {
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
-                mPasswordView.requestFocus();
+            String MSG = "";
+            boolean RESPONSE_CODE;
+            try {
+                RESPONSE_CODE = json.getBoolean("response");
+                MSG = json.getString("message");
+                // Log.i("dfdfdf", ""+MSG+"   "+RESPONSE_CODE);
+                if (RESPONSE_CODE) {
+                    if (MSG.equals("OK")) {
+                        Intent intent = new Intent(getApplicationContext(), MainScreen.class);
+                        startActivity(intent);
+                        finish();
+
+                    }else
+                    {
+                        Toast.makeText(getApplicationContext(),json.getString("data").toString(),Toast.LENGTH_LONG).show();
+                    }
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
         }
 

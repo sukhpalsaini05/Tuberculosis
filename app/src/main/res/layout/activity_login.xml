@@ -49,7 +49,7 @@
                     android:drawableTint="@color/colorPrimary"
                     android:singleLine="true"
                     android:hint="User Name"
-                    android:inputType="textEmailAddress"
+                    android:inputType="text"
                     android:id="@+id/userNameET" />
             </android.support.design.widget.TextInputLayout>
 
