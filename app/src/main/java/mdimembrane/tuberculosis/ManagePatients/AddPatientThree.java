@@ -47,7 +47,6 @@ public class AddPatientThree extends AppCompatActivity {
         jointPainCB=(CheckBox)findViewById(R.id.jointPainCheckBox);
 
         othersymptomsET=(EditText)findViewById(R.id.symptomsEditText);
-
     }
 
     public void nextButton(View view)
