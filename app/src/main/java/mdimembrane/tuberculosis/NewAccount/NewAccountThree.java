@@ -2,15 +2,12 @@ package mdimembrane.tuberculosis.NewAccount;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.format.Formatter;
@@ -34,7 +31,6 @@ import java.util.List;
 import mdimembrane.tuberculosis.ServerConfiguration.HttpConnection;
 import mdimembrane.tuberculosis.ServerConfiguration.MultipartUtility;
 import mdimembrane.tuberculosis.ServerConfiguration.ServerConstants;
-import mdimembrane.tuberculosis.main.LoginActivity;
 import mdimembrane.tuberculosis.main.PreferencesConstants;
 import mdimembrane.tuberculosis.main.R;
 
@@ -54,7 +50,6 @@ public class NewAccountThree extends AppCompatActivity {
     String MSG = "";
     boolean RESPONSE_CODE;
     String ipAddress;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -114,9 +109,7 @@ public class NewAccountThree extends AppCompatActivity {
                 editor.commit();
 
                 new SendAllData().execute(ServerConstants.NEW_ACCOUNT);
-
-
-                //  Toast.makeText(getApplicationContext(),"Details submited Now Wait For User Name and Password And Login in Your Account", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Details submited", Toast.LENGTH_LONG).show();
 
             }
 
@@ -208,26 +201,6 @@ public class NewAccountThree extends AppCompatActivity {
             }
         });
 
-    }
-    public void SaveAlert() {
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setCancelable(false);
-        alertDialogBuilder.setTitle(getResources().getString(R.string.alert_tittle_successful));
-        alertDialogBuilder.setMessage(getResources().getString(R.string.alert_account_request_details_submited));
-        alertDialogBuilder.setPositiveButton("OK",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface arg0, int arg1) {
-
-                        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(intent);
-                        finish();
-                    }
-                });
-
-        AlertDialog alertDialog = alertDialogBuilder.create();
-        alertDialog.show();
 
     }
 
@@ -316,13 +289,11 @@ public class NewAccountThree extends AppCompatActivity {
 
         @Override
         protected JSONObject doInBackground(String... args) {
-            String responseSTR="";
-            JSONObject json=null;
             try {
 
                 String charset = "UTF-8";
                 File imagesFolder = new File(Environment.getExternalStorageDirectory(), "MyImages");
-                File uploadFile1 = new File(imagesFolder, "user_pic.jpg");
+                File uploadFile1 =new File(imagesFolder, "user_pic.jpg");
 
                 MultipartUtility multipart = new MultipartUtility(args[0], charset);
                 multipart.addFormField("action", "insert_account");
@@ -330,11 +301,11 @@ public class NewAccountThree extends AppCompatActivity {
                 multipart.addFormField("account_name", sharedpreferences.getString(PreferencesConstants.AddNewAccount.USER_NAME, "Null"));
                 multipart.addFormField("account_gender", sharedpreferences.getString(PreferencesConstants.AddNewAccount.GENDER, "Null"));
                 multipart.addFormField("account_empid", sharedpreferences.getString(PreferencesConstants.AddNewAccount.EMPLOYEE_CODE, "Null"));
-                multipart.addFormField("account_state", sharedpreferences.getString(PreferencesConstants.AddNewAccount.USER_STATE, "Null"));
+                multipart.addFormField("account_state", "Haryana");
                 multipart.addFormField("account_district", sharedpreferences.getString(PreferencesConstants.AddNewAccount.USER_DISTT, "Null"));
                 multipart.addFormField("account_tehsil", sharedpreferences.getString(PreferencesConstants.AddNewAccount.USER_TEHSIL, "Null"));
                 multipart.addFormField("account_village", sharedpreferences.getString(PreferencesConstants.AddNewAccount.USER_VILLAGE, "Null"));
-                multipart.addFormField("account_address", sharedpreferences.getString(PreferencesConstants.AddNewAccount.USER_ADDRESS, "Null"));
+                multipart.addFormField("account_village", sharedpreferences.getString(PreferencesConstants.AddNewAccount.USER_ADDRESS, "Null"));
                 multipart.addFormField("account_pincode", sharedpreferences.getString(PreferencesConstants.AddNewAccount.USER_PINCODE, "Null"));
                 multipart.addFormField("account_hc_type", sharedpreferences.getString(PreferencesConstants.AddNewAccount.HOSPITAL_TYPE, "Null"));
                 multipart.addFormField("account_hc_name", sharedpreferences.getString(PreferencesConstants.AddNewAccount.HOSPITAL_NAME, "Null"));
@@ -349,35 +320,29 @@ public class NewAccountThree extends AppCompatActivity {
                 Log.v("rht", "SERVER REPLIED:");
 
                 for (String line : response) {
-                    Log.v("rht", "Line : " + line);
-                    responseSTR=line;
+                    Log.v("rht", "Line : "+line);
                 }
-                json = new JSONObject(responseSTR);
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
-
+            JSONObject json =null;
             return json;
         }
 
         @Override
         protected void onPostExecute(JSONObject json) {
             pDialog.dismiss();
-            if(json!=null)
-            {
-                SaveAlert();
-//                try {
-//                    RESPONSE_CODE = json.getBoolean("response");
-//                    MSG = json.getString("message");
-//                    Log.i("dfdfdf", ""+MSG+"   "+RESPONSE_CODE);
-//                    if (RESPONSE_CODE) {
+//            try {
+//                RESPONSE_CODE = json.getBoolean("response");
+//                MSG = json.getString("message");
+//                 Log.i("dfdfdf", ""+MSG+"   "+RESPONSE_CODE);
+//                if (RESPONSE_CODE) {
 //
-//                    }
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
 //                }
-            }
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
         }
     }
 }
