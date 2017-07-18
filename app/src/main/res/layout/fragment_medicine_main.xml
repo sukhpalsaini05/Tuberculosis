@@ -54,7 +54,8 @@
                     android:textStyle="bold"
                     android:layout_margin="4sp"
                     android:padding="5sp"
-                    android:text="Addd New Medicine" />
+                    android:text="Add New Medicine" />
+                    android:text="Add New Medicine" />
 
                 <Button
                     android:layout_width="0dp"
