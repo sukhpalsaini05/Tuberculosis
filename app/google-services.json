@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "691382705855",
+    "firebase_url": "https://tuberculosis-325e0.firebaseio.com",
+    "project_id": "tuberculosis-325e0",
+    "storage_bucket": "tuberculosis-325e0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:691382705855:android:66c8a2ae81258f67",
+        "android_client_info": {
+          "package_name": "mdimembrane.tuberculosis.main"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "691382705855-f2ff0tion2scsaiik4hcto8loappasuk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQkVhPNJJuiHzA_1Kh5HDa-tDIF08ppdY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

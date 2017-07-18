@@ -288,9 +288,6 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
 
-
-
-
                     }
                 });
 
