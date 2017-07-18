@@ -3,12 +3,14 @@ package mdimembrane.tuberculosis.main;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
@@ -263,7 +265,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     }else
                     {
-                        Toast.makeText(getApplicationContext(),json.getString("data").toString(),Toast.LENGTH_LONG).show();
+                        ErrorAlert(json.getString("data").toString());
                     }
                 }
             } catch (JSONException e) {
@@ -277,5 +279,22 @@ public class LoginActivity extends AppCompatActivity {
             mProgress.dismiss();
         }
     }
+    public void ErrorAlert(String message) {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setCancelable(true);
+        alertDialogBuilder.setMessage(message);
+        alertDialogBuilder.setPositiveButton("OK",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+
+
+                    }
+                });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
 }
 

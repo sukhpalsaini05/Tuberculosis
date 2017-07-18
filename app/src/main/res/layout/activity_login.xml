@@ -49,7 +49,7 @@
                     android:drawableTint="@color/colorPrimary"
                     android:singleLine="true"
                     android:hint="User Name"
-                    android:inputType="text"
+                    android:inputType="number"
                     android:id="@+id/userNameET" />
             </android.support.design.widget.TextInputLayout>
 
@@ -65,7 +65,7 @@
                     android:drawableLeft="@drawable/lock"
                     android:drawableTint="@color/colorPrimary"
                     android:hint="Password"
-                    android:inputType="numberPassword"
+                    android:inputType="textPassword"
                     android:id="@+id/passwordET" />
             </android.support.design.widget.TextInputLayout>
 
