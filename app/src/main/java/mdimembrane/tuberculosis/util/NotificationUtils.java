@@ -32,9 +32,6 @@ import mdimembrane.tuberculosis.main.PreferencesConstants;
 import mdimembrane.tuberculosis.main.R;
 
 
-/**
- * Created by Ravi on 31/03/15.
- */
 public class NotificationUtils {
 
     private static String TAG = NotificationUtils.class.getSimpleName();
@@ -53,7 +50,6 @@ public class NotificationUtils {
         // Check for empty push message
         if (TextUtils.isEmpty(message))
             return;
-
 
         // notification icon
         final int icon = R.mipmap.ic_launcher;

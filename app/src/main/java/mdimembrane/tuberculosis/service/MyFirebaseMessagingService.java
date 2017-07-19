@@ -16,10 +16,7 @@ import mdimembrane.tuberculosis.main.MainActivity;
 import mdimembrane.tuberculosis.main.PreferencesConstants;
 import mdimembrane.tuberculosis.util.NotificationUtils;
 
-/**
- * Created by Ravi Tamada on 08/08/16.
- * www.androidhive.info
- */
+
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     private static final String TAG = MyFirebaseMessagingService.class.getSimpleName();
