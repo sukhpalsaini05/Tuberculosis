@@ -262,7 +262,7 @@ public class LoginActivity extends AppCompatActivity {
                 // Log.i("dfdfdf", ""+MSG+"   "+RESPONSE_CODE);
                 if (RESPONSE_CODE) {
                     if (MSG.equals("OK")) {
-                        String Qrimage = json.getString("imagefieldname");
+                        String Qrimage = json.getString("image_data");
                         System.out.println(Qrimage);
 
                         byte[] qrimage = Base64.decode(Qrimage.getBytes(),1);
