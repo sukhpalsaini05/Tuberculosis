@@ -11,6 +11,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -32,6 +33,12 @@ import com.google.firebase.messaging.FirebaseMessaging;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+
 import mdimembrane.tuberculosis.NewAccount.NewAccountOne;
 import mdimembrane.tuberculosis.ServerConfiguration.HttpConnection;
 import mdimembrane.tuberculosis.ServerConfiguration.ServerConstants;
@@ -43,19 +50,18 @@ import mdimembrane.tuberculosis.util.NotificationUtils;
 public class LoginActivity extends AppCompatActivity {
 
 
+    private static final String TAG = LoginActivity.class.getSimpleName();
+    String username, password;
+    Button RequestAccount;
+    SharedPreferences sharedpreferences;
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
     private UserLoginTask mAuthTask = null;
-
     // UI references.
     private EditText mUsernameView;
     private EditText mPasswordView;
-
     private ProgressDialog mProgress;
-    String username, password;
-    Button RequestAccount;
-    private static final String TAG = LoginActivity.class.getSimpleName();
     private BroadcastReceiver mRegistrationBroadcastReceiver;
 
     @Override
@@ -73,6 +79,7 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
+        sharedpreferences = getSharedPreferences(PreferencesConstants.APP_MAIN_PREF, Context.MODE_PRIVATE);
 
         /* Set up the login form. */
         mUsernameView = (EditText) findViewById(R.id.userNameET);
@@ -214,7 +221,40 @@ public class LoginActivity extends AppCompatActivity {
         //TODO: Replace this with your own logic
         return password.length() > 4;
     }
+    private void saveProfilePic(Bitmap image) {
 
+        File file =new FileHandling(getApplicationContext()).getOutputMediaFile();
+
+        if (file == null) {
+            Log.d(TAG,
+                    "Error creating media file, check storage permissions: ");// e.getMessage());
+            return;
+        }
+        try {
+            FileOutputStream fos = new FileOutputStream(file);
+            image.compress(Bitmap.CompressFormat.PNG, 90, fos);
+            fos.close();
+        } catch (FileNotFoundException e) {
+            Log.d(TAG, "File not found: " + e.getMessage());
+        } catch (IOException e) {
+            Log.d(TAG, "Error accessing file: " + e.getMessage());
+        }
+    }
+
+    public void ErrorAlert(String message) {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setCancelable(true);
+        alertDialogBuilder.setMessage(message);
+        alertDialogBuilder.setPositiveButton("OK",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+
+                    }
+                });
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
 
     /**
      * Represents an asynchronous login/registration task used to authenticate
@@ -253,7 +293,6 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(JSONObject json) {
             mAuthTask = null;
-            mProgress.dismiss();
             String MSG = "";
             boolean RESPONSE_CODE;
             try {
@@ -265,47 +304,53 @@ public class LoginActivity extends AppCompatActivity {
                         String Qrimage = json.getString("image_data");
                         System.out.println(Qrimage);
 
-                        byte[] qrimage = Base64.decode(Qrimage.getBytes(),1);
+                        byte[] qrimage = Base64.decode(Qrimage.getBytes(), 1);
 
                         System.out.println(qrimage);
                         Bitmap bmp = BitmapFactory.decodeByteArray(qrimage, 0, qrimage.length);
+                        saveProfilePic(bmp);
                         ImageView imageview = (ImageView) findViewById(R.id.user_profile_photo);
 
-                        imageview.setImageBitmap(bmp);
-//                        Intent intent = new Intent(getApplicationContext(), MainScreen.class);
-//                        startActivity(intent);
-//                        finish();
+                        SharedPreferences.Editor editor = sharedpreferences.edit();
+                        editor.putBoolean(PreferencesConstants.SessionManager.ACCOUNT_SESSION, true);
+                        editor.putString(PreferencesConstants.SessionManager.MY_ACCOUNT_TYPE, json.getString("account_type"));
+                        editor.putString(PreferencesConstants.SessionManager.MY_USER_NAME, json.getString("user_name"));
+                        editor.putString(PreferencesConstants.SessionManager.MY_PERSON_NAME, json.getString("person_name"));
+                        editor.putString(PreferencesConstants.SessionManager.MY_EMPLOYEE_CODE, json.getString("employee_code"));
+                        editor.putString(PreferencesConstants.SessionManager.MY_USER_STATE, json.getString("user_state"));
+                        editor.putString(PreferencesConstants.SessionManager.MY_USER_DISTT, json.getString("user_district"));
+                        editor.putString(PreferencesConstants.SessionManager.MY_USER_TEHSIL, json.getString("user_tehsil"));
+                        editor.putString(PreferencesConstants.SessionManager.MY_USER_VILLAGE, json.getString("user_village"));
+                        editor.putString(PreferencesConstants.SessionManager.MY_USER_PINCODE, json.getString("user_pincode"));
+                        editor.putString(PreferencesConstants.SessionManager.MY_HOSPITAL_TYPE, json.getString("hospital_type"));
+                        editor.putString(PreferencesConstants.SessionManager.MY_HOSPITAL_NAME, json.getString("hospital_name"));
+                        editor.putString(PreferencesConstants.SessionManager.MY_USER_PHONE, json.getString("user_phone"));
+                        editor.putString(PreferencesConstants.SessionManager.MY_USER_AADHAR_NO, json.getString("user_aadhar_no"));
+                        editor.commit();
+
+                        //   imageview.setImageBitmap(bmp);
+                        Intent intent = new Intent(getApplicationContext(), MainScreen.class);
+                        startActivity(intent);
+                        finish();
 
 
-                    }else
-                    {
+                    } else {
                         ErrorAlert(json.getString("data").toString());
                     }
+
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+            mProgress.dismiss();
         }
+
 
         @Override
         protected void onCancelled() {
             mAuthTask = null;
             mProgress.dismiss();
         }
-    }
-    public void ErrorAlert(String message) {
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setCancelable(true);
-        alertDialogBuilder.setMessage(message);
-        alertDialogBuilder.setPositiveButton("OK",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface arg0, int arg1) {
-
-                    }
-                });
-        AlertDialog alertDialog = alertDialogBuilder.create();
-        alertDialog.show();
     }
 }
 

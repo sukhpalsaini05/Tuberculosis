@@ -61,6 +61,11 @@ public class NewAccountThree extends AppCompatActivity {
         setContentView(R.layout.activity_new_account_three);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        try{
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }catch(NullPointerException e){
+            Log.e("SearchActivity Toolbar", "You have got a NULL POINTER EXCEPTION");
+        }
 
         WifiManager wifiMgr = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
         WifiInfo wifiInfo = wifiMgr.getConnectionInfo();

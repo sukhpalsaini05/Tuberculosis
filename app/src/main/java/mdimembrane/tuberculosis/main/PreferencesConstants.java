@@ -65,22 +65,23 @@ public interface PreferencesConstants extends BaseColumns {
 
 	}
 
-	public static class MYACCOUNT
+	public static class SessionManager
 	{
+		public static final String ACCOUNT_SESSION = "my_account_session";
 		public static final String MY_ACCOUNT_TYPE = "my_account_type";
 		public static final String MY_USER_NAME = "my_user_name";
+		public static final String MY_PERSON_NAME = "my_person_name";
 		public static final String MY_EMPLOYEE_CODE = "my_employee_code";
-		public static final String MY_GENDER = "my_gender";
 		public static final String MY_USER_STATE = "my_user_state";
 		public static final String MY_USER_DISTT = "my_user_distt";
 		public static final String MY_USER_TEHSIL = "my_user_tehsil";
 		public static final String MY_USER_VILLAGE = "my_user_village";
-		public static final String MY_USER_ADDRESS = "my_user_address";
 		public static final String MY_USER_PINCODE = "my_user_pincode";
 		public static final String MY_HOSPITAL_TYPE = "my_hospital_type";
 		public static final String MY_HOSPITAL_NAME = "my_hospital_name";
 		public static final String MY_USER_PHONE = "my_user_phone";
 		public static final String MY_USER_AADHAR_NO = "my_user_aadhar_no";
+		public static final String MY_USER_IMAGE = "my_user_image";
 	}
 
 }

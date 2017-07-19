@@ -1,6 +1,13 @@
 package mdimembrane.tuberculosis.main;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -9,8 +16,14 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import java.io.File;
 
 import mdimembrane.tuberculosis.main_fragments.HomeFragment;
 import mdimembrane.tuberculosis.main_fragments.MedicineMainFragment;
@@ -21,12 +34,19 @@ import mdimembrane.tuberculosis.main_fragments.SampleMainFragment;
 public class MainScreen extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    SharedPreferences sharedpreferences;
+
+    ImageView profilePicIMV;
+    TextView usernameTV;
+    DrawerLayout drawer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        sharedpreferences = getSharedPreferences(PreferencesConstants.APP_MAIN_PREF, Context.MODE_PRIVATE);
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -37,12 +57,20 @@ public class MainScreen extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        View hView =  navigationView.getHeaderView(0);
 
         if (savedInstanceState == null) {
             MenuItem item =  navigationView.getMenu().getItem(0);
             onNavigationItemSelected(item);
             navigationView.setCheckedItem(0);
         }
+
+        profilePicIMV=(ImageView)hView.findViewById(R.id.profilePicIMV);
+        usernameTV=(TextView)hView.findViewById(R.id.userName);
+        //SetProfileInfo();
+        drawer.openDrawer(Gravity.START);
+
+
     }
 
     @Override
@@ -114,5 +142,15 @@ public class MainScreen extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+    public void SetProfileInfo()
+    {
+        usernameTV.setText(sharedpreferences.getString(PreferencesConstants.SessionManager.MY_PERSON_NAME,"NA"));
+
+        Matrix matrix = new Matrix();
+        matrix.postRotate(90);
+        Bitmap sourceBitmap=BitmapFactory.decodeFile(new FileHandling(getApplicationContext()).getOutputMediaFile().toString());
+        Bitmap rotatedBitmap = Bitmap.createBitmap(sourceBitmap, 0, 0, sourceBitmap.getWidth(), sourceBitmap.getHeight(), matrix, true);
+        profilePicIMV.setImageBitmap(rotatedBitmap);
     }
 }
