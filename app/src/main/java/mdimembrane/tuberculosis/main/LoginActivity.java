@@ -7,12 +7,15 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Base64;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -20,6 +23,7 @@ import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -258,9 +262,19 @@ public class LoginActivity extends AppCompatActivity {
                 // Log.i("dfdfdf", ""+MSG+"   "+RESPONSE_CODE);
                 if (RESPONSE_CODE) {
                     if (MSG.equals("OK")) {
-                        Intent intent = new Intent(getApplicationContext(), MainScreen.class);
-                        startActivity(intent);
-                        finish();
+                        String Qrimage = json.getString("imagefieldname");
+                        System.out.println(Qrimage);
+
+                        byte[] qrimage = Base64.decode(Qrimage.getBytes(),1);
+
+                        System.out.println(qrimage);
+                        Bitmap bmp = BitmapFactory.decodeByteArray(qrimage, 0, qrimage.length);
+                        ImageView imageview = (ImageView) findViewById(R.id.user_profile_photo);
+
+                        imageview.setImageBitmap(bmp);
+//                        Intent intent = new Intent(getApplicationContext(), MainScreen.class);
+//                        startActivity(intent);
+//                        finish();
 
                     }else
                     {
@@ -289,10 +303,8 @@ public class LoginActivity extends AppCompatActivity {
 
                     }
                 });
-
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
     }
-
 }
 
