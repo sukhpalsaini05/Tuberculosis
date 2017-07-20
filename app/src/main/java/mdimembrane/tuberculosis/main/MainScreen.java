@@ -1,6 +1,8 @@
 package mdimembrane.tuberculosis.main;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -14,6 +16,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
@@ -23,6 +26,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 
 import mdimembrane.tuberculosis.main_fragments.HomeFragment;
@@ -37,7 +41,7 @@ public class MainScreen extends AppCompatActivity
     SharedPreferences sharedpreferences;
 
     ImageView profilePicIMV;
-    TextView usernameTV;
+    TextView usernameTV,accountTypeTV;
     DrawerLayout drawer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,10 +71,9 @@ public class MainScreen extends AppCompatActivity
 
         profilePicIMV=(ImageView)hView.findViewById(R.id.profilePicIMV);
         usernameTV=(TextView)hView.findViewById(R.id.userName);
-        //SetProfileInfo();
+        accountTypeTV=(TextView)hView.findViewById(R.id.accountType);
+        SetProfileInfo();
         drawer.openDrawer(Gravity.START);
-
-
     }
 
     @Override
@@ -124,12 +127,19 @@ public class MainScreen extends AppCompatActivity
             fragment = new MedicineMainFragment();
 
         } else if (id == R.id.nav_reports) {
-             fragment = new ReportMainFragment();
+            fragment = new ReportMainFragment();
 
         } else if (id == R.id.nav_settings) {
-
+            Intent intent = new Intent(MainScreen.this,AccountSettings.class);
+            startActivity(intent);
         } else if (id == R.id.nav_help) {
+            Intent intent = new Intent(MainScreen.this,AccountHelp.class);
+            startActivity(intent);
 
+        }else if (id == R.id.nav_aboutus) {
+
+        }else if (id == R.id.nav_logout) {
+            LogoutAlert();
         }
 
 
@@ -143,14 +153,58 @@ public class MainScreen extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
     public void SetProfileInfo()
     {
         usernameTV.setText(sharedpreferences.getString(PreferencesConstants.SessionManager.MY_PERSON_NAME,"NA"));
+        accountTypeTV.setText(sharedpreferences.getString(PreferencesConstants.SessionManager.MY_ACCOUNT_TYPE,"NA"));
 
+        Bitmap  bitmap2;
+        ByteArrayOutputStream bytearrayoutputstream;
+        bytearrayoutputstream = new ByteArrayOutputStream();
+        byte[] BYTE;
         Matrix matrix = new Matrix();
         matrix.postRotate(90);
         Bitmap sourceBitmap=BitmapFactory.decodeFile(new FileHandling(getApplicationContext()).getOutputMediaFile().toString());
         Bitmap rotatedBitmap = Bitmap.createBitmap(sourceBitmap, 0, 0, sourceBitmap.getWidth(), sourceBitmap.getHeight(), matrix, true);
-        profilePicIMV.setImageBitmap(rotatedBitmap);
+
+        rotatedBitmap.compress(Bitmap.CompressFormat.JPEG,20,bytearrayoutputstream);
+        BYTE = bytearrayoutputstream.toByteArray();
+        bitmap2 = BitmapFactory.decodeByteArray(BYTE,0,BYTE.length);
+
+        profilePicIMV.setImageBitmap(bitmap2);
     }
+
+    public void LogoutAlert() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setCancelable(false);
+        alertDialogBuilder.setTitle(getResources().getString(R.string.logout_alert));
+        alertDialogBuilder.setMessage(getResources().getString(R.string.logout_alert_message));
+        alertDialogBuilder.setPositiveButton("YES",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+
+                        SharedPreferences.Editor editor = sharedpreferences.edit();
+                        editor.clear();
+                        editor.commit();
+
+                        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                        finish();
+                    }
+                });
+        alertDialogBuilder.setNegativeButton("NO",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+
+                    }
+                });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
 }

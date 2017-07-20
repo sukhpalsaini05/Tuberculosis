@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Tuberculosis</string>
     <string name="action_settings">Settings</string>
+    <string name="action_help">Help</string>
     <string name="title_activity_main_screen">Main Screen</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -37,6 +38,51 @@
         <item>AB+</item>
         <item>AB-</item>
     </string-array>
+
+
+    <string-array name="listArray">
+        <item>Always Show</item>
+        <item>Ask before showing</item>
+    </string-array>
+    <string-array name="listValues">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <string-array name="listVib">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+    <string-array name="listVibration">
+        <item>Off</item>
+        <item>Default</item>
+        <item>Short</item>
+        <item>Long</item>
+    </string-array>
+
+    <string-array name="listLang">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+    <string-array name="listLanguages">
+        <item>English</item>
+        <item>Hindi</item>
+    </string-array>
+
+    <string-array name="listFontSize">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+    <string-array name="listFont">
+        <item>Small</item>
+        <item>Medium</item>
+        <item>Large</item>
+    </string-array>
+
+
     <string name="title_activity_add_patient_two">Add Patient (2/4)</string>
     <string name="title_activity_add_patient_three">Add Patient (3/4)</string>
     <string name="title_activity_add_patient_four">Add Patient (4/4)</string>
@@ -127,6 +173,13 @@
     <string name="height_validation">Please Enter Height Of Patient</string>
     <string name="alert_patient_form_tittle_successful">Registration Successful</string>
     <string name="alert_patient_form_details_submited">Details Are Submited Now You Can Add New Patient</string>
+
+    <!-- Strings related to LoginActivity.java -->
+    <string name="logout_alert">Logout Alert!</string>
+    <string name="logout_alert_message">Do you want to logout from your account</string>
+
+
+    <!-- Strings related to prefs.xml -->
 
 
 </resources>

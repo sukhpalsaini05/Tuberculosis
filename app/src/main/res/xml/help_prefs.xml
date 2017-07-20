@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory
+        android:summary="Account Help"
+        android:title="Help" >
+        <Preference
+            android:key="FAQ"
+            android:title="FAQ" />
+
+        <Preference
+            android:key="contactUs"
+            android:title="Contact us" />
+
+        <Preference
+            android:key="termsPrivacy"
+            android:title="Terms and Privacy Policy" />
+
+        <Preference
+            android:key="appInfo"
+            android:summary="Information About App"
+            android:title="App Info" />
+
+  </PreferenceCategory>
+
+</PreferenceScreen>

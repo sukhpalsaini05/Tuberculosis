@@ -1,5 +1,7 @@
 package mdimembrane.tuberculosis.main;
 
+import android.*;
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -7,11 +9,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -63,6 +67,11 @@ public class LoginActivity extends AppCompatActivity {
     private EditText mPasswordView;
     private ProgressDialog mProgress;
     private BroadcastReceiver mRegistrationBroadcastReceiver;
+    private static final int REQUEST_EXTERNAL_STORAGE = 2;
+    private static String[] PERMISSIONS_STORAGE = {
+            android.Manifest.permission.READ_EXTERNAL_STORAGE,
+            android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,6 +139,15 @@ public class LoginActivity extends AppCompatActivity {
         };
 
         displayFirebaseRegId();
+        int permission = ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            // We don't have permission so prompt the user
+            ActivityCompat.requestPermissions(
+                    this,
+                    PERMISSIONS_STORAGE,
+                    REQUEST_EXTERNAL_STORAGE
+            );
+        }
     }
 
     @Override
@@ -154,7 +172,21 @@ public class LoginActivity extends AppCompatActivity {
         LocalBroadcastManager.getInstance(this).unregisterReceiver(mRegistrationBroadcastReceiver);
         super.onPause();
     }
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case REQUEST_EXTERNAL_STORAGE: {
 
+                if (grantResults.length == 0
+                        || grantResults[0] !=
+                        PackageManager.PERMISSION_GRANTED) {
+                    finish();
+                }
+                return;
+            }
+        }
+    }
     // Fetches reg id from shared preferences
     // and displays on the screen
     private void displayFirebaseRegId() {
@@ -222,6 +254,9 @@ public class LoginActivity extends AppCompatActivity {
         return password.length() > 4;
     }
     private void saveProfilePic(Bitmap image) {
+
+
+
 
         File file =new FileHandling(getApplicationContext()).getOutputMediaFile();
 
@@ -345,12 +380,8 @@ public class LoginActivity extends AppCompatActivity {
             mProgress.dismiss();
         }
 
-
-        @Override
-        protected void onCancelled() {
-            mAuthTask = null;
-            mProgress.dismiss();
-        }
     }
+
+
 }
 

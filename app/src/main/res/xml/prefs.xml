@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory
+        android:summary="Username and password information"
+        android:title="Account Password Setting" >
+        <Preference
+            android:key="username1"
+            android:summary="Change your account password"
+            android:title="Change Password" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:summary="Username and password information"
+        android:title="Settings" >
+        <Preference
+            android:key="Account"
+            android:summary="Change your account setting"
+            android:title="Account" />
+
+        <SwitchPreference
+            android:key="loggedInCheckBox"
+            android:summary="On/Off"
+            android:title="Keep me logged in" />
+
+        <CheckBoxPreference
+            android:key="notificationCheckBox"
+            android:summary="On/Off"
+            android:title="Notifications" />
+        <ListPreference
+            android:title="Vibration"
+            android:key="vibrationList"
+            android:defaultValue="2"
+            android:entries="@array/listVibration"
+            android:entryValues="@array/listVib" />
+
+        <CheckBoxPreference
+            android:key="noticeCheckBox"
+            android:summary="Auto-download Notices"
+            android:title="Download Notices" />
+
+        <ListPreference
+            android:title="Images"
+            android:summary="Images Settings"
+            android:key="imageList"
+            android:defaultValue="1"
+            android:entries="@array/listArray"
+            android:entryValues="@array/listValues" />
+
+        <ListPreference
+            android:title="App Language"
+            android:summary="Select Language"
+            android:key="languageList"
+            android:defaultValue="1"
+            android:entries="@array/listLanguages"
+            android:entryValues="@array/listLang" />
+
+        <ListPreference
+            android:title="Font Size"
+            android:summary="Font size for text"
+            android:key="fontList"
+            android:defaultValue="1"
+            android:entries="@array/listFont"
+            android:entryValues="@array/listFontSize"  />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
