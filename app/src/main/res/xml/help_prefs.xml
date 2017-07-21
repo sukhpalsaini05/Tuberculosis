@@ -10,7 +10,8 @@
 
         <Preference
             android:key="contactUs"
-            android:title="Contact us" />
+            android:title="Contact us"
+            android:summary="Questions? Need help?"/>
 
         <Preference
             android:key="termsPrivacy"

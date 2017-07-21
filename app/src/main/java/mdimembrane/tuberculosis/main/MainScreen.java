@@ -182,6 +182,7 @@ public class MainScreen extends AppCompatActivity
         alertDialogBuilder.setCancelable(false);
         alertDialogBuilder.setTitle(getResources().getString(R.string.logout_alert));
         alertDialogBuilder.setMessage(getResources().getString(R.string.logout_alert_message));
+
         alertDialogBuilder.setPositiveButton("YES",
                 new DialogInterface.OnClickListener() {
                     @Override
