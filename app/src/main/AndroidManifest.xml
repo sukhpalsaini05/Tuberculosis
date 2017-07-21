@@ -82,9 +82,17 @@
         <!-- ./Firebase Notifications -->
         <activity
             android:name=".AccountSettings"
-            android:label="Settings"
+            android:label="@string/action_settings"
             android:theme="@style/AppTheme" />
-        <activity android:name=".AccountHelp"></activity>
+        <activity android:name=".AccountHelp" />
+        <activity
+            android:name=".AboutUsActivity"
+            android:label="@string/action_aboutus"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".PasswordSettings"
+            android:label="@string/change_password"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

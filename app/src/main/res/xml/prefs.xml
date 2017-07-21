@@ -5,7 +5,7 @@
         android:summary="Username and password information"
         android:title="Account Password Setting" >
         <Preference
-            android:key="username1"
+            android:key="changePassword"
             android:summary="Change your account password"
             android:title="Change Password" />
     </PreferenceCategory>

@@ -1,8 +1,10 @@
 <resources>
     <string name="app_name">Tuberculosis</string>
     <string name="action_settings">Settings</string>
+    <string name="action_aboutus">About Us</string>
     <string name="action_help">Help</string>
     <string name="title_activity_main_screen">Main Screen</string>
+    <string name="change_password">Change Password</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -179,7 +181,11 @@
     <string name="logout_alert_message">Do you want to logout from your account</string>
 
 
-    <!-- Strings related to prefs.xml -->
+    <!-- Strings related to aboutus.xml -->
+    <string name="company_address">Advanced Microdevices Pvt. Ltd.
+ 20-21 Industrial Area, Ambala Cantt 133 006, INDIA
+ Tel: +91-171-2699290, 2699471, 2699274,
+ E-mail: info@mdimembrane.com</string>
 
 
 </resources>

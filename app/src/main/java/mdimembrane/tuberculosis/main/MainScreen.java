@@ -137,6 +137,8 @@ public class MainScreen extends AppCompatActivity
             startActivity(intent);
 
         }else if (id == R.id.nav_aboutus) {
+            Intent intent = new Intent(MainScreen.this,AboutUsActivity.class);
+            startActivity(intent);
 
         }else if (id == R.id.nav_logout) {
             LogoutAlert();
