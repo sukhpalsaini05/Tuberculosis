@@ -13,6 +13,7 @@
     <PreferenceCategory
         android:summary="Username and password information"
         android:title="Settings" >
+
         <Preference
             android:key="Account"
             android:summary="Change your account setting"
@@ -66,3 +67,14 @@
     </PreferenceCategory>
 
 </PreferenceScreen>
+
+
+
+
+<!--<PreferenceScreen android:title="Profile Settings">-->
+<!--<intent-->
+    <!--android:action="android.intent.action.MAIN"-->
+    <!--android:targetPackage="mdimembrane.tuberculosis.main"-->
+    <!--android:targetClass="mdimembrane.tuberculosis.main.AccountSettings"-->
+    <!--/>-->
+<!--</PreferenceScreen>-->

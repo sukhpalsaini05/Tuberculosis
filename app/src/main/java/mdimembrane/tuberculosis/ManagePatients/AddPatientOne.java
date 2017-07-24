@@ -143,7 +143,7 @@ public class AddPatientOne extends AppCompatActivity {
     {
         File imagesFolder = new File(Environment.getExternalStorageDirectory(), "MyImages");
         imagesFolder.mkdirs(); // <----
-        image = new File(imagesFolder, "image_001.jpg");
+        image = new File(imagesFolder, "user_pic.jpg");
         Uri uriSavedImage = Uri.fromFile(image);
 
         Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);

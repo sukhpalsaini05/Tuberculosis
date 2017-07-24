@@ -52,9 +52,8 @@ public class AddPatientThree extends AppCompatActivity {
     public void nextButton(View view)
     {
         StringBuilder result=new StringBuilder();
-        result.append("Selected Symptoms:\n");
         if(coughCB.isChecked()){
-            result.append("\nCough/Sputum > 3 Weeks ");
+            result.append("Cough/Sputum > 3 Weeks ");
         }
         if(hemoptysisCB.isChecked()){
             result.append("\nHemoptysis ");
@@ -82,6 +81,9 @@ public class AddPatientThree extends AppCompatActivity {
         }
         if(jointPainCB.isChecked()){
             result.append("\nJoint Pain ");
+        }
+        if(othersymptomsET !=null){
+            result.append("\n"+othersymptomsET.getText().toString());
         }
 
         SharedPreferences.Editor editor = sharedpreferences.edit();

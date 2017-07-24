@@ -1,5 +1,7 @@
 package mdimembrane.tuberculosis.ServerConfiguration;
 
+import android.util.Log;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -58,6 +60,7 @@ public class MultipartUtility {
      * @param value field value
      */
     public void addFormField(String name, String value) {
+        Log.i("MultipartUtility",name+"  :   "+value);
         writer.append("--" + boundary).append(LINE_FEED);
         writer.append("Content-Disposition: form-data; name=\"" + name + "\"")
                 .append(LINE_FEED);

@@ -14,6 +14,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import mdimembrane.tuberculosis.ManagePatients.AddPatientOne;
+import mdimembrane.tuberculosis.ManagePatients.ManagePatientList;
 import mdimembrane.tuberculosis.main.R;
 
 /**
@@ -43,6 +44,17 @@ public class PatientMainFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+        Button managepatientBT=(Button)view.findViewById(R.id.managePatient);
+        managepatientBT.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getActivity(), ManagePatientList.class);
+                startActivity(intent);
+            }
+        });
+
+
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {

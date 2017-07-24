@@ -12,6 +12,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
@@ -34,13 +35,18 @@ import android.widget.Toast;
 
 import com.google.firebase.messaging.FirebaseMessaging;
 
+import org.apache.http.entity.mime.content.ContentBody;
+import org.apache.http.entity.mime.content.InputStreamBody;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 
 import mdimembrane.tuberculosis.NewAccount.NewAccountOne;
@@ -257,7 +263,6 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-
         File file =new FileHandling(getApplicationContext()).getOutputMediaFile();
 
         if (file == null) {
@@ -267,7 +272,7 @@ public class LoginActivity extends AppCompatActivity {
         }
         try {
             FileOutputStream fos = new FileOutputStream(file);
-            image.compress(Bitmap.CompressFormat.PNG, 90, fos);
+            image.compress(Bitmap.CompressFormat.JPEG, 20, fos);
             fos.close();
         } catch (FileNotFoundException e) {
             Log.d(TAG, "File not found: " + e.getMessage());
@@ -322,6 +327,15 @@ public class LoginActivity extends AppCompatActivity {
             JSONObject json = jParser.getJSONFromUrl(ServerConstants.USER_LOGIN, jsonObject);
 
             // TODO: register the new account here.
+
+            try {
+                String Qrimage = json.getString("image_data");
+                mProgress.setMessage("Fetching Information");
+                byte[] qrimage = Base64.decode(Qrimage.getBytes(), 1);
+                Bitmap bmp = BitmapFactory.decodeByteArray(qrimage, 0, qrimage.length);
+                saveProfilePic(bmp);
+            }catch (Exception e){}
+
             return json;
         }
 
@@ -336,20 +350,12 @@ public class LoginActivity extends AppCompatActivity {
                 // Log.i("dfdfdf", ""+MSG+"   "+RESPONSE_CODE);
                 if (RESPONSE_CODE) {
                     if (MSG.equals("OK")) {
-                        String Qrimage = json.getString("image_data");
-                        System.out.println(Qrimage);
-
-                        byte[] qrimage = Base64.decode(Qrimage.getBytes(), 1);
-
-                        System.out.println(qrimage);
-                        Bitmap bmp = BitmapFactory.decodeByteArray(qrimage, 0, qrimage.length);
-                        saveProfilePic(bmp);
-                        ImageView imageview = (ImageView) findViewById(R.id.user_profile_photo);
 
                         SharedPreferences.Editor editor = sharedpreferences.edit();
                         editor.putBoolean(PreferencesConstants.SessionManager.ACCOUNT_SESSION, true);
                         editor.putString(PreferencesConstants.SessionManager.MY_ACCOUNT_TYPE, json.getString("account_type"));
                         editor.putString(PreferencesConstants.SessionManager.MY_USER_NAME, json.getString("user_name"));
+                        editor.putString(PreferencesConstants.SessionManager.USER_ID, json.getString("user_id"));
                         editor.putString(PreferencesConstants.SessionManager.MY_PERSON_NAME, json.getString("person_name"));
                         editor.putString(PreferencesConstants.SessionManager.MY_EMPLOYEE_CODE, json.getString("employee_code"));
                         editor.putString(PreferencesConstants.SessionManager.MY_USER_STATE, json.getString("user_state"));

@@ -1,5 +1,6 @@
 package mdimembrane.tuberculosis.main;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -8,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.design.widget.NavigationView;
@@ -26,9 +28,15 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 
+import mdimembrane.tuberculosis.NewAccount.NewAccountThree;
+import mdimembrane.tuberculosis.ServerConfiguration.HttpConnection;
 import mdimembrane.tuberculosis.main_fragments.HomeFragment;
 import mdimembrane.tuberculosis.main_fragments.MedicineMainFragment;
 import mdimembrane.tuberculosis.main_fragments.PatientMainFragment;
@@ -43,6 +51,12 @@ public class MainScreen extends AppCompatActivity
     ImageView profilePicIMV;
     TextView usernameTV,accountTypeTV;
     DrawerLayout drawer;
+    public static final int Home=0;
+    public static final int PATIENTS=0;
+    public static final int TEST_SAMPLES=0;
+    public static final int MEDICINES=0;
+    public static final int REPORTS=0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,11 +77,19 @@ public class MainScreen extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         View hView =  navigationView.getHeaderView(0);
 
-        if (savedInstanceState == null) {
+      //  if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            int value=0;
+            if(extras == null) {
+                value=Home;
+            } else {
+                value= extras.getInt("OPEN_INDEX");
+            }
+            System.out.print("OPEN_INDEX  "+value);
             MenuItem item =  navigationView.getMenu().getItem(0);
             onNavigationItemSelected(item);
-            navigationView.setCheckedItem(0);
-        }
+            navigationView.setCheckedItem(value);
+      //  }
 
         profilePicIMV=(ImageView)hView.findViewById(R.id.profilePicIMV);
         usernameTV=(TextView)hView.findViewById(R.id.userName);

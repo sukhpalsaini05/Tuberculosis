@@ -24,7 +24,9 @@ import org.json.JSONObject;
 import java.io.File;
 import java.util.List;
 
+import mdimembrane.tuberculosis.NewAccount.NewAccountThree;
 import mdimembrane.tuberculosis.ServerConfiguration.MultipartUtility;
+import mdimembrane.tuberculosis.ServerConfiguration.ServerConstants;
 import mdimembrane.tuberculosis.main.MainScreen;
 import mdimembrane.tuberculosis.main.PreferencesConstants;
 import mdimembrane.tuberculosis.main.R;
@@ -102,7 +104,10 @@ public class AddPatientFour extends AppCompatActivity {
         editor.putString(PreferencesConstants.AddNewPatient.COMMENTS, commentET.getText().toString());
         editor.commit();
 
-        SaveAlert();
+
+        new SendAllData().execute(ServerConstants.ADD_NEW_PATIENT);
+
+
     }
 
     public void SaveAlert() {
@@ -116,7 +121,8 @@ public class AddPatientFour extends AppCompatActivity {
                     public void onClick(DialogInterface arg0, int arg1) {
 
                         Intent intent = new Intent(getApplicationContext(), MainScreen.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                       // intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.putExtra("OPEN_INDEX", MainScreen.PATIENTS);
                         startActivity(intent);
                         finish();
                     }
@@ -132,7 +138,7 @@ public class AddPatientFour extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            pDialog = new ProgressDialog(getApplicationContext());
+            pDialog = new ProgressDialog(AddPatientFour.this);
             pDialog.setMessage(getResources().getString(R.string.DiaglogBox));
             pDialog.setIndeterminate(false);
             pDialog.setCancelable(false);
@@ -150,15 +156,18 @@ public class AddPatientFour extends AppCompatActivity {
                 File uploadFile1 = new File(imagesFolder, "user_pic.jpg");
 
                 MultipartUtility multipart = new MultipartUtility(args[0], charset);
-                multipart.addFormField("action", "insert_account");
+                multipart.addFormField("action", "insert_patient");
                 multipart.addFormField("patient_name", sharedpreferences.getString(PreferencesConstants.AddNewPatient.PATIENT_NAME, "Null"));
-                multipart.addFormField("gaurdian_type", sharedpreferences.getString(PreferencesConstants.AddNewPatient.GAURDIAN_TYPE, "Null"));
-                multipart.addFormField("gaurdian_name", sharedpreferences.getString(PreferencesConstants.AddNewPatient.GAURDIAN_NAME, "Null"));
+                multipart.addFormField("guardian_type", sharedpreferences.getString(PreferencesConstants.AddNewPatient.GAURDIAN_TYPE, "Null"));
+                multipart.addFormField("guardian_name", sharedpreferences.getString(PreferencesConstants.AddNewPatient.GAURDIAN_NAME, "Null"));
                 multipart.addFormField("age", sharedpreferences.getString(PreferencesConstants.AddNewPatient.AGE, "Null"));
                 multipart.addFormField("gender", sharedpreferences.getString(PreferencesConstants.AddNewPatient.GENDER, "Null"));
                 multipart.addFormField("patient_aadhar_no", sharedpreferences.getString(PreferencesConstants.AddNewPatient.PATIENT_AADHAR_NO, "Null"));
                 multipart.addFormField("patient_phone", sharedpreferences.getString(PreferencesConstants.AddNewPatient.PATIENT_PHONE, "Null"));
-                multipart.addFormField("gaurdian_phone", sharedpreferences.getString(PreferencesConstants.AddNewPatient.GAURDIAN_PHONE, "Null"));
+                multipart.addFormField("guardian_phone", sharedpreferences.getString(PreferencesConstants.AddNewPatient.GAURDIAN_PHONE, "Null"));
+                multipart.addFormField("state", sharedpreferences.getString(PreferencesConstants.SessionManager.MY_USER_STATE, "Null"));
+                multipart.addFormField("district", sharedpreferences.getString(PreferencesConstants.SessionManager.MY_USER_DISTT, "Null"));
+                multipart.addFormField("tehsil", sharedpreferences.getString(PreferencesConstants.SessionManager.MY_USER_TEHSIL, "Null"));
                 multipart.addFormField("address1", sharedpreferences.getString(PreferencesConstants.AddNewPatient.ADDRESS1, "Null"));
                 multipart.addFormField("address2", sharedpreferences.getString(PreferencesConstants.AddNewPatient.ADDRESS2, "Null"));
                 multipart.addFormField("symptoms_list", sharedpreferences.getString(PreferencesConstants.AddNewPatient.SYMPTOMS_LIST, "Null"));
@@ -168,6 +177,10 @@ public class AddPatientFour extends AppCompatActivity {
                 multipart.addFormField("height", sharedpreferences.getString(PreferencesConstants.AddNewPatient.HEIGHT, "Null"));
                 multipart.addFormField("any_other_disease", sharedpreferences.getString(PreferencesConstants.AddNewPatient.ANY_OTHER_DISEASES, "Null"));
                 multipart.addFormField("comments", sharedpreferences.getString(PreferencesConstants.AddNewPatient.COMMENTS, "Null"));
+                multipart.addFormField("added_by", sharedpreferences.getString(PreferencesConstants.SessionManager.MY_PERSON_NAME, "Null"));
+                multipart.addFormField("added_by_id", sharedpreferences.getString(PreferencesConstants.AddNewPatient.ADDED_BY_ID, "Null"));
+                multipart.addFormField("hospital_name", sharedpreferences.getString(PreferencesConstants.SessionManager.MY_HOSPITAL_NAME, "Null"));
+
 
                 multipart.addFilePart("uploaded_file", uploadFile1);
 
@@ -189,9 +202,8 @@ public class AddPatientFour extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(JSONObject json) {
-
+                pDialog.cancel();
                 SaveAlert();
             }
         }
     }
-

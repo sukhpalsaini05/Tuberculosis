@@ -26,6 +26,7 @@ public interface PreferencesConstants extends BaseColumns {
 	public static class AddNewAccount
 	{
 		public static final String ACCOUNT_TYPE = "account_type";
+
 		public static final String USER_NAME = "user_name";
 		public static final String EMPLOYEE_CODE = "employee_code";
 		public static final String GENDER = "gender";
@@ -62,6 +63,9 @@ public interface PreferencesConstants extends BaseColumns {
 		public static final String HEIGHT = "height";
 		public static final String ANY_OTHER_DISEASES = "any_other_disease";
 		public static final String COMMENTS = "comments";
+		public static final String ADDED_BY = "added_by";
+		public static final String ADDED_BY_ID = "added_by_id";
+
 
 	}
 
@@ -70,6 +74,7 @@ public interface PreferencesConstants extends BaseColumns {
 		public static final String ACCOUNT_SESSION = "my_account_session";
 		public static final String MY_ACCOUNT_TYPE = "my_account_type";
 		public static final String MY_USER_NAME = "my_user_name";
+		public static final String USER_ID="user_id";
 		public static final String MY_PERSON_NAME = "my_person_name";
 		public static final String MY_EMPLOYEE_CODE = "my_employee_code";
 		public static final String MY_USER_STATE = "my_user_state";

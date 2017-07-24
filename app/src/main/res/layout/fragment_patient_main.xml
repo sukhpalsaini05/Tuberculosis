@@ -61,7 +61,7 @@
                     android:layout_height="wrap_content"
                     android:text="Manage Patient"
                     android:drawableTop="@drawable/group_patients"
-                    android:id="@+id/button2"
+                    android:id="@+id/managePatient"
                     android:layout_column="1"
                     android:layout_weight="1"
                     android:background="#3aa2de"
