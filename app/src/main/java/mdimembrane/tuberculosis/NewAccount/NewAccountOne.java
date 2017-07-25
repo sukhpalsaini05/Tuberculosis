@@ -33,6 +33,7 @@ import mdimembrane.tuberculosis.ManagePatients.AddPatientTwo;
 import mdimembrane.tuberculosis.main.LoginActivity;
 import mdimembrane.tuberculosis.main.PreferencesConstants;
 import mdimembrane.tuberculosis.main.R;
+import mdimembrane.tuberculosis.util.CompressFile;
 
 public class NewAccountOne extends AppCompatActivity {
 
@@ -241,7 +242,7 @@ public class NewAccountOne extends AppCompatActivity {
         if (requestCode == TAKE_PICTURE && resultCode == RESULT_OK) {
 
             try {
-
+                new CompressFile(getApplicationContext()).compressImageFile(image.toString());
                 Bitmap photo = MediaStore.Images.Media.getBitmap(this.getContentResolver(),Uri.fromFile(image));
                 UserImageIMB.setImageBitmap(photo);
                 UserImageIMB.setRotation(90);

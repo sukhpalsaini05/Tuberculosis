@@ -5,7 +5,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -26,10 +32,13 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 import mdimembrane.tuberculosis.main.PreferencesConstants;
 import mdimembrane.tuberculosis.main.R;
+import mdimembrane.tuberculosis.util.CompressFile;
 
 public class AddPatientOne extends AppCompatActivity {
 
@@ -184,7 +193,9 @@ public class AddPatientOne extends AppCompatActivity {
         if (requestCode == TAKE_PICTURE && resultCode == RESULT_OK) {
 
             try {
+                new CompressFile(getApplicationContext()).compressImageFile(image.toString());
                 Bitmap photo = MediaStore.Images.Media.getBitmap(this.getContentResolver(),Uri.fromFile(image));
+
                 patientImageIMB.setImageBitmap(photo);
                 patientImageIMB.setRotation(90);
                 takePicFlag=true;
@@ -248,6 +259,7 @@ public class AddPatientOne extends AppCompatActivity {
         Intent intent=new Intent(getApplicationContext(),AddPatientTwo.class);
         startActivity(intent);
     }
+
 
 }
 

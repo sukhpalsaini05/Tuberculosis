@@ -272,13 +272,16 @@ public class LoginActivity extends AppCompatActivity {
         }
         try {
             FileOutputStream fos = new FileOutputStream(file);
-            image.compress(Bitmap.CompressFormat.JPEG, 20, fos);
+            image.compress(Bitmap.CompressFormat.JPEG, 90, fos);
+            fos.flush();
             fos.close();
         } catch (FileNotFoundException e) {
             Log.d(TAG, "File not found: " + e.getMessage());
         } catch (IOException e) {
             Log.d(TAG, "Error accessing file: " + e.getMessage());
         }
+        Log.d(TAG,
+                "Save Image ");
     }
 
     public void ErrorAlert(String message) {
@@ -328,13 +331,6 @@ public class LoginActivity extends AppCompatActivity {
 
             // TODO: register the new account here.
 
-            try {
-                String Qrimage = json.getString("image_data");
-                mProgress.setMessage("Fetching Information");
-                byte[] qrimage = Base64.decode(Qrimage.getBytes(), 1);
-                Bitmap bmp = BitmapFactory.decodeByteArray(qrimage, 0, qrimage.length);
-                saveProfilePic(bmp);
-            }catch (Exception e){}
 
             return json;
         }
@@ -350,6 +346,14 @@ public class LoginActivity extends AppCompatActivity {
                 // Log.i("dfdfdf", ""+MSG+"   "+RESPONSE_CODE);
                 if (RESPONSE_CODE) {
                     if (MSG.equals("OK")) {
+                        try {
+                            String Qrimage = json.getString("image_data");
+                            byte[] qrimage = Base64.decode(Qrimage.getBytes(), 1);
+                            Bitmap bmp = BitmapFactory.decodeByteArray(qrimage, 0, qrimage.length);
+                            saveProfilePic(bmp);
+                        }catch (Exception e){
+                            Log.d(TAG, "Error accessing file: " + e.getMessage());
+                        }
 
                         SharedPreferences.Editor editor = sharedpreferences.edit();
                         editor.putBoolean(PreferencesConstants.SessionManager.ACCOUNT_SESSION, true);
