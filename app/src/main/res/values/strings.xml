@@ -188,5 +188,8 @@
  Tel: +91-171-2699290, 2699471, 2699274,
  E-mail: info@mdimembrane.com</string>
 
+    <!-- Strings related to manage_patient_list.xml -->
+    <string name="page_heading">Select Patient Name To Get Details</string>
+
 
 </resources>
