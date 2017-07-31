@@ -1,17 +1,21 @@
 <resources>
     <string name="app_name">Tuberculosis</string>
     <string name="action_settings">Settings</string>
+    <string name="action_profile">Patient Profile</string>
+    <string name="action_checkup">Daily Checkup</string>
+    <string name="action_add_sample_result">Add Sample Result</string>
+    <string name="action_add_new_sample">Add New Sample</string>
     <string name="action_aboutus">About Us</string>
     <string name="action_help">Help</string>
     <string name="title_activity_main_screen">Main Screen</string>
     <string name="change_password">Change Password</string>
-    <string name="manage_patient">Manage Patient</string>
+    <string name="manage_patient">Patients List</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment">blank fragment 1</string>
     <string name="title_activity_add_patient_one">Add Patient (1/4)</string>
 
 
@@ -190,6 +194,14 @@
 
     <!-- Strings related to manage_patient_list.xml -->
     <string name="page_heading">Select Patient Name To Get Details</string>
+
+    <!-- Strings related to add_new_sample_one.xml -->
+
+    <string name="blood_test_no">Blood Test Sample number</string>
+    <string name="sputum_test_no">Sputum Sample number</string>
+    <string name="vision_test_no">Vision Test number</string>
+    <string name="hearing_test_no">Hearing Test number</string>
+    <string name="hiv_test_no">HIV Test number</string>
 
 
 </resources>

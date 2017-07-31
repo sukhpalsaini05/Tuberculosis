@@ -45,7 +45,7 @@
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/addPatientBT"
+                    android:id="@+id/addSampleBT"
                     android:drawableTop="@drawable/add_icon"
                     android:layout_column="0"
                     android:layout_weight="1"
@@ -54,14 +54,14 @@
                     android:textStyle="bold"
                     android:layout_margin="4sp"
                     android:padding="5sp"
-                    android:text="New Sample" />
+                    android:text="Add New Sample" />
 
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Manage Sample"
+                    android:text="Add Sample result"
                     android:drawableTop="@drawable/sample_icon"
-                    android:id="@+id/button2"
+                    android:id="@+id/SampleResult"
                     android:layout_column="1"
                     android:layout_weight="1"
                     android:background="#3aa2de"

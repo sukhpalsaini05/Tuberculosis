@@ -1,38 +1,42 @@
-package mdimembrane.tuberculosis.main;
+package mdimembrane.tuberculosis.ManageSamples;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 
-public class AboutUsActivity extends AppCompatActivity {
+import mdimembrane.tuberculosis.main.R;
+
+public class AddNewSampleOne extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_about_us);
+        setContentView(R.layout.activity_add_new_sample_one);
 
         try{
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setDisplayShowHomeEnabled(true);
         }catch(NullPointerException e){
             Log.e("SearchActivity Toolbar", "You have got a NULL POINTER EXCEPTION");
         }
     }
 
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+        }
 
-        if (id == R.id.action_profile) {
-            return true;
-        }
-        if (id == android.R.id.home)
-        {
-            finish();
-            return true;
-        }
         return super.onOptionsItemSelected(item);
+    }
+    public void backButton(View view)
+    {
+        finish();
     }
 
 }
+

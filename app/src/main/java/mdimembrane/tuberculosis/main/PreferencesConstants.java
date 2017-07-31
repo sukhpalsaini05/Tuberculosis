@@ -89,4 +89,31 @@ public interface PreferencesConstants extends BaseColumns {
 		public static final String MY_USER_IMAGE = "my_user_image";
 	}
 
+	public static class PatientProfile
+	{
+		public static final String PATIENT_ID="P_Unique_Generated_Id";
+		public static final String PATIENT_NAME = "P_Name";
+		public static final String GAURDIAN_TYPE = "P_Guardian_Type";
+		public static final String GAURDIAN_NAME = "P_Guardian_Name";
+		public static final String IMAGE = "P_image";
+		public static final String GENDER = "P_Gender";
+		public static final String AGE = "P_Age";
+		public static final String PATIENT_AADHAR_NO = "P_Adhar_card_no";
+		public static final String PATIENT_PHONE = "P_Phone_no";
+		public static final String GAURDIAN_PHONE = "P_Relative_phn_no";
+        public static final String P_STATE = "P_State";
+        public static final String P_DISTT = "P_District";
+        public static final String P_TEHSIL = "P_Tehsil";
+		public static final String ADDRESS1 = "P_Address1";
+		public static final String ADDRESS2 = "P_Address2";
+		public static final String SYMPTOMS_LIST="P_Current_Symptoms";
+        public static final String BLOOD_GROUP="P_Blood_Group";
+        public static final String WEIGHT = "P_Weight";
+		public static final String HEIGHT = "P_Height";
+		public static final String ANY_OTHER_DISEASES = "P_Other_Diseases";
+		public static final String COMMENTS = "P_Any_comment";
+		public static final String DATE="P_Registration_Date_time";
+
+	}
+
 }

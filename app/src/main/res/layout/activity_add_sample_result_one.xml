@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:paddingBottom="@dimen/activity_vertical_margin"
+android:paddingLeft="@dimen/activity_horizontal_margin"
+android:paddingRight="@dimen/activity_horizontal_margin"
+android:paddingTop="@dimen/activity_vertical_margin"
+app:layout_behavior="@string/appbar_scrolling_view_behavior"
+tools:context="mdimembrane.tuberculosis.ManageSamples.AddSampleResultOne">
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/scrollView" >
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Blood Sample"
+            android:id="@+id/textView"
+            android:layout_column="0"
+            android:textColor="@color/colorPrimary"
+            android:textSize="25sp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/nameEditText"
+            android:layout_column="1"
+            android:background="@drawable/edit_text"
+            android:textSize="25sp"
+            android:layout_marginBottom="10sp"
+            android:hint="Blood sample Result" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Sputum Test"
+            android:id="@+id/textView1"
+            android:layout_column="0"
+            android:textColor="@color/colorPrimary"
+            android:textSize="25sp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/sputumEditText"
+            android:layout_column="1"
+            android:background="@drawable/edit_text"
+            android:textSize="25sp"
+            android:layout_marginBottom="10sp"
+            android:hint="Sputum Semple Result" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Vision Test"
+            android:id="@+id/textView2"
+            android:layout_column="0"
+            android:textColor="@color/colorPrimary"
+            android:textSize="25sp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/visionEditText"
+            android:layout_column="1"
+            android:background="@drawable/edit_text"
+            android:textSize="25sp"
+            android:layout_marginBottom="10sp"
+            android:hint="Vision Test Result" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Hearing Test"
+            android:id="@+id/textView3"
+            android:layout_column="0"
+            android:textColor="@color/colorPrimary"
+            android:textSize="25sp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/hearingEditText"
+            android:layout_column="1"
+            android:background="@drawable/edit_text"
+            android:textSize="25sp"
+            android:layout_marginBottom="10sp"
+            android:hint="Hearing Test Result" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="HIV Test"
+            android:id="@+id/textView4"
+            android:layout_column="0"
+            android:textColor="@color/colorPrimary"
+            android:textSize="25sp" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_column="1"
+            android:id="@+id/genderRadioGroup"
+            android:layout_marginBottom="10sp">
+
+            <RadioButton
+                android:id="@+id/radioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Not Tested"
+                android:textSize="20sp" />
+
+            <RadioButton
+                android:id="@+id/radioButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Negative"
+                android:textSize="20sp" />
+
+            <RadioButton
+                android:id="@+id/radioButton3"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Positive"
+                android:textSize="20sp" />
+
+        </RadioGroup>
+
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="bottom"
+            android:layout_marginTop="20sp">
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Cancel"
+                android:id="@+id/button"
+                android:layout_weight="1"
+                android:background="#f55555"
+                android:textColor="#ffffff"
+                android:textStyle="bold"
+                android:textSize="25sp"
+                android:layout_margin="5sp"
+                android:onClick="backButton" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Next"
+                android:id="@+id/nextButton"
+                android:layout_weight="1"
+                android:background="#0b9c1f"
+                android:textColor="#ffffff"
+                android:textStyle="bold"
+                android:textSize="25sp"
+                android:layout_margin="5sp"/>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
+
+</RelativeLayout>

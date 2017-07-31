@@ -1,12 +1,13 @@
 package mdimembrane.tuberculosis.ManagePatients;
 
-import android.app.SearchManager;
+import android.app.ProgressDialog;
 import android.content.Context;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -14,25 +15,48 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import mdimembrane.tuberculosis.ManagePatients.DailyCheckup.CheckUpRecord;
+import mdimembrane.tuberculosis.ManagePatients.PatientProfile.ProfileDetailsActivity;
+import mdimembrane.tuberculosis.ManageSamples.AddNewSampleOne;
+import mdimembrane.tuberculosis.ManageSamples.AddSampleResultOne;
+import mdimembrane.tuberculosis.ServerConfiguration.MultipartUtility;
+import mdimembrane.tuberculosis.ServerConfiguration.ServerConstants;
+import mdimembrane.tuberculosis.main.PreferencesConstants;
 import mdimembrane.tuberculosis.main.R;
 import mdimembrane.tuberculosis.util.ListViewAdapter;
 import mdimembrane.tuberculosis.util.PatientListModel;
 
+import static mdimembrane.tuberculosis.main_fragments.PatientMainFragment.DAILY_RECORDS;
+import static mdimembrane.tuberculosis.main_fragments.PatientMainFragment.EDIT_PATIENTS;
+import static mdimembrane.tuberculosis.main_fragments.PatientMainFragment.PATIENT_PROFILE;
+import static mdimembrane.tuberculosis.main_fragments.SampleMainFragment.ADD_NEW_SAMPLE;
+import static mdimembrane.tuberculosis.main_fragments.SampleMainFragment.ADD_SAMPLE_RESULT;
+
 public class ManagePatientList extends AppCompatActivity implements AdapterView.OnItemClickListener {
+
+    private static final String TAG = ManagePatientList.class.getSimpleName();
+
     ListView patientLV;
     ListViewAdapter lviewAdapter;
+    SharedPreferences sharedpreferences;
+    ArrayList<PatientListModel> patientData = new ArrayList<PatientListModel>();
+    int OPEN_ACIVITY_WAY = 0;
+    private ProgressDialog mProgress;
+    // ArrayList<String> data=new ArrayList<String>();
+    //  ArrayList<String> index=new ArrayList<String>();
 
-
-    ArrayList<PatientListModel> patientData=new ArrayList<PatientListModel>();
-   // ArrayList<String> data=new ArrayList<String>();
-  //  ArrayList<String> index=new ArrayList<String>();
-
-  //  Context context;
+    //  Context context;
+    private ManagePatientList.PatientData mAuthTask = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,36 +68,30 @@ public class ManagePatientList extends AppCompatActivity implements AdapterView.
         } catch (NullPointerException e) {
             Log.e("SearchActivity Toolbar", "You have got a NULL POINTER EXCEPTION");
         }
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            OPEN_ACIVITY_WAY = bundle.getInt("OPEN_ACTIVITY");
+        }
+        sharedpreferences = getSharedPreferences(PreferencesConstants.APP_MAIN_PREF, Context.MODE_PRIVATE);
 
-
-        patientData.add(new PatientListModel("P_1","Anisha","9658478524","08/Aug/2017"));
-        patientData.add(new PatientListModel("P_2","Ritika","8587459635","18/aug/2007"));
-        patientData.add(new PatientListModel("P_3","Sukhpal","9568745258","10/sep/2017"));
-        patientData.add(new PatientListModel("P_4","Bunty","9658745123","15/mar/2017"));
-        patientData.add(new PatientListModel("P_5","Munish","9874512586","22/dec/2017"));
-        patientData.add(new PatientListModel("P_6","Naman","7206063162","22/Aug/2017"));
-        patientData.add(new PatientListModel("P_7","Sakshi","8567415869","23/april/2017"));
-        patientData.add(new PatientListModel("P_8","Rajiv","8957458699","16/may/2017"));
-        patientData.add(new PatientListModel("P_9","Rohan","9965845522","09/june/2017"));
-        patientData.add(new PatientListModel("P_10","Karan","9878556622","05/May/2017"));
-        patientData.add(new PatientListModel("P_11","Raman","7589663325","07/oct/2017"));
-        patientData.add(new PatientListModel("P_12","Kamal","9685748599","19/sep/2017"));
-        patientData.add(new PatientListModel("P_13","Lokesh","9685995588","28/aug/2017"));
-
-
+        mProgress = new ProgressDialog(this);
+        String titleId = "Loading info...";
+        mProgress.setTitle(titleId);
+        mProgress.setMessage("Please Wait...");
         //   context = this;
 
         patientLV = (ListView) findViewById(R.id.patientListview);
         lviewAdapter = new ListViewAdapter(this, patientData);
-
-        System.out.println("adapter => "+lviewAdapter.getCount());
+//        System.out.println("adapter => "+lviewAdapter.getCount());
 
         patientLV.setAdapter(lviewAdapter);
 
         patientLV.setOnItemClickListener(this);
 
+        new PatientData().execute();
 
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -84,12 +102,13 @@ public class ManagePatientList extends AppCompatActivity implements AdapterView.
 
         return super.onOptionsItemSelected(item);
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.search_menu, menu);
         MenuItem item = menu.findItem(R.id.search_patient);
-        SearchView searchView = (SearchView)item.getActionView();
+        SearchView searchView = (SearchView) item.getActionView();
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -99,7 +118,7 @@ public class ManagePatientList extends AppCompatActivity implements AdapterView.
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                Log.i("hello",newText);
+                Log.i("hello", newText);
                 lviewAdapter.getFilter().filter(newText);
 
                 return false;
@@ -110,16 +129,139 @@ public class ManagePatientList extends AppCompatActivity implements AdapterView.
         return super.onCreateOptionsMenu(menu);
     }
 
-
-
-
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
 
-        Toast.makeText(getApplicationContext() ,"Selected", Toast.LENGTH_LONG).show();
+
+        TextView textview1 = (TextView) view.findViewById(R.id.textView1);
+        TextView textview2 = (TextView) view.findViewById(R.id.textView2);
+        TextView textview3 = (TextView) view.findViewById(R.id.textView3);
+
+        Toast.makeText(getApplicationContext(), "Selected  " + textview1.getText().toString() + "    " + textview2.getText().toString(), Toast.LENGTH_LONG).show();
+
+        switch (OPEN_ACIVITY_WAY) {
+            case PATIENT_PROFILE:
+
+                Intent intent = new Intent(ManagePatientList.this, ProfileDetailsActivity.class);
+                intent.putExtra("PATIENT_ID", textview1.getText().toString());
+                startActivity(intent);
+                break;
+            case DAILY_RECORDS:
+
+                intent = new Intent(ManagePatientList.this, CheckUpRecord.class);
+                intent.putExtra("PATIENT_ID", textview1.getText().toString());
+                startActivity(intent);
+                break;
+
+            case EDIT_PATIENTS:
+                break;
+
+
+            case ADD_NEW_SAMPLE:
+
+                intent = new Intent(ManagePatientList.this, AddNewSampleOne.class);
+                intent.putExtra("PATIENT_ID", textview1.getText().toString());
+                startActivity(intent);
+                break;
+
+            case ADD_SAMPLE_RESULT:
+
+                intent = new Intent(ManagePatientList.this, AddSampleResultOne.class);
+                intent.putExtra("PATIENT_ID", textview1.getText().toString());
+                startActivity(intent);
+                break;
+
+            default:
+                //default intent
+                break;
+        }
+
 
         //Toast.makeText(this,"ID => "+ patient_id.get(position) +"=> Name"+ patient_name.get(position) +"phone No => "+ patient_phone.get(position) +"Date => "+ patient_date.get(position), Toast.LENGTH_SHORT).show();
+
     }
 
+    public class PatientData extends AsyncTask<Void, Void, JSONObject> {
+
+
+        PatientData() {
+            mProgress.show();
+        }
+
+        @Override
+        protected JSONObject doInBackground(Void... params) {
+            // TODO: attempt authentication against a network service.
+            String responseSTR = "";
+            JSONObject json = null;
+            try {
+
+                String charset = "UTF-8";
+                MultipartUtility multipart = new MultipartUtility(ServerConstants.PATIENT_DATA, charset);
+                multipart.addFormField("action", "get_patient_data");
+                multipart.addFormField("user_id", sharedpreferences.getString(PreferencesConstants.SessionManager.USER_ID, "NA"));
+                List<String> response = multipart.finish();
+
+                Log.v("rht", "SERVER REPLIED:");
+
+                for (String line : response) {
+                    Log.v("rht", "Line : " + line);
+                    responseSTR = line;
+                }
+                json = new JSONObject(responseSTR);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            patientData.clear();
+            // TODO: register the new account here.
+            String MSG = "";
+            boolean RESPONSE_CODE;
+            try {
+                RESPONSE_CODE = json.getBoolean("response");
+                MSG = json.getString("message");
+                if (RESPONSE_CODE) {
+                    if (MSG.equals("OK")) {
+                        JSONArray jsonMainNode = json.optJSONArray("data");
+                        int lengthJsonArr = jsonMainNode.length();
+                        for (int i = 0; i < lengthJsonArr; i++) {
+                            JSONObject jsonChildNode = jsonMainNode
+                                    .getJSONObject(i);
+
+                            String patient_id = jsonChildNode.optString("P_Unique_Generated_Id").toString();
+                            String patient_name = jsonChildNode.optString("P_Name").toString();
+                            String patient_phone = jsonChildNode.optString("P_Phone_no").toString();
+                            String patient_date = jsonChildNode.optString("P_Registration_Date_time").toString();
+                            patientData.add(new PatientListModel(patient_id, patient_name, patient_phone, patient_date));
+                        }
+                    }
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            return json;
+        }
+
+        @Override
+        protected void onPostExecute(JSONObject json) {
+            mAuthTask = null;
+            String MSG = "";
+            boolean RESPONSE_CODE;
+            try {
+                RESPONSE_CODE = json.getBoolean("response");
+                MSG = json.getString("message");
+                // Log.i("dfdfdf", ""+MSG+"   "+RESPONSE_CODE);
+                if (RESPONSE_CODE) {
+                    if (MSG.equals("OK")) {
+                        lviewAdapter = new ListViewAdapter(ManagePatientList.this, patientData);
+                        patientLV.setAdapter(lviewAdapter);
+                    }
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            mProgress.dismiss();
+        }
+
+    }
 
 }

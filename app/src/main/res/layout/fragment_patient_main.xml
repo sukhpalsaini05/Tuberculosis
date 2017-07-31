@@ -94,7 +94,7 @@
                     android:layout_height="wrap_content"
                     android:text="Daily Checkup Record"
                     android:drawableTop="@drawable/checkup_icon"
-                    android:id="@+id/button4"
+                    android:id="@+id/checkupRecord"
                     android:layout_column="1"
                     android:layout_weight="1"
                     android:background="#be6ae8"

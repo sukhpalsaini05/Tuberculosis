@@ -188,7 +188,7 @@ public class MainScreen extends AppCompatActivity
         bytearrayoutputstream = new ByteArrayOutputStream();
         byte[] BYTE;
         Matrix matrix = new Matrix();
-        matrix.postRotate(90);
+      //matrix.postRotate(90);
         Bitmap sourceBitmap=BitmapFactory.decodeFile(new FileHandling(getApplicationContext()).getOutputMediaFile().toString());
         Bitmap rotatedBitmap = Bitmap.createBitmap(sourceBitmap, 0, 0, sourceBitmap.getWidth(), sourceBitmap.getHeight(), matrix, true);
 

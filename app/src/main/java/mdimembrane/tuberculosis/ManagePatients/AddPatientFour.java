@@ -24,7 +24,6 @@ import org.json.JSONObject;
 import java.io.File;
 import java.util.List;
 
-import mdimembrane.tuberculosis.NewAccount.NewAccountThree;
 import mdimembrane.tuberculosis.ServerConfiguration.MultipartUtility;
 import mdimembrane.tuberculosis.ServerConfiguration.ServerConstants;
 import mdimembrane.tuberculosis.main.MainScreen;
@@ -33,8 +32,10 @@ import mdimembrane.tuberculosis.main.R;
 
 public class AddPatientFour extends AppCompatActivity {
     Spinner bloodGroupSP;
-    EditText weightET,heightET,otherDiseaseET,commentET;
+    EditText weightET, heightET, otherDiseaseET, commentET;
     SharedPreferences sharedpreferences;
+    String MSG = "";
+    boolean RESPONSE_CODE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,20 +43,21 @@ public class AddPatientFour extends AppCompatActivity {
         setContentView(R.layout.activity_add_patient_four);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        try{
+        try {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }catch(NullPointerException e){
+        } catch (NullPointerException e) {
             Log.e("SearchActivity Toolbar", "You have got a NULL POINTER EXCEPTION");
         }
 
         sharedpreferences = getSharedPreferences(PreferencesConstants.APP_MAIN_PREF, Context.MODE_PRIVATE);
 
-        bloodGroupSP=(Spinner)findViewById(R.id.bloodGroupSpinner);
-        weightET=(EditText)findViewById(R.id.weightEditText);
-        heightET=(EditText)findViewById(R.id.heightEditText);
-        otherDiseaseET=(EditText)findViewById(R.id.otherDiseaseEditText);
-        commentET=(EditText)findViewById(R.id.commentEditText);
+        bloodGroupSP = (Spinner) findViewById(R.id.bloodGroupSpinner);
+        weightET = (EditText) findViewById(R.id.weightEditText);
+        heightET = (EditText) findViewById(R.id.heightEditText);
+        otherDiseaseET = (EditText) findViewById(R.id.otherDiseaseEditText);
+        commentET = (EditText) findViewById(R.id.commentEditText);
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -70,26 +72,25 @@ public class AddPatientFour extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         return true;
     }
-    public void backButton(View view)
-    {
+
+    public void backButton(View view) {
         finish();
     }
-    public void nextButton(View view)
-    {
+
+    public void nextButton(View view) {
 
 
-        if(bloodGroupSP.getSelectedItemPosition()==0)
-        {
-            Toast.makeText(getApplicationContext(),getResources().getString(R.string.toast_select_blood_group),Toast.LENGTH_SHORT).show();
+        if (bloodGroupSP.getSelectedItemPosition() == 0) {
+            Toast.makeText(getApplicationContext(), getResources().getString(R.string.toast_select_blood_group), Toast.LENGTH_SHORT).show();
             return;
         }
-        if(weightET.getText().toString().equals("")){
+        if (weightET.getText().toString().equals("")) {
 
             weightET.setError(getResources().getString(R.string.weight_validation));
             weightET.requestFocus();
             return;
         }
-        if(heightET.getText().toString().equals("")){
+        if (heightET.getText().toString().equals("")) {
 
             heightET.setError(getResources().getString(R.string.height_validation));
             heightET.requestFocus();
@@ -105,23 +106,23 @@ public class AddPatientFour extends AppCompatActivity {
         editor.commit();
 
 
-        new SendAllData().execute(ServerConstants.ADD_NEW_PATIENT);
+        new SendAllData().execute(ServerConstants.PATIENT_DATA);
 
 
     }
 
-    public void SaveAlert() {
+    public void SaveAlert(String record_id) {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setCancelable(false);
         alertDialogBuilder.setTitle(getResources().getString(R.string.alert_patient_form_tittle_successful));
-        alertDialogBuilder.setMessage(getResources().getString(R.string.alert_patient_form_details_submited));
+        alertDialogBuilder.setMessage(getResources().getString(R.string.alert_patient_form_details_submited)+"\n Patient Id : "+record_id);
         alertDialogBuilder.setPositiveButton("OK",
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
 
                         Intent intent = new Intent(getApplicationContext(), MainScreen.class);
-                       // intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                         intent.putExtra("OPEN_INDEX", MainScreen.PATIENTS);
                         startActivity(intent);
                         finish();
@@ -147,8 +148,8 @@ public class AddPatientFour extends AppCompatActivity {
 
         @Override
         protected JSONObject doInBackground(String... args) {
-            String responseSTR="";
-            JSONObject json=null;
+            String responseSTR = "";
+            JSONObject json = null;
             try {
 
                 String charset = "UTF-8";
@@ -190,7 +191,7 @@ public class AddPatientFour extends AppCompatActivity {
 
                 for (String line : response) {
                     Log.v("rht", "Line : " + line);
-                    responseSTR=line;
+                    responseSTR = line;
                 }
                 json = new JSONObject(responseSTR);
             } catch (Exception e) {
@@ -202,8 +203,19 @@ public class AddPatientFour extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(JSONObject json) {
-                pDialog.cancel();
-                SaveAlert();
+            pDialog.cancel();
+            try {
+
+                RESPONSE_CODE = json.getBoolean("response");
+                MSG = json.getString("message");
+                // Log.i("dfdfdf", ""+MSG+"   "+RESPONSE_CODE);
+                if (RESPONSE_CODE) {
+                    SaveAlert(json.getString("record_id"));
+                }
+            } catch (Exception e) {
+
             }
+
         }
     }
+}

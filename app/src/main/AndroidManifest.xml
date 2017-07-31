@@ -98,12 +98,26 @@
             android:name="mdimembrane.tuberculosis.ManagePatients.ManagePatientList"
             android:label="@string/manage_patient"
             android:theme="@style/AppTheme">
-        <meta-data
-            android:name="android.app.searchable"
-            android:resource="@xml/searchable">
-        </meta-data>
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
         </activity>
-
+        <activity
+            android:name="mdimembrane.tuberculosis.ManagePatients.PatientProfile.ProfileDetailsActivity"
+            android:label="@string/action_profile"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="mdimembrane.tuberculosis.ManagePatients.DailyCheckup.CheckUpRecord"
+            android:label="@string/action_checkup"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="mdimembrane.tuberculosis.ManageSamples.AddSampleResultOne"
+            android:label="@string/action_add_sample_result"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="mdimembrane.tuberculosis.ManageSamples.AddNewSampleOne"
+            android:label="@string/action_add_new_sample"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

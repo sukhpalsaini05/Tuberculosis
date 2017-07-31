@@ -197,7 +197,7 @@ public class AddPatientOne extends AppCompatActivity {
                 Bitmap photo = MediaStore.Images.Media.getBitmap(this.getContentResolver(),Uri.fromFile(image));
 
                 patientImageIMB.setImageBitmap(photo);
-                patientImageIMB.setRotation(90);
+                //patientImageIMB.setRotation(90);
                 takePicFlag=true;
             } catch (IOException e) {
                 e.printStackTrace();

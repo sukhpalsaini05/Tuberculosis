@@ -14,19 +14,18 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import mdimembrane.tuberculosis.ManagePatients.AddPatientOne;
+import mdimembrane.tuberculosis.ManagePatients.DailyCheckup.CheckUpRecord;
 import mdimembrane.tuberculosis.ManagePatients.ManagePatientList;
 import mdimembrane.tuberculosis.main.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * create an instance of this fragment.
- */
+
 
 
 public class PatientMainFragment extends Fragment {
 
     Timer timer;
     ViewPager mViewPager;
+    public static final int PATIENT_PROFILE = 1 , DAILY_RECORDS = 2 , EDIT_PATIENTS = 3;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -50,6 +49,17 @@ public class PatientMainFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(getActivity(), ManagePatientList.class);
+                intent.putExtra("OPEN_ACTIVITY",PATIENT_PROFILE);
+                startActivity(intent);
+            }
+        });
+
+        Button DailyRecorfBT=(Button)view.findViewById(R.id.checkupRecord);
+        DailyRecorfBT.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getActivity(), ManagePatientList.class);
+                intent.putExtra("OPEN_ACTIVITY",DAILY_RECORDS);
                 startActivity(intent);
             }
         });
