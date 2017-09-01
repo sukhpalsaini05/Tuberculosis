@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:text="Asha Worker"
+        android:text="@string/profile_asha_worker"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:gravity="center" />
     <TextView
@@ -32,7 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:text="Account Type"
+        android:text="@string/profile_account_type"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:gravity="center"
         android:layout_below="@+id/userName"

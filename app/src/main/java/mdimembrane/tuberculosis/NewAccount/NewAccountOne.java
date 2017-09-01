@@ -29,8 +29,6 @@ import android.widget.Toast;
 import java.io.File;
 import java.io.IOException;
 
-import mdimembrane.tuberculosis.ManagePatients.AddPatientTwo;
-import mdimembrane.tuberculosis.main.LoginActivity;
 import mdimembrane.tuberculosis.main.PreferencesConstants;
 import mdimembrane.tuberculosis.main.R;
 import mdimembrane.tuberculosis.util.CompressFile;

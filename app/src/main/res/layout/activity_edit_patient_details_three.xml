@@ -9,67 +9,85 @@ android:paddingLeft="@dimen/activity_horizontal_margin"
 android:paddingRight="@dimen/activity_horizontal_margin"
 android:paddingTop="@dimen/activity_vertical_margin"
 app:layout_behavior="@string/appbar_scrolling_view_behavior"
-tools:context="mdimembrane.tuberculosis.ManageSamples.AddSampleResultOne">
+tools:context="mdimembrane.tuberculosis.ManagePatients.EditPatient.EditPatientDetailsThree">
 
 <ScrollView
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/scrollView" >
+    android:layout_height="match_parent"
+    android:id="@+id/scrollView3" >
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Blood Sample"
+            android:text="@string/patient_blood_group"
             android:id="@+id/textView"
             android:layout_column="0"
             android:textColor="@color/colorPrimary"
             android:textSize="25sp" />
 
-        <EditText
+        <Spinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:ems="10"
-            android:id="@+id/nameEditText"
-            android:layout_column="1"
-            android:background="@drawable/edit_text"
+            android:id="@+id/bloodGroupSpinner"
             android:textSize="25sp"
-            android:layout_marginBottom="10sp"
-            android:hint="Blood sample Result" />
+            android:entries="@array/blood_group_arrays"
+            android:background="@drawable/spinner_style"
+            android:layout_marginBottom="5sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Sputum Test"
-            android:id="@+id/textView1"
+            android:text="@string/patient_weight"
+            android:id="@+id/textView4"
             android:layout_column="0"
             android:textColor="@color/colorPrimary"
             android:textSize="25sp" />
 
         <EditText
+            android:id="@+id/weightEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:ems="10"
-            android:id="@+id/sputumEditText"
             android:layout_column="1"
-            android:background="@drawable/edit_text"
-            android:textSize="25sp"
             android:layout_marginBottom="10sp"
-            android:hint="Sputum Semple Result" />
+            android:background="@drawable/edit_text"
+            android:ems="10"
+            android:hint="@string/patient_weight_hint"
+            android:inputType="number|numberDecimal"
+            android:textSize="25sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Vision Test"
+            android:text="@string/patient_height"
+            android:id="@+id/textView3"
+            android:layout_column="0"
+            android:textColor="@color/colorPrimary"
+            android:textSize="25sp" />
+
+        <EditText
+            android:id="@+id/heightEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_marginBottom="10sp"
+            android:background="@drawable/edit_text"
+            android:ems="10"
+            android:hint="@string/patient_height_hint"
+            android:inputType="number|numberDecimal"
+            android:textSize="25sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/patient_disease"
             android:id="@+id/textView2"
             android:layout_column="0"
             android:textColor="@color/colorPrimary"
@@ -78,20 +96,20 @@ tools:context="mdimembrane.tuberculosis.ManageSamples.AddSampleResultOne">
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
+            android:inputType="textCapWords"
             android:ems="10"
-            android:id="@+id/visionEditText"
+            android:id="@+id/otherDiseaseEditText"
             android:layout_column="1"
             android:background="@drawable/edit_text"
             android:textSize="25sp"
             android:layout_marginBottom="10sp"
-            android:hint="Vision Test Result" />
+            android:hint="@string/patient_disease_hint" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Hearing Test"
-            android:id="@+id/textView3"
+            android:text="@string/patient_comments"
+            android:id="@+id/textView5"
             android:layout_column="0"
             android:textColor="@color/colorPrimary"
             android:textSize="25sp" />
@@ -99,70 +117,26 @@ tools:context="mdimembrane.tuberculosis.ManageSamples.AddSampleResultOne">
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
+            android:inputType="textCapWords"
             android:ems="10"
-            android:id="@+id/hearingEditText"
+            android:id="@+id/commentEditText"
             android:layout_column="1"
             android:background="@drawable/edit_text"
             android:textSize="25sp"
             android:layout_marginBottom="10sp"
-            android:hint="Hearing Test Result" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="HIV Test"
-            android:id="@+id/textView4"
-            android:layout_column="0"
-            android:textColor="@color/colorPrimary"
-            android:textSize="25sp" />
-
-        <RadioGroup
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_column="1"
-            android:id="@+id/genderRadioGroup"
-            android:layout_marginBottom="10sp">
-
-            <RadioButton
-                android:id="@+id/radioButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="Not Tested"
-                android:textSize="20sp" />
-
-            <RadioButton
-                android:id="@+id/radioButton2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Negative"
-                android:textSize="20sp" />
-
-            <RadioButton
-                android:id="@+id/radioButton3"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Positive"
-                android:textSize="20sp" />
-
-        </RadioGroup>
-
-
+            android:hint="@string/patient_comments_hint" />
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="bottom"
             android:layout_marginTop="20sp">
 
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Cancel"
+                android:text="@string/back_bt"
                 android:id="@+id/button"
                 android:layout_weight="1"
                 android:background="#f55555"
@@ -175,16 +149,19 @@ tools:context="mdimembrane.tuberculosis.ManageSamples.AddSampleResultOne">
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Next"
-                android:id="@+id/nextButton"
+                android:text="@string/save_bt"
+                android:id="@+id/button5"
                 android:layout_weight="1"
                 android:background="#0b9c1f"
                 android:textColor="#ffffff"
                 android:textStyle="bold"
                 android:textSize="25sp"
-                android:layout_margin="5sp"/>
+                android:layout_margin="5sp"
+                android:onClick="nextButton" />
         </LinearLayout>
+
     </LinearLayout>
 </ScrollView>
 
 </RelativeLayout>
+

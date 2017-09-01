@@ -38,7 +38,7 @@ public class PasswordSettings extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Toast.makeText(getApplicationContext(),"Password Changed Now Login Again",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),getResources().getString(R.string.password_changed_toast),Toast.LENGTH_LONG).show();
 
 //                SharedPreferences.Editor editor = sharedpreferences.edit();
 //                editor.clear();

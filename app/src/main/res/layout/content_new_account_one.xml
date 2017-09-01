@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="mdimembrane.tuberculosis.ManagePatients.AddPatientOne"
+    tools:context="mdimembrane.tuberculosis.ManagePatients.AddNewPatient.AddPatientOne"
     tools:showIn="@layout/activity_new_account_one">
 
     <ScrollView
@@ -86,7 +86,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"
+                android:inputType="textCapWords"
                 android:ems="10"
                 android:id="@+id/nameEditText"
                 android:layout_column="1"
@@ -136,7 +136,7 @@
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Male"
+                    android:text="@string/gender_male"
                     android:id="@+id/radioButton"
                     android:textSize="25sp"
                     android:checked="true" />
@@ -144,14 +144,14 @@
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Female"
+                    android:text="@string/gender_female"
                     android:id="@+id/radioButton2"
                     android:textSize="25sp" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Other"
+                    android:text="@string/gender_other"
                     android:id="@+id/radioButton3"
                     android:textSize="25sp" />
 
@@ -167,7 +167,7 @@
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Cancel"
+                    android:text="@string/cancle_button"
                     android:id="@+id/button"
                     android:layout_weight="1"
                     android:background="#f55555"
@@ -180,7 +180,7 @@
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Next"
+                    android:text="@string/Next_Button"
                     android:id="@+id/button5"
                     android:layout_weight="1"
                     android:background="#0b9c1f"

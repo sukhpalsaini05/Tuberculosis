@@ -5,6 +5,7 @@
     tools:context="mdimembrane.tuberculosis.main_fragments.PatientMainFragment">
 
     <!-- TODO: Update blank fragment layout -->
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -48,18 +49,19 @@
                     android:id="@+id/addPatientBT"
                     android:drawableTop="@drawable/add_patient"
                     android:layout_column="0"
+
                     android:layout_weight="1"
                     android:background="#2ec936"
                     android:textColor="#ffffff"
                     android:textStyle="bold"
                     android:layout_margin="4sp"
                     android:padding="5sp"
-                    android:text="New Patient" />
+                    android:text="@string/new_patient_bt" />
 
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Manage Patient"
+                    android:text="@string/patient_profile_bt"
                     android:drawableTop="@drawable/group_patients"
                     android:id="@+id/managePatient"
                     android:layout_column="1"
@@ -78,9 +80,9 @@
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Edit Patient"
+                    android:text="@string/edit_patient_bt"
                     android:drawableTop="@drawable/edit_patient"
-                    android:id="@+id/button3"
+                    android:id="@+id/editPatienBT"
                     android:layout_column="0"
                     android:layout_weight="1"
                     android:background="#e5625b"
@@ -92,7 +94,7 @@
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Daily Checkup Record"
+                    android:text="@string/add_checkup_record_bt"
                     android:drawableTop="@drawable/checkup_icon"
                     android:id="@+id/checkupRecord"
                     android:layout_column="1"

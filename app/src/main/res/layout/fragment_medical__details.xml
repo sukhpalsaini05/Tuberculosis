@@ -10,34 +10,34 @@
         android:layout_height="match_parent"
         android:layout_marginTop="20dp">
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <!--<TableRow-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent">-->
 
-            <TextView
-                android:id="@+id/textView1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/cell_border"
-                android:text="Symptoms"
-                android:textAllCaps="false"
-                android:textColor="@color/colorPrimary"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+            <!--<TextView-->
+                <!--android:id="@+id/textView1"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="1"-->
+                <!--android:background="@drawable/cell_border"-->
+                <!--android:text="@string/symptoms"-->
+                <!--android:textAllCaps="false"-->
+                <!--android:textColor="@color/colorPrimary"-->
+                <!--android:textSize="20sp"-->
+                <!--android:textStyle="bold" />-->
 
-            <TextView
-                android:id="@+id/symptomsTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/cell_border"
-                android:hint="Symptoms"
-                android:textAllCaps="false"
-                android:textColor="@color/cardview_dark_background"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-        </TableRow>
+            <!--<TextView-->
+                <!--android:id="@+id/symptomsTextView"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="1"-->
+                <!--android:background="@drawable/cell_border"-->
+                <!--android:hint="@string/symptoms"-->
+                <!--android:textAllCaps="false"-->
+                <!--android:textColor="@color/cardview_dark_background"-->
+                <!--android:textSize="20sp"-->
+                <!--android:textStyle="bold" />-->
+        <!--</TableRow>-->
 
         <TableRow
             android:layout_width="match_parent"
@@ -49,7 +49,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/cell_border"
-                android:text="Blood Group"
+                android:text="@string/blood_group"
                 android:textAllCaps="false"
                 android:textColor="@color/colorPrimary"
                 android:textSize="20sp"
@@ -61,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/cell_border"
-                android:hint="Blood Group"
+                android:hint="@string/blood_group"
                 android:textAllCaps="false"
                 android:textColor="@color/cardview_dark_background"
                 android:textSize="20sp"
@@ -78,7 +78,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/cell_border"
-                android:text="Weight"
+                android:text="@string/weight"
                 android:textAllCaps="false"
                 android:textColor="@color/colorPrimary"
                 android:textSize="20sp"
@@ -90,7 +90,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/cell_border"
-                android:hint="Weight"
+                android:hint="@string/weight"
                 android:textAllCaps="false"
                 android:textColor="@color/cardview_dark_background"
                 android:textSize="20sp"
@@ -108,7 +108,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/cell_border"
-                android:text="Height"
+                android:text="@string/height"
                 android:textAllCaps="false"
                 android:textColor="@color/colorPrimary"
                 android:textSize="20sp"
@@ -120,7 +120,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/cell_border"
-                android:hint="Height"
+                android:hint="@string/height"
                 android:textAllCaps="false"
                 android:textColor="@color/cardview_dark_background"
                 android:textSize="20sp"
@@ -137,7 +137,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/cell_border"
-                android:text="Other Disease"
+                android:text="@string/other_disease"
                 android:textAllCaps="false"
                 android:textColor="@color/colorPrimary"
                 android:textSize="20sp"
@@ -149,7 +149,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/cell_border"
-                android:hint="Other Disease"
+                android:hint="@string/not_available"
                 android:textAllCaps="false"
                 android:textColor="@color/cardview_dark_background"
                 android:textSize="20sp"
@@ -166,7 +166,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/cell_border"
-                android:text="Comments"
+                android:text="@string/comments"
                 android:textAllCaps="false"
                 android:textColor="@color/colorPrimary"
                 android:textSize="20sp"
@@ -178,14 +178,13 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/cell_border"
-                android:hint="Comments"
+                android:hint="@string/not_available"
                 android:textAllCaps="false"
                 android:textColor="@color/cardview_dark_background"
                 android:textSize="20sp"
                 android:textStyle="bold" />
         </TableRow>
 
-
     </TableLayout>
-
+    
 </FrameLayout>

@@ -13,8 +13,7 @@ import android.widget.Button;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import mdimembrane.tuberculosis.ManagePatients.AddPatientOne;
-import mdimembrane.tuberculosis.ManagePatients.DailyCheckup.CheckUpRecord;
+import mdimembrane.tuberculosis.ManagePatients.AddNewPatient.AddPatientOne;
 import mdimembrane.tuberculosis.ManagePatients.ManagePatientList;
 import mdimembrane.tuberculosis.main.R;
 
@@ -60,6 +59,17 @@ public class PatientMainFragment extends Fragment {
             public void onClick(View view) {
                 Intent intent=new Intent(getActivity(), ManagePatientList.class);
                 intent.putExtra("OPEN_ACTIVITY",DAILY_RECORDS);
+                startActivity(intent);
+            }
+        });
+
+
+        Button EditPatienBT=(Button)view.findViewById(R.id.editPatienBT);
+        EditPatienBT.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getActivity(), ManagePatientList.class);
+                intent.putExtra("OPEN_ACTIVITY",EDIT_PATIENTS);
                 startActivity(intent);
             }
         });

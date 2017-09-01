@@ -54,10 +54,13 @@ public class ProfileDetailsActivity extends AppCompatActivity {
         sharedpreferences = getSharedPreferences(PreferencesConstants.APP_MAIN_PREF, Context.MODE_PRIVATE);
 
         tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        tabLayout.setSelectedTabIndicatorColor(Color.parseColor("#FFFFFF"));
+
+        tabLayout.setSelectedTabIndicatorColor(Color.parseColor("#FFFFFF"));        //indicate the current tab
+
         tabLayout.addTab(tabLayout.newTab().setText("General Informatiom"));
-        tabLayout.addTab(tabLayout.newTab().setText("Patient Address"));
+        tabLayout.addTab(tabLayout.newTab().setText("Other Details"));
         tabLayout.addTab(tabLayout.newTab().setText("Medical Details"));
+        tabLayout.addTab(tabLayout.newTab().setText("CheckUp Data"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
 
@@ -160,6 +163,9 @@ public class ProfileDetailsActivity extends AppCompatActivity {
 
                         String patient_unique_generated_id = jsonChildNode.optString("P_Unique_Generated_Id").toString();
                         String patient_name = jsonChildNode.optString("P_Name").toString();
+                        String category_no = jsonChildNode.optString("P_category_no").toString();
+                        String category_type = jsonChildNode.optString("P_category_type").toString();
+                        String status = jsonChildNode.optString("P_status").toString();
                         String patient_guardian_type = jsonChildNode.optString("P_Guardian_Type").toString();
                         String patient_guardian_name = jsonChildNode.optString("P_Guardian_Name").toString();
                         String patient_gender = jsonChildNode.optString("P_Gender").toString();
@@ -172,7 +178,7 @@ public class ProfileDetailsActivity extends AppCompatActivity {
                         String patient_tehsil = jsonChildNode.optString("P_Tehsil").toString();
                         String patient_address1 = jsonChildNode.optString("P_Address1").toString();
                         String patient_address2 = jsonChildNode.optString("P_Address2").toString();
-                        String patient_current_symptoms = jsonChildNode.optString("P_Current_Symptoms").toString();
+                      //  String patient_current_symptoms = jsonChildNode.optString("P_Current_Symptoms").toString();
                         String patient_blood_group = jsonChildNode.optString("P_Blood_Group").toString();
                         String patient_weight = jsonChildNode.optString("P_Weight").toString();
                         String patient_height = jsonChildNode.optString("P_Height").toString();
@@ -180,9 +186,14 @@ public class ProfileDetailsActivity extends AppCompatActivity {
                         String patient_any_comment = jsonChildNode.optString("P_Any_comment").toString();
                         String patient_date = jsonChildNode.optString("P_Registration_Date_time").toString();
 
+
+
                         SharedPreferences.Editor editor = sharedpreferences.edit();
                         editor.putString(PreferencesConstants.PatientProfile.PATIENT_ID, patient_unique_generated_id);
                         editor.putString(PreferencesConstants.PatientProfile.PATIENT_NAME, patient_name);
+                        editor.putString(PreferencesConstants.PatientProfile.CATEGORY_NO, category_no);
+                        editor.putString(PreferencesConstants.PatientProfile.CATEGORY_TYPE, category_type);
+                        editor.putString(PreferencesConstants.PatientProfile.STATUS, status);
                         editor.putString(PreferencesConstants.PatientProfile.GAURDIAN_TYPE, patient_guardian_type);
                         editor.putString(PreferencesConstants.PatientProfile.GAURDIAN_NAME, patient_guardian_name);
                         editor.putString(PreferencesConstants.PatientProfile.IMAGE, p_image);
@@ -196,7 +207,7 @@ public class ProfileDetailsActivity extends AppCompatActivity {
                         editor.putString(PreferencesConstants.PatientProfile.P_TEHSIL, patient_tehsil);
                         editor.putString(PreferencesConstants.PatientProfile.ADDRESS1, patient_address1);
                         editor.putString(PreferencesConstants.PatientProfile.ADDRESS2, patient_address2);
-                        editor.putString(PreferencesConstants.PatientProfile.SYMPTOMS_LIST, patient_current_symptoms);
+                      //  editor.putString(PreferencesConstants.PatientProfile.SYMPTOMS_LIST, patient_current_symptoms);
                         editor.putString(PreferencesConstants.PatientProfile.BLOOD_GROUP, patient_blood_group);
                         editor.putString(PreferencesConstants.PatientProfile.WEIGHT, patient_weight);
                         editor.putString(PreferencesConstants.PatientProfile.HEIGHT, patient_height);

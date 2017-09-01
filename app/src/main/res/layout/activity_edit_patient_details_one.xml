@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="mdimembrane.tuberculosis.ManagePatients.EditPatient.EditPatientDetailsOne">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView" >
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/imageTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_column="0"
+                    android:gravity="center"
+                    android:text="@string/take_image"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="25sp" />
+
+                <ImageButton
+                    android:id="@+id/patientImageIMB"
+                    android:layout_width="100sp"
+                    android:layout_height="100sp"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp"
+                    android:background="@color/colorPrimary"
+                    android:onClick="TakePicture"
+                    android:padding="1dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/take_picture"
+                    tools:ignore="ContentDescription" />
+
+            </LinearLayout>
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/categoryTypeSP"
+                android:textSize="25sp"
+                android:background="@drawable/spinner_style"
+                android:layout_marginBottom="5sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/patient_name"
+                android:id="@+id/textView"
+                android:layout_column="0"
+                android:textColor="@color/colorPrimary"
+                android:textSize="25sp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapWords"
+                android:ems="10"
+                android:id="@+id/nameEditText"
+                android:layout_column="1"
+                android:background="@drawable/edit_text"
+                android:textSize="25sp"
+                android:layout_marginBottom="10sp"
+                android:hint="@string/patient_name_hint" />
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/guardianTypeSpinner"
+                android:textSize="25sp"
+                android:entries="@array/guardian_arrays"
+                android:background="@drawable/spinner_style"
+                android:layout_marginBottom="5sp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapWords"
+                android:ems="10"
+                android:id="@+id/guardianNameEditText"
+                android:layout_column="1"
+                android:background="@drawable/edit_text"
+                android:textSize="25sp"
+                android:layout_marginBottom="10sp"
+                android:hint="@string/guardian_name_hint" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/patient_age"
+                android:id="@+id/textView3"
+                android:layout_column="0"
+                android:textColor="@color/colorPrimary"
+                android:textSize="25sp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:ems="10"
+                android:id="@+id/ageEditText"
+                android:layout_column="1"
+                android:background="@drawable/edit_text"
+                android:textSize="25sp"
+                android:layout_marginBottom="10sp"
+                android:hint="@string/patient_age_hint" />
+
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="bottom"
+                android:layout_marginTop="20sp">
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cancle_button"
+                    android:id="@+id/button"
+                    android:layout_weight="1"
+                    android:background="#f55555"
+                    android:textColor="#ffffff"
+                    android:textStyle="bold"
+                    android:textSize="25sp"
+                    android:layout_margin="5sp"
+                    android:onClick="backButton" />
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Next_Button"
+                    android:id="@+id/button5"
+                    android:layout_weight="1"
+                    android:background="#0b9c1f"
+                    android:textColor="#ffffff"
+                    android:textStyle="bold"
+                    android:textSize="25sp"
+                    android:layout_margin="5sp"
+                    android:onClick="nextButton" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

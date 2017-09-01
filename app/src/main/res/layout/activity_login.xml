@@ -11,7 +11,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="Account Login"
+        android:text="@string/account_login"
         android:textColor="#fff"
         android:textSize="26sp"
         android:textStyle="bold"
@@ -48,7 +48,7 @@
                     android:drawableLeft="@drawable/user"
                     android:drawableTint="@color/colorPrimary"
                     android:singleLine="true"
-                    android:hint="User Name"
+                    android:hint="@string/user_name"
                     android:inputType="number"
                     android:id="@+id/userNameET" />
             </android.support.design.widget.TextInputLayout>
@@ -64,7 +64,7 @@
                     android:singleLine="true"
                     android:drawableLeft="@drawable/lock"
                     android:drawableTint="@color/colorPrimary"
-                    android:hint="Password"
+                    android:hint="@string/password_hint"
                     android:inputType="textPassword"
                     android:id="@+id/passwordET" />
             </android.support.design.widget.TextInputLayout>
@@ -74,7 +74,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:paddingTop="5dp"
-                android:text="Forgot Password?"
+                android:text="@string/forgot_password"
                 android:textColor="@color/colorPrimary" />
 
 
@@ -83,7 +83,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="22dp"
                 android:background="#0dbb0a"
-                android:text="Sign in"
+                android:text="@string/sign_in_bt"
                 android:textAllCaps="false"
                 android:textColor="#fff"
                 android:textSize="18sp"
@@ -93,11 +93,11 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="#d67601"
-                android:text="Request For Account"
+                android:text="@string/request_for_account_bt"
                 android:textAllCaps="false"
                 android:textColor="#fff"
                 android:textSize="18sp"
-                android:id="@+id/button6"
+                android:id="@+id/requestAccountbutton"
                 android:layout_marginLeft="22sp"
                 android:layout_marginRight="22sp" />
         </LinearLayout>

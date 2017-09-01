@@ -26,6 +26,10 @@ public class PatientAddressFragment extends Fragment {
 
         sharedpreferences = getActivity().getSharedPreferences(PreferencesConstants.APP_MAIN_PREF, Context.MODE_PRIVATE);
 
+        TextView phoneTV=(TextView) view.findViewById(R.id.phoneTextView);
+        TextView relativePhoneTV=(TextView) view.findViewById(R.id.relativePhoneTextView);
+        TextView aadharTV=(TextView) view.findViewById(R.id.aadharTextView);
+        TextView dateTV=(TextView) view.findViewById(R.id.dateTextView);
         TextView stateTV=(TextView) view.findViewById(R.id.stateTextView);
         TextView districtTV=(TextView) view.findViewById(R.id.districtTextView);
         TextView tehsilTV=(TextView) view.findViewById(R.id.tehsilTextView);
@@ -33,6 +37,10 @@ public class PatientAddressFragment extends Fragment {
         TextView address2TV=(TextView) view.findViewById(R.id.address2TextView);
 
 
+        phoneTV.setText(sharedpreferences.getString(PreferencesConstants.PatientProfile.PATIENT_PHONE,"NA"));
+        relativePhoneTV.setText(sharedpreferences.getString(PreferencesConstants.PatientProfile.GAURDIAN_PHONE,"NA"));
+        aadharTV.setText(sharedpreferences.getString(PreferencesConstants.PatientProfile.PATIENT_AADHAR_NO,"NA"));
+        dateTV.setText(sharedpreferences.getString(PreferencesConstants.PatientProfile.DATE,"NA"));
         stateTV.setText(sharedpreferences.getString(PreferencesConstants.PatientProfile.P_STATE,"NA"));
         districtTV.setText(sharedpreferences.getString(PreferencesConstants.PatientProfile.P_DISTT,"NA"));
         tehsilTV.setText(sharedpreferences.getString(PreferencesConstants.PatientProfile.P_TEHSIL,"NA"));

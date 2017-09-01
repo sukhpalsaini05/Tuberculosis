@@ -5,6 +5,9 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
 
     <uses-feature android:name="android.hardware.camera" />
 
@@ -38,19 +41,19 @@
             android:label="@string/title_activity_main_screen"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="mdimembrane.tuberculosis.ManagePatients.AddPatientOne"
+            android:name="mdimembrane.tuberculosis.ManagePatients.AddNewPatient.AddPatientOne"
             android:label="@string/title_activity_add_patient_one"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="mdimembrane.tuberculosis.ManagePatients.AddPatientTwo"
+            android:name="mdimembrane.tuberculosis.ManagePatients.AddNewPatient.AddPatientTwo"
             android:label="@string/title_activity_add_patient_two"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="mdimembrane.tuberculosis.ManagePatients.AddPatientThree"
+            android:name="mdimembrane.tuberculosis.ManagePatients.AddNewPatient.AddPatientThree"
             android:label="@string/title_activity_add_patient_three"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="mdimembrane.tuberculosis.ManagePatients.AddPatientFour"
+            android:name="mdimembrane.tuberculosis.ManagePatients.AddNewPatient.AddPatientFour"
             android:label="@string/title_activity_add_patient_three"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -111,13 +114,80 @@
             android:label="@string/action_checkup"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="mdimembrane.tuberculosis.ManageSamples.AddSampleResultOne"
-            android:label="@string/action_add_sample_result"
+            android:name="mdimembrane.tuberculosis.ManageSamples.SampleResult"
+            android:label="@string/action_sample_result"
             android:theme="@style/AppTheme" />
         <activity
             android:name="mdimembrane.tuberculosis.ManageSamples.AddNewSampleOne"
             android:label="@string/action_add_new_sample"
             android:theme="@style/AppTheme" />
+        <activity
+            android:name="mdimembrane.tuberculosis.ManageMedicines.AddNewMedicine.AddMedicineOne"
+            android:label="@string/action_add_medicine_one"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="mdimembrane.tuberculosis.ManageMedicines.AddNewMedicine.MedicineList"
+            android:label="@string/action_medicine_list"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="mdimembrane.tuberculosis.ManageMedicines.AddNewMedicine.AddMedicineTwo"
+            android:label="@string/action_add_medicine_two"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="mdimembrane.tuberculosis.ManageSamples.SampleList"
+            android:label="@string/action_sample_list"
+            android:theme="@style/AppTheme" />
+
+        <receiver android:name="mdimembrane.tuberculosis.main_fragments.HomeFragment" />
+
+        <activity
+            android:name="mdimembrane.tuberculosis.ManageNotification.MedicineNotificationList"
+            android:label="@string/action_med_notification"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="mdimembrane.tuberculosis.ManageNotification.PatientMedNotifiList"
+            android:label="@string/action_medicine_list"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="mdimembrane.tuberculosis.ManageNotification.PatientMedDetails"
+            android:label="@string/action_medicine_details"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="mdimembrane.tuberculosis.ManageNotification.SamplePatientList"
+            android:label="@string/action_sample_patient"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="mdimembrane.tuberculosis.ManageNotification.SampleNotifiList"
+            android:label="@string/action_sample_notifi_list"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="mdimembrane.tuberculosis.ManagePatients.EditPatient.EditPatientDetailsOne"
+            android:label="@string/action_edit_patient_one"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="mdimembrane.tuberculosis.ManagePatients.EditPatient.EditPatientDetailsTwo"
+            android:label="@string/action_edit_patient_two"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="mdimembrane.tuberculosis.ManagePatients.EditPatient.EditPatientDetailsThree"
+            android:label="@string/action_edit_patient_three"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="mdimembrane.tuberculosis.ManageMedicines.EditMedicine.EditMedicineOne"
+            android:label="@string/action_edit_medicine_one"
+            android:theme="@style/AppTheme"/>
+        <activity
+            android:name="mdimembrane.tuberculosis.ManageMedicines.EditMedicine.EditMedicineTwo"
+            android:label="@string/action_edit_medicine_two"
+            android:theme="@style/AppTheme"/>
+        <activity
+            android:name="mdimembrane.tuberculosis.ManageSamples.EditSample.EditSamples"
+            android:label="@string/action_edit_sample"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="mdimembrane.tuberculosis.ManageSamples.EditSample.EditSampleList"
+            android:label="@string/action_sample_list"
+            android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>

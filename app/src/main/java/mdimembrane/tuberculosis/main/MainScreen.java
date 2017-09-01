@@ -211,7 +211,7 @@ public class MainScreen extends AppCompatActivity
                     public void onClick(DialogInterface arg0, int arg1) {
 
                         SharedPreferences.Editor editor = sharedpreferences.edit();
-                        editor.clear();
+                        editor.putBoolean(PreferencesConstants.SessionManager.ACCOUNT_SESSION,false);
                         editor.commit();
 
                         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);

@@ -45,7 +45,7 @@
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/addNewReport"
+                    android:id="@+id/addNewReportBT"
                     android:drawableTop="@drawable/add_icon"
                     android:layout_column="0"
                     android:layout_weight="1"
@@ -54,14 +54,14 @@
                     android:textStyle="bold"
                     android:layout_margin="4sp"
                     android:padding="5sp"
-                    android:text="Add New Report" />
+                    android:text="@string/add_new_report_bt" />
 
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Manage Reports"
+                    android:text="@string/report_result_bt"
                     android:drawableTop="@drawable/manage_report"
-                    android:id="@+id/button2"
+                    android:id="@+id/reportResultBT"
                     android:layout_column="1"
                     android:layout_weight="1"
                     android:background="#2ec936"
@@ -78,7 +78,7 @@
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Edit Report"
+                    android:text="@string/edit_report_bt"
                     android:drawableTop="@drawable/edit_sample"
                     android:id="@+id/button3"
                     android:layout_column="0"
@@ -92,7 +92,7 @@
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Delete Report"
+                    android:text="@string/delete_report_bt"
                     android:drawableTop="@drawable/delete_icon"
                     android:id="@+id/button4"
                     android:layout_column="1"

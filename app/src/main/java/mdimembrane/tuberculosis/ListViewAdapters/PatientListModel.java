@@ -1,4 +1,4 @@
-package mdimembrane.tuberculosis.util;
+package mdimembrane.tuberculosis.ListViewAdapters;
 
 /**
  * Created by root on 26/7/17.
@@ -14,7 +14,6 @@ public class PatientListModel {
     public String patient_date;
 
     public PatientListModel(String patient_id, String patient_name,String patient_phone,String patient_date) {
-
 
         this.patient_id=patient_id;
         this.patient_name=patient_name;

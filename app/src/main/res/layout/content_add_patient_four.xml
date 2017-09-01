@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="mdimembrane.tuberculosis.ManagePatients.AddPatientTwo"
+    tools:context="mdimembrane.tuberculosis.ManagePatients.AddNewPatient.AddPatientTwo"
     tools:showIn="@layout/activity_add_patient_four">
 
     <ScrollView
@@ -25,7 +25,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Blood Group"
+                android:text="@string/patient_blood_group"
                 android:id="@+id/textView"
                 android:layout_column="0"
                 android:textColor="@color/colorPrimary"
@@ -44,7 +44,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Weight"
+                android:text="@string/patient_weight"
                 android:id="@+id/textView4"
                 android:layout_column="0"
                 android:textColor="@color/colorPrimary"
@@ -58,7 +58,7 @@
                 android:layout_marginBottom="10sp"
                 android:background="@drawable/edit_text"
                 android:ems="10"
-                android:hint="In kilograms"
+                android:hint="@string/patient_weight_hint"
                 android:inputType="number|numberDecimal"
                 android:textSize="25sp" />
 
@@ -66,7 +66,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Height"
+                android:text="@string/patient_height"
                 android:id="@+id/textView3"
                 android:layout_column="0"
                 android:textColor="@color/colorPrimary"
@@ -80,7 +80,7 @@
                 android:layout_marginBottom="10sp"
                 android:background="@drawable/edit_text"
                 android:ems="10"
-                android:hint="In centimetres"
+                android:hint="@string/patient_height_hint"
                 android:inputType="number|numberDecimal"
                 android:textSize="25sp" />
 
@@ -88,7 +88,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Another Disease"
+                android:text="@string/patient_disease"
                 android:id="@+id/textView2"
                 android:layout_column="0"
                 android:textColor="@color/colorPrimary"
@@ -97,19 +97,19 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
+                android:inputType="textCapWords"
                 android:ems="10"
                 android:id="@+id/otherDiseaseEditText"
                 android:layout_column="1"
                 android:background="@drawable/edit_text"
                 android:textSize="25sp"
                 android:layout_marginBottom="10sp"
-                android:hint="e.g. maleria" />
+                android:hint="@string/patient_disease_hint" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Comments"
+                android:text="@string/patient_comments"
                 android:id="@+id/textView5"
                 android:layout_column="0"
                 android:textColor="@color/colorPrimary"
@@ -118,14 +118,14 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
+                android:inputType="textCapWords"
                 android:ems="10"
                 android:id="@+id/commentEditText"
                 android:layout_column="1"
                 android:background="@drawable/edit_text"
                 android:textSize="25sp"
                 android:layout_marginBottom="10sp"
-                android:hint="e.g. any allergies" />
+                android:hint="@string/patient_comments_hint" />
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -137,7 +137,7 @@
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Back"
+                    android:text="@string/back_bt"
                     android:id="@+id/button"
                     android:layout_weight="1"
                     android:background="#f55555"
@@ -150,7 +150,7 @@
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Save"
+                    android:text="@string/save_bt"
                     android:id="@+id/button5"
                     android:layout_weight="1"
                     android:background="#0b9c1f"

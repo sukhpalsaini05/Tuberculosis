@@ -22,12 +22,78 @@ tools:context="mdimembrane.tuberculosis.ManagePatients.DailyCheckup.CheckUpRecor
         android:orientation="vertical"
         android:weightSum="1">
 
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/cell_border"
+            android:text="@string/p_id"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/idTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/cell_border"
+            android:hint="@string/p_id"
+            android:textAllCaps="false"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/cell_border"
+            android:text="@string/p_name"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/nameTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/cell_border"
+            android:hint="@string/p_name"
+            android:textAllCaps="false"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </TableRow>
+
+</TableLayout>
+
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="0"
-            android:text="WEIGHT"
+            android:text="@string/p_weight"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/colorPrimary"
             android:textSize="25sp" />
@@ -40,7 +106,7 @@ tools:context="mdimembrane.tuberculosis.ManagePatients.DailyCheckup.CheckUpRecor
             android:layout_marginBottom="10sp"
             android:background="@drawable/edit_text"
             android:ems="10"
-            android:hint="Enter Weight Of Patient"
+            android:hint="@string/P_enter_weight"
             android:inputType="numberDecimal"
             android:maxLength="12"
             android:textSize="25sp" />
@@ -50,7 +116,7 @@ tools:context="mdimembrane.tuberculosis.ManagePatients.DailyCheckup.CheckUpRecor
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="0"
-            android:text="Height"
+            android:text="@string/p_height"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/colorPrimary"
             android:textSize="25sp" />
@@ -63,7 +129,7 @@ tools:context="mdimembrane.tuberculosis.ManagePatients.DailyCheckup.CheckUpRecor
             android:layout_marginBottom="10sp"
             android:background="@drawable/edit_text"
             android:ems="10"
-            android:hint="Enter Height Of Patient"
+            android:hint="@string/p_enter_height"
             android:inputType="numberDecimal"
             android:maxLength="10"
             android:textSize="25sp" />
@@ -73,7 +139,7 @@ tools:context="mdimembrane.tuberculosis.ManagePatients.DailyCheckup.CheckUpRecor
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="0"
-            android:text="BP"
+            android:text="@string/p_bp"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/colorPrimary"
             android:textSize="25sp" />
@@ -86,7 +152,7 @@ tools:context="mdimembrane.tuberculosis.ManagePatients.DailyCheckup.CheckUpRecor
             android:layout_marginBottom="10sp"
             android:background="@drawable/edit_text"
             android:ems="10"
-            android:hint="Enter BP Of Patient"
+            android:hint="@string/p_enter_bp"
             android:inputType="numberDecimal"
             android:maxLength="10"
             android:textSize="25sp" />
@@ -96,7 +162,7 @@ tools:context="mdimembrane.tuberculosis.ManagePatients.DailyCheckup.CheckUpRecor
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="0"
-            android:text="Temprature"
+            android:text="@string/p_temp"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/colorPrimary"
             android:textSize="25sp" />
@@ -109,7 +175,7 @@ tools:context="mdimembrane.tuberculosis.ManagePatients.DailyCheckup.CheckUpRecor
             android:layout_marginBottom="10sp"
             android:background="@drawable/edit_text"
             android:ems="10"
-            android:hint="Enter Temprature"
+            android:hint="@string/p_enter_temp"
             android:inputType="numberDecimal"
             android:textSize="25sp" />
 
@@ -128,7 +194,7 @@ tools:context="mdimembrane.tuberculosis.ManagePatients.DailyCheckup.CheckUpRecor
                 android:layout_weight="1"
                 android:background="#f55555"
                 android:onClick="backButton"
-                android:text="Back"
+                android:text="@string/back_bt"
                 android:textColor="#ffffff"
                 android:textSize="25sp"
                 android:textStyle="bold" />
@@ -141,7 +207,7 @@ tools:context="mdimembrane.tuberculosis.ManagePatients.DailyCheckup.CheckUpRecor
                 android:layout_weight="1"
                 android:background="#0b9c1f"
                 android:onClick="submitButton"
-                android:text="Submit"
+                android:text="@string/submit_bt"
                 android:textColor="#ffffff"
                 android:textSize="25sp"
                 android:textStyle="bold" />

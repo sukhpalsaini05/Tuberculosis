@@ -54,12 +54,12 @@
                     android:textStyle="bold"
                     android:layout_margin="4sp"
                     android:padding="5sp"
-                    android:text="Add New Sample" />
+                    android:text="@string/add_new_sample_bt" />
 
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Add Sample result"
+                    android:text="@string/sample_result_bt"
                     android:drawableTop="@drawable/sample_icon"
                     android:id="@+id/SampleResult"
                     android:layout_column="1"
@@ -78,9 +78,9 @@
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Edit Sample"
+                    android:text="@string/edit_sample_bt"
                     android:drawableTop="@drawable/edit_sample"
-                    android:id="@+id/button3"
+                    android:id="@+id/editSampleBT"
                     android:layout_column="0"
                     android:layout_weight="1"
                     android:background="#e5625b"
@@ -92,7 +92,7 @@
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Delete Sample"
+                    android:text="@string/delete_sample_bt"
                     android:drawableTop="@drawable/delete_icon"
                     android:id="@+id/button4"
                     android:layout_column="1"
@@ -103,6 +103,7 @@
                     android:layout_margin="4sp"
                     android:padding="5sp" />
             </TableRow>
+
         </TableLayout>
 
     </LinearLayout>

@@ -3,20 +3,34 @@
     <string name="action_settings">Settings</string>
     <string name="action_profile">Patient Profile</string>
     <string name="action_checkup">Daily Checkup</string>
-    <string name="action_add_sample_result">Add Sample Result</string>
+    <string name="action_sample_result">Sample Result</string>
+    <string name="action_sample_list">Sample List</string>
+    <string name="action_med_notification">Medicine Notification</string>
+    <string name="action_sample_patient">Patient List</string>
+    <string name="action_sample_notifi_list">Sample Notification List</string>
     <string name="action_add_new_sample">Add New Sample</string>
+    <string name="action_add_medicine_one">Add Medicine (1/2)</string>
+    <string name="action_add_medicine_two">Add Medicine (2/2)</string>
+    <string name="action_medicine_list">Medicine Lists</string>
+    <string name="action_medicine_details">Medicine Details</string>
     <string name="action_aboutus">About Us</string>
     <string name="action_help">Help</string>
     <string name="title_activity_main_screen">Main Screen</string>
     <string name="change_password">Change Password</string>
     <string name="manage_patient">Patients List</string>
+    <string name="action_edit_patient_one">Edit Patient (1/3)</string>
+    <string name="action_edit_patient_two">Edit Patient (2/3)</string>
+    <string name="action_edit_patient_three">Edit Patient (3/3)</string>
+    <string name="action_edit_sample">Edit Samples</string>
+    <string name="action_edit_medicine_one">Edit Medicine (1/2)</string>
+    <string name="action_edit_medicine_two">Edit Medicine (2/2)</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">blank fragment 1</string>
-    <string name="title_activity_add_patient_one">Add Patient (1/4)</string>
+    <string name="title_activity_add_patient_one">Add Patient (1/3)</string>
 
 
     <string-array name="select_account_type">
@@ -37,7 +51,6 @@
         <item>Select Blood Group</item>
         <item>A+</item>
         <item>A-</item>
-        <item>B+</item>
         <item>B+</item>
         <item>B-</item>
         <item>O+</item>
@@ -89,9 +102,36 @@
         <item>Large</item>
     </string-array>
 
+    <string-array name="route_arrays">
+        <item>Select Route Type</item>
+        <item>Chewed</item>
+        <item>Taken by mouth (orally)</item>
+        <item>Injection</item>
+        <item>Applied to the skin</item>
+        <item>syrup</item>
+    </string-array>
 
-    <string name="title_activity_add_patient_two">Add Patient (2/4)</string>
-    <string name="title_activity_add_patient_three">Add Patient (3/4)</string>
+    <string-array name="frequency_arrays">
+        <item>Select Type</item>
+        <item>One-Time</item>
+        <item>Daily</item>
+        <item>weekly</item>
+    </string-array>
+
+    <string-array name="instruction_arrays">
+        <item>Take before meal</item>
+        <item>Take after meal</item>
+        <item>Take during meal</item>
+        <item>Take on empty stomach</item>
+        <item>Take with milk</item>
+        <item>Take with water</item>
+        <item>Take with warm water</item>
+        <item>Other</item>
+    </string-array>
+
+
+    <string name="title_activity_add_patient_two">Add Patient (2/3)</string>
+    <string name="title_activity_add_patient_three">Add Patient (3/3)</string>
     <string name="title_activity_add_patient_four">Add Patient (4/4)</string>
     <string name="title_activity_login">Sign in</string>
 
@@ -107,6 +147,113 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="signing_in">Signing in...</string>
+
+
+    <!-- Strings related to activity_login.xml -->
+    <string name="account_login">Account Login</string>
+    <string name="user_name">User Name</string>
+    <string name="password_hint">Password</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="sign_in_bt">Sign in</string>
+    <string name="request_for_account_bt">Request For Account</string>
+
+    <!-- Strings related to activity_main.xml -->
+    <string name="powered_by_mdi">Powered By mdi (India)</string>
+
+
+    <!-- Strings related to fragment_home.xml -->
+    <string name="alerts">Alerts !</string>
+    <string name="medicines_bt">Medicines</string>
+    <string name="samples_bt">Samples</string>
+    <string name="test_results_bt">Test Results</string>
+    <string name="news_tv">News</string>
+
+    <!-- Strings related to fragment_home.xml -->
+    <string name="add_new_medicine_bt">Add New Medicine</string>
+    <string name="view_list_of_medicine_bt">View List Of medicine</string>
+    <string name="edit_medicine_bt">Edit Medicine</string>
+    <string name="new_button">New Button</string>
+
+    <!-- Strings related to fragment_patient_main.xml -->
+    <string name="new_patient_bt">New Patient</string>
+    <string name="patient_profile_bt">Patient Profile</string>
+    <string name="edit_patient_bt">Edit Patient</string>
+    <string name="add_checkup_record_bt">Add Checkup Record</string>
+
+
+    <!-- Strings related to fragment_report_main.xml -->
+    <string name="add_new_report_bt">Add New Report</string>
+    <string name="report_result_bt">Report Result</string>
+    <string name="edit_report_bt">Edit Report</string>
+    <string name="delete_report_bt">Delete Report</string>
+
+
+    <!-- Strings related to fragment_report_main.xml -->
+    <string name="add_new_sample_bt">Add New Sample</string>
+    <string name="sample_result_bt">Sample Result</string>
+    <string name="edit_sample_bt">Edit Sample</string>
+    <string name="delete_sample_bt">Delete Sample</string>
+
+
+    <!-- Strings related to nav_header_main_screen.xml -->
+    <string name="profile_asha_worker">Asha Worker</string>
+    <string name="profile_account_type">Account Type</string>
+
+
+    <!-- Strings related to PasswordSetting.java -->
+    <string name="password_changed_toast">Password Changed Now Login Again</string>
+
+    <!-- Strings related to activity_password_setting.xml -->
+    <string name="pass_setting_user_name">User Name</string>
+    <string name="pass_setting_enter_user_name">Enter your login user name</string>
+    <string name="pass_setting_password">Password</string>
+    <string name="pass_setting_enter_password">Enter your old password</string>
+    <string name="pass_setting_new_password">New Password</string>
+    <string name="pass_setting_enter_new_password">Enter new paswword</string>
+    <string name="pass_setting_re_enter_new_password">Re-Enter New Password</string>
+
+
+    <!-- Strings related to activity_add_patient XML Files -->
+    <string name="patient_blood_group">Blood Group</string>
+    <string name="patient_weight">Weight</string>
+    <string name="patient_weight_hint">In kilograms</string>
+    <string name="patient_height">Height</string>
+    <string name="patient_height_hint">In centimetres</string>
+    <string name="patient_disease">Another Disease</string>
+    <string name="patient_disease_hint">e.g. maleria</string>
+    <string name="patient_comments">Comments</string>
+    <string name="patient_comments_hint">e.g. any allergies</string>
+    <string name="save_bt">Save</string>
+    <string name="patient_name">Name</string>
+    <string name="patient_name_hint">Patient Name</string>
+    <string name="guardian_name_hint">Guardian Name</string>
+    <string name="patient_age">Age</string>
+    <string name="patient_age_hint">Age in Years</string>
+    <string name="gender_male">Male</string>
+    <string name="gender_female">Female</string>
+    <string name="gender_other">Other</string>
+    <string name="select_current_symptoms">Select Current Symptoms</string>
+    <string name="symptoms_checkbox_one">Cough/Sputum > 3 Weeks</string>
+    <string name="symptoms_checkbox_two">Hemoptysis</string>
+    <string name="symptoms_checkbox_three">Fever</string>
+    <string name="symptoms_checkbox_four">Weight Lose / Anorexia</string>
+    <string name="symptoms_checkbox_five">Wheezing/SOB</string>
+    <string name="symptoms_checkbox_six">Night Sweats</string>
+    <string name="symptoms_checkbox_seven">Fatigue</string>
+    <string name="symptoms_checkbox_eight">Lymphadenpopathy</string>
+    <string name="symptoms_checkbox_nine">Headache</string>
+    <string name="symptoms_checkbox_ten">Joint Pain</string>
+    <string name="any_other_symptoms">Any Other Symptoms</string>
+    <string name="other_symptoms">Other Symptoms</string>
+    <string name="patient_aadhar_number">Aadhar Number</string>
+    <string name="patient_mobile_number">Mobile Number</string>
+    <string name="patient_relative_mobile_number">Relative Mobile Number</string>
+    <string name="patient_address_1">Address 1</string>
+    <string name="patient_address_1_hint">eg: House Number, Street</string>
+    <string name="patient_address_2">Address 2</string>
+    <string name="patient_address_2_hint">eg: Village ,Town</string>
+
 
     <!-- Strings related to New Account XML Files -->
     <string name="title_activity_new_account_one">New Account (1/3)</string>
@@ -164,10 +311,12 @@
 
     <!-- Strings related to AddPatientOne.java -->
 
+    <string name="toast_select_category_type">Please Select Category Type</string>
     <string name="toast_select_guardian_type">Please Select Guardian Type</string>
     <string name="patient_name_validation">Please Enter Name Of Patient</string>
     <string name="guardian_name_validation">Please Enter Guardian Name</string>
     <string name="patient_age_validation">Please Enter Age Of Patient</string>
+    <string name="select_category">Select Category</string>
 
 
     <!-- Strings related to AddPatientTwo.java -->
@@ -191,17 +340,164 @@
  20-21 Industrial Area, Ambala Cantt 133 006, INDIA
  Tel: +91-171-2699290, 2699471, 2699274,
  E-mail: info@mdimembrane.com</string>
+    <string name="company_address_heading">Address:</string>
 
     <!-- Strings related to manage_patient_list.xml -->
     <string name="page_heading">Select Patient Name To Get Details</string>
 
-    <!-- Strings related to add_new_sample_one.xml -->
 
-    <string name="blood_test_no">Blood Test Sample number</string>
-    <string name="sputum_test_no">Sputum Sample number</string>
-    <string name="vision_test_no">Vision Test number</string>
-    <string name="hearing_test_no">Hearing Test number</string>
-    <string name="hiv_test_no">HIV Test number</string>
+    <!-- Strings related to add_new_sample_one.xml -->
+    <string name="sample_test_no">Test Sample number</string>
+    <string name="enter_sample_test_no">Enter Sample number</string>
+    <string name="pragnent">Pragnent</string>
+    <string name="test_instuction">Test Instructions</string>
+    <string name="test_instuction_hint">Test Instructions</string>
+    <string name="other_test_name">Other Test Name</string>
+
+
+    <!-- Strings related to AddNewSampleOne.java -->
+    <string name="test_name">Select Test Name</string>
+
+
+    <!-- Strings related to add_sample_result_one.xml -->
+    <string name="blood_sample">Blood Sample</string>
+    <string name="blood_sample_result">Blood sample Result</string>
+    <string name="sputum_test">Sputum Test</string>
+    <string name="sputum_test_result">Sputum Semple Result</string>
+    <string name="vision_test">Vision Test</string>
+    <string name="vision_test_result">Vision Test Result</string>
+    <string name="hearing_test">Hearing Test</string>
+    <string name="hearing_test_result">Hearing Test Result</string>
+    <string name="hiv_test">HIV Test</string>
+    <string name="hiv_not_tested">Not Tested</string>
+    <string name="hiv_negative">Negative</string>
+    <string name="hiv_positive">Positive</string>
+    <string name="cancle_button">Cancle</string>
+    <string name="submit_button">Submit</string>
+
+
+    <!-- Strings related to activity_medicine_list.xml -->
+    <string name="add_medicine">Add Medicine</string>
+    <string name="list_of_medicine">List Of Medicines</string>
+
+
+    <!-- Strings related to check_up_record.xml -->
+    <string name="p_id">Patient ID</string>
+    <string name="p_name">Patient Name</string>
+    <string name="p_weight">WEIGHT</string>
+    <string name="P_enter_weight">In Kg</string>
+    <string name="p_height">Height</string>
+    <string name="p_enter_height">In cm</string>
+    <string name="p_bp">BP</string>
+    <string name="p_enter_bp">In mmHg</string>
+    <string name="p_temp">Temprature</string>
+    <string name="p_enter_temp">In Celsuis</string>
+    <string name="back_bt">Back</string>
+    <string name="submit_bt">Submit</string>
+    <!-- Strings related to CheckUpRecord.java -->
+    <string name="daily_details_submited">Record Submitted Successfully</string>
+    <string name="empty_form_alert_toast">All Fields Are Empty Please Enter The Inputs</string>
+
+    <!-- Strings related to xmls of patientProfile -->
+
+    <string name="category_no">Category Number</string>
+    <string name="category_type">Category Type</string>
+    <string name="patient_status">Status</string>
+    <string name="gaurdian_type">Gaurdian Type</string>
+    <string name="gaurdian_name">Gaurdian Name</string>
+    <string name="age">Age</string>
+    <string name="patient_gender">Gender</string>
+    <string name="phone_no">Phone Number</string>
+    <string name="relative_phone_number">Relative Phone Number</string>
+    <string name="aadhar_no">Aadhar Number</string>
+    <string name="date_time">Registration Date time</string>
+    <string name="symptoms">Symptoms</string>
+    <string name="blood_group">Blood Group</string>
+    <string name="weight">Weight</string>
+    <string name="height">Height</string>
+    <string name="other_disease">Other Disease</string>
+    <string name="comments">Comments</string>
+    <string name="not_available">N/A</string>
+    <string name="state">State</string>
+    <string name="district">District</string>
+    <string name="tehsil">Tehsil</string>
+    <string name="address_1">Address1</string>
+    <string name="address_2">Address2</string>
+
+    <!-- Strings related to CheckUpDataFragment.java -->
+    <string name="checkup_date_data">Date Of CheckUp </string>
+    <string name="weight_data">Weight </string>
+    <string name="height_data">Height </string>
+    <string name="bp_data"> BP </string>
+    <string name="temprature_data">Temprature </string>
+    <string name="loading_data">Loading Data...</string>
+    <string name="please_wait">Please Wait...</string>
+
+
+    <!-- Strings related to add_medicine_one.xml -->
+    <string name="medicine_name">Medicine Name</string>
+    <string name="P_enter_medicine_name">Enter Medicine Name</string>
+    <string name="strength">Medicine Strength</string>
+    <string name="p_enter_strength">Strength eg: 500mg</string>
+    <string name="tablets">Medicine Units</string>
+    <string name="p_enter_tablets">Eg: enter no of tablets</string>
+    <string name="route">Select Route</string>
+
+
+    <!-- Strings related to add_medicine_two.xml -->
+    <string name="frequency">Frequency</string>
+    <string name="med_start_date">Start Date</string>
+    <string name="select_med_start_date">Select Start date</string>
+    <string name="med_end_date">End Date</string>
+    <string name="select_med_end_date">Select End date</string>
+
+
+    <!-- Strings related to addMedicine One Two.java -->
+
+    <string name="enter_medicine_name">Enter medicine name</string>
+    <string name="enter_medicine_strength">Enter medicine strength</string>
+    <string name="enter_tablets">Enter number of tablets</string>
+    <string name="select_medicine_rute">Select medicine rute</string>
+    <string name="medicine_updated_successfully">Medicine Updated Successfully</string>
+    <string name="medicine_added_successfully">Medicine Added Successfully</string>
+    <string name="select_medicine_frequency">Select medicine frequency</string>
+    <string name="select_starting_date">Select starting date</string>
+    <string name="select_starting_and_ending_date">Select starting and ending date</string>
+    <string name="select_week_days">Select week days</string>
+    <string name="please_fill_dosage_properly">Please fill Dosage Properly</string>
+    <string name="please_fill">Please Fill</string>
+    <string name="select_intruction">Select Intruction</string>
+    <string name="not_allowed">Not Allowed</string>
+    <string name="saving_data">Saveing Data...</string>
+    <string name="sub_title_please_wait">Please Wait...</string>
+
+
+    <!-- Strings related to dosage_listview.xml -->
+    <string name="instructions_hint">Instructions</string>
+    <string name="dose_time">Dose Time</string>
+    <string name="remove_bt">Remove</string>
+
+    <!-- Strings related to patient_med_details.xml -->
+    <string name="m_id">Medicine ID</string>
+    <string name="m_name">Medicine Name</string>
+    <string name="m_strength">Strength</string>
+    <string name="m_frequency">Frequency</string>
+    <string name="m_units">Units</string>
+    <string name="m_rute">Rute</string>
+    <string name="m_date">Issue Date</string>
+    <string name="m_dose_instruction">Instruction</string>
+    <string name="m_dose_time">Dose Time</string>
+    <string name="m_status">Status</string>
+    <string name="m_comments">Comments</string>
+    <string name="given_bt">Given</string>
+
+    <!-- Strings related to PatientMedDetails.java -->
+    <string name="given_alert">Medicine Given</string>
+    <string name="given_alert_message">Have You Given Medicine To Patient</string>
+
+    <!-- Strings related to EditPatientDetailsThree.java -->
+    <string name="alert_patient_form_tittle_updation_successful">Updation Successful</string>
+    <string name="alert_patient_form_details_updated">Details Are Updated</string>
 
 
 </resources>

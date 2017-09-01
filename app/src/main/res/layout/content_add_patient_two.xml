@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="mdimembrane.tuberculosis.ManagePatients.AddPatientTwo"
+    tools:context="mdimembrane.tuberculosis.ManagePatients.AddNewPatient.AddPatientTwo"
     tools:showIn="@layout/activity_add_patient_two">
 
     <ScrollView
@@ -23,12 +23,56 @@
             android:orientation="vertical"
             android:weightSum="1">
 
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/patient_gender"
+                android:id="@+id/textView2"
+                android:layout_column="0"
+                android:textColor="@color/colorPrimary"
+                android:textSize="25sp" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_column="1"
+                android:id="@+id/genderRadioGroup"
+                android:layout_marginBottom="10sp">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/gender_male"
+                    android:id="@+id/radioButton"
+                    android:textSize="25sp"
+                    android:checked="true" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/gender_female"
+                    android:id="@+id/radioButton2"
+                    android:textSize="25sp" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/gender_other"
+                    android:id="@+id/radioButton3"
+                    android:textSize="25sp" />
+
+            </RadioGroup>
+
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="0"
-                android:text="Aadhar Number"
+                android:text="@string/patient_aadhar_number"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@color/colorPrimary"
                 android:textSize="25sp" />
@@ -51,7 +95,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="0"
-                android:text="Mobile Number"
+                android:text="@string/patient_mobile_number"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@color/colorPrimary"
                 android:textSize="25sp" />
@@ -74,7 +118,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="0"
-                android:text="Relative Mobile Number"
+                android:text="@string/patient_relative_mobile_number"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@color/colorPrimary"
                 android:textSize="25sp" />
@@ -97,7 +141,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="0"
-                android:text="Address 1"
+                android:text="@string/patient_address_1"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@color/colorPrimary"
                 android:textSize="25sp" />
@@ -110,8 +154,8 @@
                 android:layout_marginBottom="10sp"
                 android:background="@drawable/edit_text"
                 android:ems="10"
-                android:hint="House Number, Street"
-                android:inputType="text"
+                android:hint="@string/patient_address_1_hint"
+                android:inputType="textCapWords"
                 android:textSize="25sp" />
 
             <TextView
@@ -119,7 +163,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="0"
-                android:text="Address 2"
+                android:text="@string/patient_address_2"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@color/colorPrimary"
                 android:textSize="25sp" />
@@ -132,8 +176,8 @@
                 android:layout_marginBottom="10sp"
                 android:background="@drawable/edit_text"
                 android:ems="10"
-                android:hint="Village ,Town"
-                android:inputType="text"
+                android:hint="@string/patient_address_2_hint"
+                android:inputType="textCapWords"
                 android:textSize="25sp" />
 
             <LinearLayout
@@ -151,7 +195,7 @@
                     android:layout_weight="1"
                     android:background="#f55555"
                     android:onClick="backButton"
-                    android:text="Back"
+                    android:text="@string/back_bt"
                     android:textColor="#ffffff"
                     android:textSize="25sp"
                     android:textStyle="bold" />
@@ -164,7 +208,7 @@
                     android:layout_weight="1"
                     android:background="#0b9c1f"
                     android:onClick="nextButton"
-                    android:text="Next"
+                    android:text="@string/Next_Button"
                     android:textColor="#ffffff"
                     android:textSize="25sp"
                     android:textStyle="bold" />

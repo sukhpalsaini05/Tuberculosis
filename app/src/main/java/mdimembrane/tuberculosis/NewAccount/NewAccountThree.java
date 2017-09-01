@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
@@ -119,7 +121,26 @@ public class NewAccountThree extends AppCompatActivity {
                 editor.putString(PreferencesConstants.AddNewAccount.USER_AADHAR_NO, aadharET.getText().toString());
                 editor.commit();
 
-                new SendAllData().execute(ServerConstants.NEW_ACCOUNT);
+      //          new SendAllData().execute(ServerConstants.NEW_ACCOUNT);
+
+
+
+                ConnectivityManager cn=(ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+                NetworkInfo nf=cn.getActiveNetworkInfo();
+
+                {
+                    if (nf != null && nf.isConnected() == true) {
+                        //   Toast.makeText(this, "Internet Connection Available", Toast.LENGTH_LONG).show();
+
+                        new SendAllData().execute(ServerConstants.NEW_ACCOUNT);
+
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Internet Connection Not Available", Toast.LENGTH_LONG).show();
+
+                    }
+
+                }
+
 
 
                 //  Toast.makeText(getApplicationContext(),"Details submited Now Wait For User Name and Password And Login in Your Account", Toast.LENGTH_LONG).show();
@@ -360,7 +381,7 @@ public class NewAccountThree extends AppCompatActivity {
                 multipart.addFormField("account_ipaddress", ipAddress);
 
                 multipart.addFilePart("uploaded_file", uploadFile1);
-
+                multipart.addFormField("close", "close");
                 List<String> response = multipart.finish();
 
                 Log.v("rht", "SERVER REPLIED:");

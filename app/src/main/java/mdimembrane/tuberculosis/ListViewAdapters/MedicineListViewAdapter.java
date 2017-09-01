@@ -1,11 +1,6 @@
-package mdimembrane.tuberculosis.util;
-
-/**
- * Created by root on 26/7/17.
- */
+package mdimembrane.tuberculosis.ListViewAdapters;
 
 import android.app.Activity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,28 +13,28 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import mdimembrane.tuberculosis.ManagePatients.ManagePatientList;
 import mdimembrane.tuberculosis.main.R;
 
-import static android.R.id.list;
+/**
+ * Created by root on 4/8/17.
+ */
 
-public class ListViewAdapter extends BaseAdapter implements Filterable
-{
+public class MedicineListViewAdapter extends BaseAdapter implements Filterable {
     Activity context;
-    ArrayList<PatientListModel> patinetData;
-    ArrayList<PatientListModel> patinetDataOriginal;
+    ArrayList<MedicineListModel> medicineData;
+    ArrayList<MedicineListModel> medicineDataOriginal;
 
-    public ListViewAdapter(Activity context,  ArrayList<PatientListModel> patinetData) {
+    public MedicineListViewAdapter(Activity context, ArrayList<MedicineListModel> medicineData) {
         super();
         this.context = context;
-        this.patinetData = patinetData;
+        this.medicineData = medicineData;
 
     }
 
 
     public int getCount() {
         // TODO Auto-generated method stub
-        return patinetData.size();
+        return medicineData.size();
     }
 
     public Object getItem(int position) {
@@ -60,7 +55,7 @@ public class ListViewAdapter extends BaseAdapter implements Filterable
             @Override
             protected void publishResults(CharSequence constraint, FilterResults results) {
 
-                patinetData = (ArrayList<PatientListModel>) results.values; // has
+                medicineData = (ArrayList<MedicineListModel>) results.values; // has
 
                 notifyDataSetChanged();
             }
@@ -73,10 +68,10 @@ public class ListViewAdapter extends BaseAdapter implements Filterable
                 // operation in
                 // values
                 // List<String> FilteredArrList = new ArrayList<String>();
-                List<PatientListModel> FilteredArrList = new ArrayList<PatientListModel>();
+                List<MedicineListModel> FilteredArrList = new ArrayList<MedicineListModel>();
 
-                if (patinetDataOriginal == null) {
-                    patinetDataOriginal = new ArrayList<PatientListModel>(patinetData); // saves
+                if (medicineDataOriginal == null) {
+                    medicineDataOriginal = new ArrayList<MedicineListModel>(medicineData); // saves
 
                 }
 
@@ -90,16 +85,16 @@ public class ListViewAdapter extends BaseAdapter implements Filterable
                 if (constraint == null || constraint.length() == 0) {
 
                     // set the Original result to return
-                    results.count = patinetDataOriginal.size();
-                    results.values = patinetDataOriginal;
+                    results.count = medicineDataOriginal.size();
+                    results.values = medicineDataOriginal;
                 } else {
 
                     Locale locale = Locale.getDefault();
                     constraint = constraint.toString().toLowerCase(locale);
-                    for (int i = 0; i < patinetDataOriginal.size(); i++) {
-                        PatientListModel model = patinetDataOriginal.get(i);
+                    for (int i = 0; i < medicineDataOriginal.size(); i++) {
+                        MedicineListModel model = medicineDataOriginal.get(i);
 
-                        String data = model.getPatientName();
+                        String data = model.getMedicineName();
                         if (data.toLowerCase(locale).contains(constraint.toString())) {
                             FilteredArrList.add(model);
                         }
@@ -117,10 +112,10 @@ public class ListViewAdapter extends BaseAdapter implements Filterable
 
 
     private class ViewHolder {
-        TextView patient_id;
-        TextView patient_name;
-        TextView patient_phone;
-        TextView patient_date;
+        TextView medicine_id;
+        TextView medicine_name;
+        TextView medicine_start_date;
+        TextView medicine_end_date;
     }
 
     public View getView(int position, View convertView, ViewGroup parent)
@@ -131,26 +126,24 @@ public class ListViewAdapter extends BaseAdapter implements Filterable
 
         if (convertView == null)
         {
-            convertView = inflater.inflate(R.layout.custom_patient_list, null);
+            convertView = inflater.inflate(R.layout.custom_medicine_list, null);
             holder = new ViewHolder();
-            holder.patient_id = (TextView) convertView.findViewById(R.id.textView1);
-            holder.patient_name = (TextView) convertView.findViewById(R.id.textView2);
-            holder.patient_phone = (TextView) convertView.findViewById(R.id.textView3);
-            holder.patient_date = (TextView) convertView.findViewById(R.id.textView4);
+            holder.medicine_id = (TextView) convertView.findViewById(R.id.medicineIdTextView);
+            holder.medicine_name = (TextView) convertView.findViewById(R.id.medicineNameTextView);
+            holder.medicine_start_date = (TextView) convertView.findViewById(R.id.medicineStartDateTextView);
+            holder.medicine_end_date = (TextView) convertView.findViewById(R.id.medicineEndDateTextView);
             convertView.setTag(holder);
         }
         else
         {
             holder = (ViewHolder) convertView.getTag();
         }
-        PatientListModel patientListModel=patinetData.get(position);
-        holder.patient_id.setText(patientListModel.getPatientID());
-        holder.patient_name.setText(patientListModel.getPatientName());
-        holder.patient_phone.setText(patientListModel.getPatientPhone());
-        holder.patient_date.setText(patientListModel.getPatientDate());
+        MedicineListModel medicineListModel=medicineData.get(position);
+        holder.medicine_id.setText(medicineListModel.getMedicineID());
+        holder.medicine_name.setText(medicineListModel.getMedicineName());
+        holder.medicine_start_date.setText(medicineListModel.getMedicineStartDate());
+        holder.medicine_end_date.setText(medicineListModel.getMedicineEndDate());
 
         return convertView;
     }
-
-
 }

@@ -10,7 +10,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="mdimembrane.tuberculosis.ManagePatients.AddPatientThree"
+    tools:context="mdimembrane.tuberculosis.ManagePatients.AddNewPatient.AddPatientThree"
     tools:showIn="@layout/activity_add_patient_three">
 
     <ScrollView
@@ -28,7 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="0"
-                android:text="Select Current Symptoms"
+                android:text="@string/select_current_symptoms"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@color/colorPrimary"
                 android:textSize="25sp" />
@@ -40,7 +40,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="10dp"
-                android:text="Cough/Sputum > 3 Weeks"
+                android:text="@string/symptoms_checkbox_one"
                 android:textSize="23sp"
                 android:textStyle="bold" />
 
@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_toRightOf="@+id/checkBox1"
-                android:text="Hemoptysis"
+                android:text="@string/symptoms_checkbox_two"
                 android:textSize="23sp"
                 android:textStyle="bold" />
 
@@ -60,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_toRightOf="@+id/checkBox2"
-                android:text="Fever"
+                android:text="@string/symptoms_checkbox_three"
                 android:textSize="23sp"
                 android:textStyle="bold" />
 
@@ -70,7 +70,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
-                android:text="Weight Lose / Anorexia"
+                android:text="@string/symptoms_checkbox_four"
                 android:textSize="23sp"
                 android:textStyle="bold" />
 
@@ -80,7 +80,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_toRightOf="@+id/checkBox1"
-                android:text="Wheezing/SOB"
+                android:text="@string/symptoms_checkbox_five"
                 android:textSize="23sp"
                 android:textStyle="bold" />
 
@@ -90,7 +90,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_toRightOf="@+id/checkBox2"
-                android:text="Night Sweats"
+                android:text="@string/symptoms_checkbox_six"
                 android:textSize="23sp"
                 android:textStyle="bold" />
 
@@ -100,7 +100,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_toRightOf="@+id/checkBox1"
-                android:text="Fatigue"
+                android:text="@string/symptoms_checkbox_seven"
                 android:textSize="23sp"
                 android:textStyle="bold" />
 
@@ -110,7 +110,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_toRightOf="@+id/checkBox2"
-                android:text="Lymphadenpopathy"
+                android:text="@string/symptoms_checkbox_eight"
                 android:textSize="23sp"
                 android:textStyle="bold" />
 
@@ -120,7 +120,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_toRightOf="@+id/checkBox1"
-                android:text="Headache"
+                android:text="@string/symptoms_checkbox_nine"
                 android:textSize="23sp"
                 android:textStyle="bold" />
 
@@ -130,7 +130,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_toRightOf="@+id/checkBox1"
-                android:text="Joint Pain"
+                android:text="@string/symptoms_checkbox_ten"
                 android:textSize="23sp"
                 android:textStyle="bold" />
             <TextView
@@ -138,7 +138,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="0"
-                android:text="Any Other Symptoms"
+                android:text="@string/any_other_symptoms"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@color/colorPrimary"
                 android:textSize="25sp" />
@@ -151,8 +151,8 @@
                 android:layout_marginBottom="10sp"
                 android:background="@drawable/edit_text"
                 android:ems="10"
-                android:hint="Other Symptoms"
-                android:inputType="textPersonName"
+                android:hint="@string/other_symptoms"
+                android:inputType="textCapWords"
                 android:maxLength="12"
                 android:textSize="25sp" />
 
@@ -166,7 +166,7 @@
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Back"
+                    android:text="@string/back_bt"
                     android:id="@+id/backButton"
                     android:layout_weight="1"
                     android:background="#f55555"
@@ -179,7 +179,7 @@
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Next"
+                    android:text="@string/Next_Button"
                     android:id="@+id/nextNutton"
                     android:layout_weight="1"
                     android:background="#0b9c1f"

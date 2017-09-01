@@ -12,6 +12,126 @@
         android:layout_marginTop="20dp"
         >
 
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/cell_border"
+                android:text="@string/phone_no"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimary"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/phoneTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/cell_border"
+                android:hint="@string/phone_no"
+                android:textAllCaps="false"
+                android:textColor="@color/cardview_dark_background"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView18"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/cell_border"
+                android:text="@string/relative_phone_number"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimary"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/relativePhoneTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/cell_border"
+                android:hint="@string/relative_phone_number"
+                android:textAllCaps="false"
+                android:textColor="@color/cardview_dark_background"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/cell_border"
+                android:text="@string/aadhar_no"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimary"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/aadharTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/cell_border"
+                android:hint="@string/aadhar_no"
+                android:textAllCaps="false"
+                android:textColor="@color/cardview_dark_background"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+ phoneTV.setText(sharedpreferences.getString(PreferencesConstants.PatientProfile.PATIENT_PHONE,"NA"));
+        relativePhoneTV.setText(sharedpreferences.getString(PreferencesConstants.PatientProfile.GAURDIAN_PHONE,"NA"));
+        aadharTV.setText(sharedpreferences.getString(PreferencesConstants.PatientProfile.PATIENT_AADHAR_NO,"NA"));
+        dateTV.setText(sharedpreferences.getString(PreferencesConstants.PatientProfile.DATE,"NA"));
+            <TextView
+                android:id="@+id/textView19"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/cell_border"
+                android:text="@string/date_time"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimary"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/dateTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/cell_border"
+                android:hint="@string/date_time"
+                android:textAllCaps="false"
+                android:textColor="@color/cardview_dark_background"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </TableRow>
+
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -22,7 +142,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/cell_border"
-                android:text="State"
+                android:text="@string/state"
                 android:textAllCaps="false"
                 android:textColor="@color/colorPrimary"
                 android:textSize="20sp"
@@ -34,7 +154,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/cell_border"
-                android:hint="State"
+                android:hint="@string/state"
                 android:textAllCaps="false"
                 android:textColor="@color/cardview_dark_background"
                 android:textSize="20sp"
@@ -51,7 +171,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/cell_border"
-                android:text="District"
+                android:text="@string/district"
                 android:textAllCaps="false"
                 android:textColor="@color/colorPrimary"
                 android:textSize="20sp"
@@ -63,7 +183,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/cell_border"
-                android:hint="District"
+                android:hint="@string/district"
                 android:textAllCaps="false"
                 android:textColor="@color/cardview_dark_background"
                 android:textSize="20sp"
@@ -80,7 +200,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/cell_border"
-                android:text="Tehsil"
+                android:text="@string/tehsil"
                 android:textAllCaps="false"
                 android:textColor="@color/colorPrimary"
                 android:textSize="20sp"
@@ -92,7 +212,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/cell_border"
-                android:hint="Tehsil"
+                android:hint="@string/tehsil"
                 android:textAllCaps="false"
                 android:textColor="@color/cardview_dark_background"
                 android:textSize="20sp"
@@ -109,7 +229,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/cell_border"
-                android:text="Address1"
+                android:text="@string/address_1"
                 android:textAllCaps="false"
                 android:textColor="@color/colorPrimary"
                 android:textSize="20sp"
@@ -121,7 +241,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/cell_border"
-                android:hint="Address1"
+                android:hint="@string/address_1"
                 android:textAllCaps="false"
                 android:textColor="@color/cardview_dark_background"
                 android:textSize="20sp"
@@ -138,7 +258,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/cell_border"
-                android:text="Address2"
+                android:text="@string/address_2"
                 android:textAllCaps="false"
                 android:textColor="@color/colorPrimary"
                 android:textSize="20sp"
@@ -150,7 +270,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/cell_border"
-                android:hint="Address2"
+                android:hint="@string/address_2"
                 android:textAllCaps="false"
                 android:textColor="@color/cardview_dark_background"
                 android:textSize="20sp"

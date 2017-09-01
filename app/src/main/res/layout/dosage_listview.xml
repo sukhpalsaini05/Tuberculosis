@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:layout_marginBottom="5sp">
+
+    <EditText
+        android:id="@+id/instructionET"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="4sp"
+        android:layout_weight="1.1"
+        android:background="@drawable/edit_text"
+        android:ems="10"
+        android:hint="@string/instructions_hint"
+        android:focusable="false"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/doseTimeET"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="4sp"
+        android:layout_weight="0.7"
+        android:background="@drawable/edit_text"
+        android:ems="10"
+        android:hint="@string/dose_time"
+        android:focusable="false"
+        android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/removeDoseBT"
+        android:layout_width="70sp"
+        android:layout_height="33sp"
+        android:background="#f55555"
+        android:text="@string/remove_bt"
+        android:textColor="@android:color/white"
+        android:textStyle="bold" />
+</LinearLayout>

@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="mdimembrane.tuberculosis.ManagePatients.AddPatientOne"
+    tools:context="mdimembrane.tuberculosis.ManagePatients.AddNewPatient.AddPatientOne"
     tools:showIn="@layout/activity_new_account_three">
 
     <ScrollView
@@ -67,7 +67,7 @@
                 android:ems="10"
                 android:id="@+id/HospNameET"
                 android:layout_column="1"
-                android:inputType="textPersonName"
+                android:inputType="textCapWords"
                 android:visibility="gone"
                 android:background="@drawable/edit_text"
                 android:hint="Any Other Hospital"
@@ -128,7 +128,7 @@
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Back"
+                android:text="@string/back_bt"
                 android:id="@+id/button"
                 android:layout_weight="1"
                 android:background="#f55555"
@@ -141,7 +141,7 @@
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Save"
+                android:text="@string/save_bt"
                 android:id="@+id/button1"
                 android:layout_weight="1"
                 android:background="#0b9c1f"

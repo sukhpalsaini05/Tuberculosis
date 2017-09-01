@@ -9,12 +9,14 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
     GeneralInformationFragment tab1;
     PatientAddressFragment tab2;
     MedicalDetailsFragment tab3;
+    CheckUpDataFragment tab4;
     public PagerAdapter(FragmentManager fm, int NumOfTabs) {
         super(fm);
         this.mNumOfTabs = NumOfTabs;
         tab1 = new GeneralInformationFragment();
         tab2 = new PatientAddressFragment();
         tab3 = new MedicalDetailsFragment();
+        tab4 = new CheckUpDataFragment();
     }
 
     @Override
@@ -30,6 +32,9 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
             case 2:
 
                 return tab3;
+            case 3:
+
+                return tab4;
             default:
                 return null;
         }

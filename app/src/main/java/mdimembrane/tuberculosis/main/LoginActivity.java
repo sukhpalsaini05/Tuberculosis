@@ -13,6 +13,8 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
@@ -61,7 +63,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
     private static final String TAG = LoginActivity.class.getSimpleName();
-    String username, password;
+    String username, password,fcm_reg_id;
     Button RequestAccount;
     SharedPreferences sharedpreferences;
     /**
@@ -84,7 +86,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        RequestAccount = (Button) findViewById(R.id.button6);
+        RequestAccount = (Button) findViewById(R.id.requestAccountbutton);
 
         RequestAccount.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,9 +101,9 @@ public class LoginActivity extends AppCompatActivity {
         /* Set up the login form. */
         mUsernameView = (EditText) findViewById(R.id.userNameET);
         mProgress = new ProgressDialog(this);
-        String titleId = "Signing in...";
+        String titleId = getResources().getString(R.string.signing_in);
         mProgress.setTitle(titleId);
-        mProgress.setMessage("Please Wait...");
+        mProgress.setMessage(getResources().getString(R.string.sub_title_please_wait));
         mPasswordView = (EditText) findViewById(R.id.passwordET);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -139,12 +141,11 @@ public class LoginActivity extends AppCompatActivity {
 
                     String message = intent.getStringExtra("message");
 
-                    Toast.makeText(getApplicationContext(), "Push notification: " + message, Toast.LENGTH_LONG).show();
+                  //  Toast.makeText(getApplicationContext(), "Push notification: " + message, Toast.LENGTH_LONG).show();
                 }
             }
         };
 
-        displayFirebaseRegId();
         int permission = ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
         if (permission != PackageManager.PERMISSION_GRANTED) {
             // We don't have permission so prompt the user
@@ -153,6 +154,19 @@ public class LoginActivity extends AppCompatActivity {
                     PERMISSIONS_STORAGE,
                     REQUEST_EXTERNAL_STORAGE
             );
+        }
+
+
+        ConnectivityManager cn=(ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo nf=cn.getActiveNetworkInfo();
+        if(nf != null && nf.isConnected()==true )
+        {
+            Toast.makeText(this, "Internet Connection Available", Toast.LENGTH_LONG).show();
+        }
+        else
+        {
+            Toast.makeText(this, "Internet Connection Not Available", Toast.LENGTH_LONG).show();
+
         }
     }
 
@@ -196,8 +210,7 @@ public class LoginActivity extends AppCompatActivity {
     // Fetches reg id from shared preferences
     // and displays on the screen
     private void displayFirebaseRegId() {
-        SharedPreferences pref = getApplicationContext().getSharedPreferences(PreferencesConstants.APP_MAIN_PREF, 0);
-        String regId = pref.getString("regId", null);
+        String regId = sharedpreferences.getString(PreferencesConstants.SessionManager.FCM_REG_ID, null);
 
         Log.e(TAG, "Firebase reg id: " + regId);
 
@@ -250,6 +263,8 @@ public class LoginActivity extends AppCompatActivity {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
 
+            fcm_reg_id=sharedpreferences.getString(PreferencesConstants.SessionManager.FCM_REG_ID,null);
+            Log.i("FCM ID",fcm_reg_id+"");
             mAuthTask = new UserLoginTask(username, password);
             mAuthTask.execute((Void) null);
         }
@@ -319,10 +334,12 @@ public class LoginActivity extends AppCompatActivity {
             // TODO: attempt authentication against a network service.
             HttpConnection jParser = new HttpConnection();
             JSONObject jsonObject = new JSONObject();
+
             try {
                 jsonObject.accumulate("action", "user_login");
                 jsonObject.accumulate("user_name", username);
                 jsonObject.accumulate("password", password);
+                jsonObject.accumulate("fcm_reg_id",fcm_reg_id);
 
             } catch (Exception e) {
                 // TODO: handle exception
@@ -330,7 +347,6 @@ public class LoginActivity extends AppCompatActivity {
             JSONObject json = jParser.getJSONFromUrl(ServerConstants.USER_LOGIN, jsonObject);
 
             // TODO: register the new account here.
-
 
             return json;
         }
@@ -385,12 +401,10 @@ public class LoginActivity extends AppCompatActivity {
 
                 }
             } catch (JSONException e) {
-                e.printStackTrace();
+              //  e.printStackTrace();
             }
             mProgress.dismiss();
         }
 
     }
-
-
 }

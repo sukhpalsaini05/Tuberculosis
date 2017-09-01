@@ -26,7 +26,7 @@ public class MedicalDetailsFragment extends Fragment {
 
         sharedpreferences = getActivity().getSharedPreferences(PreferencesConstants.APP_MAIN_PREF, Context.MODE_PRIVATE);
 
-        TextView symptomsTV=(TextView) view.findViewById(R.id.symptomsTextView);
+       // TextView symptomsTV=(TextView) view.findViewById(R.id.symptomsTextView);
         TextView bloodGroupTV=(TextView) view.findViewById(R.id.bloodGroupTextView);
         TextView weightTV=(TextView) view.findViewById(R.id.weightTextView);
         TextView heightTV=(TextView) view.findViewById(R.id.heightTextView);
@@ -34,7 +34,7 @@ public class MedicalDetailsFragment extends Fragment {
         TextView commentsTV=(TextView) view.findViewById(R.id.commentsTextView);
 
 
-        symptomsTV.setText(sharedpreferences.getString(PreferencesConstants.PatientProfile.SYMPTOMS_LIST,"NA"));
+       // symptomsTV.setText(sharedpreferences.getString(PreferencesConstants.PatientProfile.SYMPTOMS_LIST,"NA"));
         bloodGroupTV.setText(sharedpreferences.getString(PreferencesConstants.PatientProfile.BLOOD_GROUP,"NA"));
         weightTV.setText(sharedpreferences.getString(PreferencesConstants.PatientProfile.WEIGHT,"NA"));
         heightTV.setText(sharedpreferences.getString(PreferencesConstants.PatientProfile.HEIGHT,"NA"));

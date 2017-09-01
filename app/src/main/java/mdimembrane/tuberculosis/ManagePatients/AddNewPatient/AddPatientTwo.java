@@ -1,4 +1,4 @@
-package mdimembrane.tuberculosis.ManagePatients;
+package mdimembrane.tuberculosis.ManagePatients.AddNewPatient;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,6 +11,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import mdimembrane.tuberculosis.main.PreferencesConstants;
 import mdimembrane.tuberculosis.main.R;
@@ -18,9 +20,11 @@ import mdimembrane.tuberculosis.main.R;
 public class AddPatientTwo extends AppCompatActivity {
 
     EditText aadharNoET,phoneNoET,relativeMobileNoET,address1ET,address2ET;
-
+    RadioButton MaleRB, FemaleRB, OtherRB;
     SharedPreferences sharedpreferences;
-
+    final int NEXT_ACTIVITY = 10;
+    private RadioGroup genderRadioGroup;
+    String genderSTR = "Male";
 
 
     @Override
@@ -44,6 +48,25 @@ public class AddPatientTwo extends AppCompatActivity {
         address1ET=(EditText)findViewById(R.id.address1EditText);
         address2ET=(EditText)findViewById(R.id.address2EditText);
 
+        genderRadioGroup = (RadioGroup) findViewById(R.id.genderRadioGroup);
+
+        genderRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                // find which radio button is selected
+                if (checkedId == R.id.radioButton) {
+                    genderSTR = "Male";
+                } else if (checkedId == R.id.radioButton2) {
+                    genderSTR = "Female";
+                } else {
+                    genderSTR = "Other";
+                }
+            }
+
+        });
+
+
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -55,7 +78,16 @@ public class AddPatientTwo extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
 
+
+        if (requestCode == NEXT_ACTIVITY && resultCode == RESULT_OK) {
+            Intent intent1 = getIntent();
+            setResult(RESULT_OK, intent1);
+            finish();
+        }
+    }
     public boolean onCreateOptionsMenu(Menu menu) {
         return true;
     }
@@ -98,10 +130,14 @@ public class AddPatientTwo extends AppCompatActivity {
         editor.putString(PreferencesConstants.AddNewPatient.GAURDIAN_PHONE, relativeMobileNoET.getText().toString());
         editor.putString(PreferencesConstants.AddNewPatient.ADDRESS1, address1ET.getText().toString());
         editor.putString(PreferencesConstants.AddNewPatient.ADDRESS2, address2ET.getText().toString());
+        editor.putString(PreferencesConstants.AddNewPatient.GENDER, genderSTR);
         editor.commit();
 
 
-        Intent intent=new Intent(getApplicationContext(),AddPatientThree.class);
-        startActivity(intent);
+        Intent intent=new Intent(getApplicationContext(),AddPatientFour.class);
+        startActivityForResult(intent, NEXT_ACTIVITY);
     }
+
+
+
 }

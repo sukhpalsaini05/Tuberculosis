@@ -1,4 +1,4 @@
-package mdimembrane.tuberculosis.ManagePatients;
+package mdimembrane.tuberculosis.ManagePatients.AddNewPatient;
 
 import android.content.Context;
 import android.content.Intent;
@@ -20,6 +20,7 @@ public class AddPatientThree extends AppCompatActivity {
     CheckBox coughCB,hemoptysisCB,feverCB,weightLoseCB,wheezingCB,nightSweatsCB,fatigueCB,lymphadenpopathyCB,headacheCB,jointPainCB;
     EditText othersymptomsET;
     SharedPreferences sharedpreferences;
+    final int NEXT_ACTIVITY = 10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,53 +49,62 @@ public class AddPatientThree extends AppCompatActivity {
 
         othersymptomsET=(EditText)findViewById(R.id.symptomsEditText);
     }
-
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+//
+//
+//        if (requestCode == NEXT_ACTIVITY && resultCode == RESULT_OK) {
+//            Intent intent1 = getIntent();
+//            setResult(RESULT_OK, intent1);
+//            finish();
+//        }
+//    }
     public void nextButton(View view)
     {
-        StringBuilder result=new StringBuilder();
-        if(coughCB.isChecked()){
-            result.append("Cough/Sputum > 3 Weeks ");
-        }
-        if(hemoptysisCB.isChecked()){
-            result.append("\nHemoptysis ");
-        }
-        if(feverCB.isChecked()){
-            result.append("\nFever ");
-        }
-        if(weightLoseCB.isChecked()){
-            result.append("\nWeight Lose / Anorexia ");
-        }
-        if(wheezingCB.isChecked()){
-            result.append("\nWheezing/SOB ");
-        }
-        if(nightSweatsCB.isChecked()){
-            result.append("\nNight Sweats ");
-        }
-        if(fatigueCB.isChecked()){
-            result.append("\nFatigue ");
-        }
-        if(lymphadenpopathyCB.isChecked()){
-            result.append("\nLymphadenpopathy ");
-        }
-        if(headacheCB.isChecked()){
-            result.append("\nHeadache ");
-        }
-        if(jointPainCB.isChecked()){
-            result.append("\nJoint Pain ");
-        }
-        if(othersymptomsET !=null){
-            result.append("\n"+othersymptomsET.getText().toString());
-        }
+//        StringBuilder result=new StringBuilder();
+//        if(coughCB.isChecked()){
+//            result.append("Cough/Sputum > 3 Weeks ");
+//        }
+//        if(hemoptysisCB.isChecked()){
+//            result.append("\nHemoptysis ");
+//        }
+//        if(feverCB.isChecked()){
+//            result.append("\nFever ");
+//        }
+//        if(weightLoseCB.isChecked()){
+//            result.append("\nWeight Lose / Anorexia ");
+//        }
+//        if(wheezingCB.isChecked()){
+//            result.append("\nWheezing/SOB ");
+//        }
+//        if(nightSweatsCB.isChecked()){
+//            result.append("\nNight Sweats ");
+//        }
+//        if(fatigueCB.isChecked()){
+//            result.append("\nFatigue ");
+//        }
+//        if(lymphadenpopathyCB.isChecked()){
+//            result.append("\nLymphadenpopathy ");
+//        }
+//        if(headacheCB.isChecked()){
+//            result.append("\nHeadache ");
+//        }
+//        if(jointPainCB.isChecked()){
+//            result.append("\nJoint Pain ");
+//        }
+//        if(othersymptomsET !=null){
+//            result.append("\n"+othersymptomsET.getText().toString());
+//        }
 
-        SharedPreferences.Editor editor = sharedpreferences.edit();
-        editor.putString(PreferencesConstants.AddNewPatient.OTHER_SYMPTOMS, othersymptomsET.getText().toString());
-        editor.putString(PreferencesConstants.AddNewPatient.SYMPTOMS_LIST, String.valueOf(result));
-        editor.commit();
+//        SharedPreferences.Editor editor = sharedpreferences.edit();
+//        editor.putString(PreferencesConstants.AddNewPatient.OTHER_SYMPTOMS, othersymptomsET.getText().toString());
+//        editor.putString(PreferencesConstants.AddNewPatient.SYMPTOMS_LIST, String.valueOf(result));
+//        editor.commit();
 
-        Toast.makeText(getApplicationContext(), result.toString(), Toast.LENGTH_LONG).show();
+//        Toast.makeText(getApplicationContext(), result.toString(), Toast.LENGTH_LONG).show();
 
-        Intent intent=new Intent(getApplicationContext(),AddPatientFour.class);
-        startActivity(intent);
+//        Intent intent=new Intent(getApplicationContext(),AddPatientFour.class);
+//        startActivityForResult(intent, NEXT_ACTIVITY);
     }
     public void backButton(View view)
     {

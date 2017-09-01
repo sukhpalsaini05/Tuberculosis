@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="mdimembrane.tuberculosis.ManagePatients.AddPatientOne"
+    tools:context="mdimembrane.tuberculosis.ManagePatients.AddNewPatient.AddPatientOne"
     tools:showIn="@layout/activity_add_patient_one">
 
     <ScrollView
@@ -52,12 +52,19 @@
 
             </LinearLayout>
 
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/categoryTypeSP"
+                android:textSize="25sp"
+                android:background="@drawable/spinner_style"
+                android:layout_marginBottom="5sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Name"
+                android:text="@string/patient_name"
                 android:id="@+id/textView"
                 android:layout_column="0"
                 android:textColor="@color/colorPrimary"
@@ -66,14 +73,14 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"
+                android:inputType="textCapWords"
                 android:ems="10"
                 android:id="@+id/nameEditText"
                 android:layout_column="1"
                 android:background="@drawable/edit_text"
                 android:textSize="25sp"
                 android:layout_marginBottom="10sp"
-                android:hint="Patient Name" />
+                android:hint="@string/patient_name_hint" />
 
             <Spinner
                 android:layout_width="match_parent"
@@ -87,20 +94,20 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"
+                android:inputType="textCapWords"
                 android:ems="10"
                 android:id="@+id/guardianNameEditText"
                 android:layout_column="1"
                 android:background="@drawable/edit_text"
                 android:textSize="25sp"
                 android:layout_marginBottom="10sp"
-                android:hint="Guardian Name" />
+                android:hint="@string/guardian_name_hint" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Age"
+                android:text="@string/patient_age"
                 android:id="@+id/textView3"
                 android:layout_column="0"
                 android:textColor="@color/colorPrimary"
@@ -116,49 +123,8 @@
                 android:background="@drawable/edit_text"
                 android:textSize="25sp"
                 android:layout_marginBottom="10sp"
-                android:hint="Age in Years" />
+                android:hint="@string/patient_age_hint" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Gender"
-                android:id="@+id/textView2"
-                android:layout_column="0"
-                android:textColor="@color/colorPrimary"
-                android:textSize="25sp" />
-
-            <RadioGroup
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_column="1"
-                android:id="@+id/genderRadioGroup"
-                android:layout_marginBottom="10sp">
-
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Male"
-                    android:id="@+id/radioButton"
-                    android:textSize="25sp"
-                    android:checked="true" />
-
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Female"
-                    android:id="@+id/radioButton2"
-                    android:textSize="25sp" />
-
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Other"
-                    android:id="@+id/radioButton3"
-                    android:textSize="25sp" />
-
-            </RadioGroup>
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -170,7 +136,7 @@
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Cancel"
+                    android:text="@string/cancle_button"
                     android:id="@+id/button"
                     android:layout_weight="1"
                     android:background="#f55555"
@@ -183,7 +149,7 @@
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Next"
+                    android:text="@string/Next_Button"
                     android:id="@+id/button5"
                     android:layout_weight="1"
                     android:background="#0b9c1f"

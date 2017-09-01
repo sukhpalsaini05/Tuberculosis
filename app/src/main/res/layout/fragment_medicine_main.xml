@@ -45,7 +45,7 @@
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/addMedicine"
+                    android:id="@+id/addMedicineBT"
                     android:drawableTop="@drawable/add_medicine"
                     android:layout_column="0"
                     android:layout_weight="1"
@@ -54,13 +54,13 @@
                     android:textStyle="bold"
                     android:layout_margin="4sp"
                     android:padding="5sp"
-                    android:text="Add New Medicine" />
+                    android:text="@string/add_new_medicine_bt" />
                     android:text="Add New Medicine" />
 
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="View List Of medicine"
+                    android:text="@string/view_list_of_medicine_bt"
                     android:drawableTop="@drawable/list_medicine"
                     android:id="@+id/button2"
                     android:layout_column="1"
@@ -79,9 +79,9 @@
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Edit Medicine"
+                    android:text="@string/edit_medicine_bt"
                     android:drawableTop="@drawable/edit_medicine"
-                    android:id="@+id/button3"
+                    android:id="@+id/editMedicineBT"
                     android:layout_column="0"
                     android:layout_weight="1"
                     android:background="#896664"
@@ -93,7 +93,7 @@
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="New Button"
+                    android:text="@string/new_button"
                     android:drawableTop="@drawable/syringe_icon"
                     android:id="@+id/button4"
                     android:layout_column="1"

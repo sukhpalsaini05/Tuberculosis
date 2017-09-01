@@ -2,10 +2,14 @@ package mdimembrane.tuberculosis.ManagePatients;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
@@ -25,22 +29,30 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import mdimembrane.tuberculosis.ManageMedicines.AddNewMedicine.MedicineList;
 import mdimembrane.tuberculosis.ManagePatients.DailyCheckup.CheckUpRecord;
+import mdimembrane.tuberculosis.ManagePatients.EditPatient.EditPatientDetailsOne;
 import mdimembrane.tuberculosis.ManagePatients.PatientProfile.ProfileDetailsActivity;
 import mdimembrane.tuberculosis.ManageSamples.AddNewSampleOne;
-import mdimembrane.tuberculosis.ManageSamples.AddSampleResultOne;
+import mdimembrane.tuberculosis.ManageSamples.EditSample.EditSampleList;
+import mdimembrane.tuberculosis.ManageSamples.SampleList;
 import mdimembrane.tuberculosis.ServerConfiguration.MultipartUtility;
 import mdimembrane.tuberculosis.ServerConfiguration.ServerConstants;
 import mdimembrane.tuberculosis.main.PreferencesConstants;
 import mdimembrane.tuberculosis.main.R;
-import mdimembrane.tuberculosis.util.ListViewAdapter;
-import mdimembrane.tuberculosis.util.PatientListModel;
+import mdimembrane.tuberculosis.ListViewAdapters.ListViewAdapter;
+import mdimembrane.tuberculosis.ListViewAdapters.PatientListModel;
 
+import static mdimembrane.tuberculosis.main_fragments.MedicineMainFragment.ADD_NEW_MEDICINE;
+import static mdimembrane.tuberculosis.main_fragments.MedicineMainFragment.EDIT_MEDICINE;
 import static mdimembrane.tuberculosis.main_fragments.PatientMainFragment.DAILY_RECORDS;
 import static mdimembrane.tuberculosis.main_fragments.PatientMainFragment.EDIT_PATIENTS;
 import static mdimembrane.tuberculosis.main_fragments.PatientMainFragment.PATIENT_PROFILE;
+import static mdimembrane.tuberculosis.main_fragments.ReportMainFragment.ADD_NEW_REPORT;
+import static mdimembrane.tuberculosis.main_fragments.ReportMainFragment.REPORT_RESULT;
 import static mdimembrane.tuberculosis.main_fragments.SampleMainFragment.ADD_NEW_SAMPLE;
-import static mdimembrane.tuberculosis.main_fragments.SampleMainFragment.ADD_SAMPLE_RESULT;
+import static mdimembrane.tuberculosis.main_fragments.SampleMainFragment.EDIT_SAMPLE;
+import static mdimembrane.tuberculosis.main_fragments.SampleMainFragment.SAMPLE_RESULT;
 
 public class ManagePatientList extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
@@ -88,7 +100,23 @@ public class ManagePatientList extends AppCompatActivity implements AdapterView.
 
         patientLV.setOnItemClickListener(this);
 
-        new PatientData().execute();
+        //new PatientData().execute();
+
+        ConnectivityManager cn=(ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo nf=cn.getActiveNetworkInfo();
+
+        {
+            if (nf != null && nf.isConnected() == true) {
+                //   Toast.makeText(this, "Internet Connection Available", Toast.LENGTH_LONG).show();
+
+                new PatientData().execute();
+
+            } else {
+                Toast.makeText(this, "Internet Connection Not Available", Toast.LENGTH_LONG).show();
+
+            }
+
+        }
 
     }
 
@@ -133,11 +161,11 @@ public class ManagePatientList extends AppCompatActivity implements AdapterView.
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
 
 
-        TextView textview1 = (TextView) view.findViewById(R.id.textView1);
-        TextView textview2 = (TextView) view.findViewById(R.id.textView2);
+        final TextView textview1 = (TextView) view.findViewById(R.id.textView1);
+        final TextView textview2 = (TextView) view.findViewById(R.id.textView2);
         TextView textview3 = (TextView) view.findViewById(R.id.textView3);
 
-        Toast.makeText(getApplicationContext(), "Selected  " + textview1.getText().toString() + "    " + textview2.getText().toString(), Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "Selected  " + textview1.getText().toString() + "    " + textview2.getText().toString(), Toast.LENGTH_SHORT).show();
 
         switch (OPEN_ACIVITY_WAY) {
             case PATIENT_PROFILE:
@@ -150,29 +178,117 @@ public class ManagePatientList extends AppCompatActivity implements AdapterView.
 
                 intent = new Intent(ManagePatientList.this, CheckUpRecord.class);
                 intent.putExtra("PATIENT_ID", textview1.getText().toString());
+                intent.putExtra("PATIENT_NAME", textview2.getText().toString());
                 startActivity(intent);
                 break;
 
             case EDIT_PATIENTS:
-                break;
+
+
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+                alertDialogBuilder.setCancelable(false);
+                alertDialogBuilder.setTitle("Edit Patients");
+                alertDialogBuilder.setMessage("You Want To Delete Or Update");
+
+                alertDialogBuilder.setPositiveButton("UPDATE",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface arg0, int arg1) {
+
+
+                                Intent intent = new Intent(ManagePatientList.this, AddNewSampleOne.class);
+                                intent.putExtra("PATIENT_ID", textview1.getText().toString());
+                                intent.putExtra("PATIENT_NAME", textview2.getText().toString());
+                                startActivity(intent);
+
+                            }
+                        });
+                alertDialogBuilder.setNegativeButton("DELETE",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface arg0, int arg1) {
+
+                                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(ManagePatientList.this);
+                                alertDialogBuilder.setCancelable(false);
+                                alertDialogBuilder.setTitle("Delete Patient");
+                                alertDialogBuilder.setMessage("Do you want to delete selected patient");
+
+                                alertDialogBuilder.setPositiveButton("YES",
+                                        new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface arg0, int arg1) {
+
+
+                                            }
+                                        });
+                                alertDialogBuilder.setNegativeButton("NO",
+                                        new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface arg0, int arg1) {
+
+                                            }
+                                        });
+
+                                AlertDialog alertDialog = alertDialogBuilder.create();
+                                alertDialog.show();
+
+                            }
+                        });
+
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
 
 
             case ADD_NEW_SAMPLE:
 
                 intent = new Intent(ManagePatientList.this, AddNewSampleOne.class);
                 intent.putExtra("PATIENT_ID", textview1.getText().toString());
+                intent.putExtra("PATIENT_NAME", textview2.getText().toString());
                 startActivity(intent);
                 break;
 
-            case ADD_SAMPLE_RESULT:
+            case SAMPLE_RESULT:
 
-                intent = new Intent(ManagePatientList.this, AddSampleResultOne.class);
+                intent = new Intent(ManagePatientList.this, SampleList.class);
                 intent.putExtra("PATIENT_ID", textview1.getText().toString());
+                intent.putExtra("PATIENT_NAME", textview2.getText().toString());
+                startActivity(intent);
+                break;
+
+            case ADD_NEW_MEDICINE:
+
+                intent = new Intent(ManagePatientList.this, MedicineList.class);
+                intent.putExtra("PATIENT_ID", textview1.getText().toString());
+                intent.putExtra("PATIENT_NAME", textview2.getText().toString());
+                startActivity(intent);
+                break;
+
+            case EDIT_MEDICINE:
+
+                intent = new Intent(ManagePatientList.this, MedicineList.class);
+                intent.putExtra("PATIENT_ID", textview1.getText().toString());
+                intent.putExtra("PATIENT_NAME", textview2.getText().toString());
+                startActivity(intent);
+                break;
+
+            case ADD_NEW_REPORT:
+
+                break;
+
+            case REPORT_RESULT:
+
+                break;
+
+            case EDIT_SAMPLE:
+
+                intent = new Intent(ManagePatientList.this, EditSampleList.class);
+                intent.putExtra("PATIENT_ID", textview1.getText().toString());
+                intent.putExtra("PATIENT_NAME", textview2.getText().toString());
                 startActivity(intent);
                 break;
 
             default:
-                //default intent
+                //default intents
                 break;
         }
 
@@ -199,6 +315,7 @@ public class ManagePatientList extends AppCompatActivity implements AdapterView.
                 MultipartUtility multipart = new MultipartUtility(ServerConstants.PATIENT_DATA, charset);
                 multipart.addFormField("action", "get_patient_data");
                 multipart.addFormField("user_id", sharedpreferences.getString(PreferencesConstants.SessionManager.USER_ID, "NA"));
+                multipart.addFormField("close", "close");
                 List<String> response = multipart.finish();
 
                 Log.v("rht", "SERVER REPLIED:");

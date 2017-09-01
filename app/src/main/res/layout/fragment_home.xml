@@ -28,7 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Alerts !"
+        android:text="@string/alerts"
         android:id="@+id/textView6"
         android:textStyle="bold"
         android:textColor="#f41515"
@@ -61,23 +61,24 @@
                 android:layout_width="110sp"
                 android:drawableTop="@drawable/medicine_alert"
                 android:layout_height="110sp"
-                android:text="Medicines"
+                android:text="@string/medicines_bt"
                 android:layout_alignParentTop="true"
                 android:textColor="#ffffff"
                 android:background="@drawable/rounded_shap_green"
                 android:layout_alignParentBottom="true" />
 
         </RelativeLayout>
-        <TextView
-            android:id="@+id/badge_notification_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignRight="@id/relative_layout"
-            android:background="@drawable/item_count"
-            android:text="16"
-            android:textColor="#FFF"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/badge_notification_1TV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignRight="@id/relative_layout"
+                android:background="@drawable/item_count"
+                android:text="0"
+                android:textColor="#FFF"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
     </RelativeLayout>
         <RelativeLayout
@@ -96,19 +97,20 @@
                     android:drawableTop="@drawable/samples_alert"
                     android:layout_height="110sp"
                     android:background="@drawable/rounded_shap_yellow"
-                    android:text="Samples"
+                    android:text="@string/samples_bt"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentTop="true"
                     android:textColor="#ffffff" />
 
             </RelativeLayout>
+
             <TextView
-                android:id="@+id/badge_notification_2"
+                android:id="@+id/badge_notification_2TV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignRight="@id/relative_layout2"
                 android:background="@drawable/item_count"
-                android:text="2"
+                android:text="0"
                 android:textColor="#FFF"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -130,19 +132,20 @@
                     android:drawableTop="@drawable/samples_alert"
                     android:layout_height="110sp"
                     android:background="@drawable/rounded_shap_blue"
-                    android:text="Test Results"
+                    android:text="@string/test_results_bt"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentTop="true"
                     android:textColor="#ffffff" />
 
             </RelativeLayout>
+
             <TextView
-                android:id="@+id/badge_notification_3"
+                android:id="@+id/badge_notification_3TV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignRight="@id/relative_layout3"
                 android:background="@drawable/item_count"
-                android:text="10"
+                android:text="0"
                 android:textColor="#FFF"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -154,7 +157,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="News"
+        android:text="@string/news_tv"
         android:id="@+id/textView7"
         android:textStyle="bold"
         android:textColor="@color/colorPrimary"

@@ -10,14 +10,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import mdimembrane.tuberculosis.ManagePatients.ManagePatientList;
-import mdimembrane.tuberculosis.ManageSamples.AddNewSampleOne;
-import mdimembrane.tuberculosis.ManageSamples.AddSampleResultOne;
 import mdimembrane.tuberculosis.main.R;
 
 
 public class SampleMainFragment extends Fragment {
 
-    public static final int ADD_NEW_SAMPLE = 4 , ADD_SAMPLE_RESULT = 5 ;
+    public static final int ADD_NEW_SAMPLE = 4 , SAMPLE_RESULT = 5 , EDIT_SAMPLE = 9;
 
      @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -40,7 +38,17 @@ public class SampleMainFragment extends Fragment {
              @Override
              public void onClick(View v) {
                  Intent intent=new Intent(getActivity(), ManagePatientList.class);
-                 intent.putExtra("OPEN_ACTIVITY",ADD_SAMPLE_RESULT);
+                 intent.putExtra("OPEN_ACTIVITY",SAMPLE_RESULT);
+                 startActivity(intent);
+             }
+         });
+
+         Button editsampleBT = (Button) view.findViewById(R.id.editSampleBT);
+         editsampleBT.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 Intent intent=new Intent(getActivity(), ManagePatientList.class);
+                 intent.putExtra("OPEN_ACTIVITY",EDIT_SAMPLE);
                  startActivity(intent);
              }
          });
